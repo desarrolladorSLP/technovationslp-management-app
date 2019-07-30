@@ -44,7 +44,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "deployUrl": "/management/",
+              "deployUrl": "/",
               "budgets": [
                 {
                   "type": "initial",

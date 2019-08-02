@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-danger navbar-dark">
+        <div class="container">
+            <div class="navbar-translate">
+                <img src="assets/logo-09.png" height="50px" />
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                 </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="main">
+                            Principal
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-link btn-just-icon text-dark border border-dark" *ngIf="!islogged" (click)="onlogin()" title="Iniciar Sesión" data-toggle="tooltip"><i class="fa fa-google"></i></button>
+          <button type="button" class="btn btn-warning btn-just-icon text-dark border border-dark" *ngIf="islogged" title="Iniciar Sesión" data-toggle="tooltip" (click)="onlogout()"><i class="fa fa-sign-out"></i></button>
+        </div>
+    </nav>
+<p *ngIf="islogged">
+{{info}}
+</p>

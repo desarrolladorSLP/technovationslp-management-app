@@ -9,17 +9,17 @@ import { auth } from 'firebase';
 })
 export class AuthService {
 
-  constructor(private afsAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   loginGoogleUser() {
-    return this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    return this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
   logoutUser() {
-   return this.afsAuth.auth.signOut();
+   return this.afAuth.auth.signOut();
   }
 
   isAuth() {
     // tslint:disable-next-line: no-shadowed-variable
-    return this.afsAuth.authState.pipe(map( auth => auth));
+    return this.afAuth.authState.pipe(map( auth => auth));
   }
 }

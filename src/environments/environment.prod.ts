@@ -1,12 +1,17 @@
 export const environment = {
   production: true,
+  backendUrl: 'https://teckers-proxy.herokuapp.com',
+  client: {
+    username: 'ManagementApp',
+    password: 'hs9foiwa'
+  },
   firebaseConfig: {
-    apiKey: 'AIzaSyBOv1qnMLeOrEumB2KXe4MCwtlf9nM_l7c',
-    authDomain: 'crud-bbdd1.firebaseapp.com',
-    databaseURL: 'https://crud-bbdd1.firebaseio.com',
-    projectId: 'crud-bbdd1',
-    storageBucket: 'crud-bbdd1.appspot.com',
-    messagingSenderId: '437815419068',
-    appId: '1:437815419068:web:a5dd6197f860c863'
+    apiKey: 'AIzaSyB9F7DKchhPZhO-hGw1sp6zpX-Q9HAOUZ8',
+    authDomain: 'teckers-app.firebaseapp.com',
+    databaseURL: 'https://teckers-app.firebaseio.com',
+    projectId: 'teckers-app',
+    storageBucket: '',
+    messagingSenderId: '442316004418',
+    appId: '1:442316004418:web:c6d1170a0d42a7aa'
   }
 };

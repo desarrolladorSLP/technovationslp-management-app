@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import {Component, OnInit} from "@angular/core";
+import {LoggedUser} from "../../model/logged-user";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services";
 
 @Component({
   selector: 'app-navbar',
@@ -11,40 +10,33 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService) { }
-  public islogged = false;
-  public info;
+  private loggedUser: LoggedUser;
+
+  constructor(private router: Router,
+              private authService: AuthService) {
+  }
 
   ngOnInit() {
-    this.getCurrentUser();
-  }
+    if (this.authService.isAuthenticated()) {
+      this.loggedUser = this.authService.getLoggedUser();
+    }
 
-  onlogin() {
-    this.authService.loginGoogleUser()
-    .then ((res) => {
-      this.info = res.user.displayName;
-      console.log('resUser', res);
-      this.router.navigate(['main']);
-    }).catch (err => console.log('err' , err ));
-  }
+    this.authService.onLogin.subscribe(user => {
+      this.loggedUser = user;
+      this.router.navigate(['programs']).then();
+    });
 
-  onlogout() {
-    this.authService.logoutUser();
-    this.router.navigate(['']);
-  }
-
-  getCurrentUser() {
-    // tslint:disable-next-line: no-shadowed-variable
-    this.authService.isAuth().subscribe( auth => {
-      if (auth) {
-        this.islogged = true;
-      } else {
-        this.islogged = false;
-      }
+    this.authService.onLogout.subscribe(() => {
+      this.loggedUser = null;
+      this.router.navigate(['']).then();
     });
   }
 
-  generateAuthString() {
-    return 'Basic ' + btoa(this.info);
+  loginWithGoogle() {
+    this.authService.doGoogleLogin().subscribe();
+  }
+
+  onLogout() {
+    this.authService.logout().subscribe();
   }
 }

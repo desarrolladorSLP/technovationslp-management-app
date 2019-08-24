@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { from } from 'rxjs';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +8,3 @@ import { from } from 'rxjs';
 export class AppComponent {
   title = 'managment-app';
 }
-

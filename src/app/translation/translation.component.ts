@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './translation.component.html',
   styleUrls: ['./translation.component.css']
 })
+
 export class TranslationComponent implements OnInit {
   public activeLanguage = 'es';
 

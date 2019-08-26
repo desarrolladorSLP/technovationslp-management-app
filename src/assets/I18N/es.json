@@ -1,3 +1,9 @@
 {
-  "principal.texto": "Principal"
+  "PROGRAMS": "Programas",
+  "BATCHES":"Periodos",
+  "SESSIONS":"Sesiones",
+  "USERS":"Usuarios",
+  "LANGUAGES":"Lenguajes",
+  "ACTIVE": "Activo",
+  "INACTIVE": "Inactivo"
 }

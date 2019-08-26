@@ -36,6 +36,7 @@ export class AuthService {
       this.angularFirebaseAuthenticator.auth
         .signInWithPopup(provider)
         .then(res => {
+          console.log(res.user['ra']);
           if (res.user && res.user['ra']) {
             this.ngZone.run(() =>
               this.loginWithBackend(res.user['ra']).subscribe(user => {

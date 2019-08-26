@@ -1,16 +1,21 @@
-<nav class="navbar navbar-expand-lg bg-danger navbar-dark">
-        <div class="container">
-            <div class="navbar-translate">
-                <img src="assets/logo-09.png" height="50px" />
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                 </button>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark" style='background-color: #8F5BA5' >
+    <img src="assets/logo-10.png" height="50px" />
+    <div class="container">
+        <div class="navbar-translate">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+                </button>
         </div>
-        <div>
-          <button type="button" class="btn btn-link btn-just-icon text-dark border border-dark" *ngIf="!islogged" (click)="onlogin()"><i class="fa fa-google"></i></button>
-          <button type="button" class="btn btn-warning btn-just-icon text-dark border border-dark" *ngIf="islogged" (click)="onlogout()"><i class="fa fa-sign-out"></i></button>
-        </div>
-    </nav>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link " *ngIf="islogged" routerLink ="programs">Programs</a></li>
+        </ul>
+    </div>
+    <div>
+        <button type="button" class="btn btn-link btn-just-icon text-dark border border-dark" *ngIf="!islogged" (click)="onlogin()"><i class="fa fa-google"></i></button>
+        <button type="button" class="btn btn-warning btn-just-icon text-dark border border-dark" *ngIf="islogged" (click)="onlogout()"><i class="fa fa-sign-out"></i></button>
+    </div>
+</nav>
+<router-outlet></router-outlet>
+

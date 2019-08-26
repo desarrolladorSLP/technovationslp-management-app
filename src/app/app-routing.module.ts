@@ -3,11 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { Page404Component } from './components/page404/page404.component';
+import { ProgramsComponent } from './components/programs/programs.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'main', component: MainComponent},
-  { path: '**', component: Page404Component }
+  { path: 'programs', component: ProgramsComponent, canActivate:   },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({

@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+
   getCurrentUser() {
     this.authService.isAuth().subscribe( auth => {
       if (auth) {

@@ -15,6 +15,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslationComponent } from './translation/translation.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ProgramsComponent } from './components/programs/programs.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TranslateHttpLoader} from '@ngx-translate/http-loader';
     NavbarComponent,
     MainComponent,
     Page404Component,
-    TranslationComponent
+    TranslationComponent,
+    ProgramsComponent,
   ],
   imports: [
     BrowserModule,

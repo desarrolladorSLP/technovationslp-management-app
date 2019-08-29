@@ -11,8 +11,10 @@ import { TranslationComponent } from "src/app/translation/translation.component"
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  loggedUser: LoggedUser;
   @Input() translation: TranslationComponent;
-  protected loggedUser: LoggedUser;
+
   constructor(private router: Router,
               private authService: AuthService,
               private translate: TranslateService) {

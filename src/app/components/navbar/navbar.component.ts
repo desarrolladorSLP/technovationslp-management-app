@@ -1,9 +1,9 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {LoggedUser} from "../../model/logged-user";
 import {Router} from "@angular/router";
 import {AuthService} from '../../services';
-import { TranslateService } from '@ngx-translate/core';
-import { TranslationComponent } from "src/app/translation/translation.component";
+import {TranslateService} from '@ngx-translate/core';
+import {TranslationComponent} from "src/app/translation/translation.component";
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +18,9 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router,
               private authService: AuthService,
               private translate: TranslateService) {
-  this.translate.setDefaultLang('es');
+    this.translate.setDefaultLang('es');
 
-}
+  }
 
   ngOnInit() {
 
@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
     this.authService.logout().subscribe();
   }
 
-  cambia(language) {
+  setLanguage(language) {
     this.translate.setDefaultLang(language);
   }
 

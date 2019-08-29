@@ -6,7 +6,6 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TranslationComponent} from './translation/translation.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -28,8 +27,7 @@ const ROUTES: Routes = [
     AppComponent,
     NavbarComponent,
     Page404Component,
-    FooterComponent,
-    TranslationComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,

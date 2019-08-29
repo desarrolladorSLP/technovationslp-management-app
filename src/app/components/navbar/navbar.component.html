@@ -26,8 +26,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="usersDropdown">
             <a class="dropdown-item" [routerLink]="['users', 'active']">{{'ACTIVE'|translate}}</a>
-            <a class="dropdown-item" [routerLink]="['users', 'inactive']">{{'INACTIVE'|translate}}</a>
-          </div>
+            <a class="dropdown-item"
+               [routerLink]="['users', 'inactive']">{{'INACTIVE'|translate}}</a></div>
         </li>
       </ul>
     </div>
@@ -37,15 +37,19 @@
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{'LANGUAGES' | translate}}
         </a>
-        
+
         <div class="dropdown-menu text-center" aria-labelledby="languageDropdown">
-          <button class=" dropdown-item" (click)="setLanguage('es')" ><img class="flag" src="assets/flags/es-flag.png"/></button>
-          <button class="dropdown-item" (click)="setLanguage('en')" ><img class="flag" src="assets/flags/en-flag.png"/></button>
+          <button class=" dropdown-item" (click)="setLanguage('es')"><img class="flag"
+                                                                          src="assets/flags/es-flag.png"/>
+          </button>
+          <button class="dropdown-item" (click)="setLanguage('en')"><img class="flag"
+                                                                         src="assets/flags/en-flag.png"/>
+          </button>
         </div>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      
+
       <a [routerLink]="['profile']" class="name" *ngIf="loggedUser">{{loggedUser.name}}</a>
       <button *ngIf="!loggedUser" type="button"
               class="btn btn-warning btn-just-icon text-dark border border-dark"
@@ -58,6 +62,6 @@
               type="button"><i
         class="fa fa-sign-out"></i></button>
     </form>
-    
+
   </div>
 </nav>

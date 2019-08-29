@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {LoggedUser} from "../../model/logged-user";
 import {Router} from "@angular/router";
 import {AuthService} from '../../services';
 import {TranslateService} from '@ngx-translate/core';
-import {TranslationComponent} from "src/app/translation/translation.component";
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +12,6 @@ import {TranslationComponent} from "src/app/translation/translation.component";
 export class NavbarComponent implements OnInit {
 
   loggedUser: LoggedUser;
-  @Input() translation: TranslationComponent;
 
   constructor(private router: Router,
               private authService: AuthService,

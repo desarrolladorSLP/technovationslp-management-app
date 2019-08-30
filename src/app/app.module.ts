@@ -16,10 +16,13 @@ import {Page404Component} from "./components/page404/page404.component";
 import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from "@angular/router";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
-  {path: '**', component: Page404Component}
+  {path:'profile',component:UserprofileComponent},
+  {path: '**', component: Page404Component},
+
 ];
 
 @NgModule({
@@ -27,7 +30,8 @@ const ROUTES: Routes = [
     AppComponent,
     NavbarComponent,
     Page404Component,
-    FooterComponent
+    FooterComponent,
+    UserprofileComponent
   ],
   imports: [
     BrowserModule,

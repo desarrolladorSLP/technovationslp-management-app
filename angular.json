@@ -50,7 +50,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "deployUrl": "/",
               "budgets": [
                 {
                   "type": "initial",

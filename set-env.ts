@@ -36,6 +36,8 @@ const myWriteFunction = async (filename) => {
   });
 };
 
-myWriteFunction(targetPath).then();
+myWriteFunction(targetPath).then().catch(reason => {
+  console.log(reason);
+});
 
 console.log('done');

@@ -1,8 +1,9 @@
-import {writeFileSync} from "fs";
+import {writeFileSync, mkdir} from "fs";
 
 
 // Configure Angular `environment.ts` file path
-const targetPath = `${__dirname}/src/environments/environment.ts`;
+const targetFolder = `${__dirname}/src/environments`;
+const targetPath = `${targetFolder}/environment.ts`;
 
 // Load node modules
 const colors = require('colors');
@@ -35,6 +36,10 @@ const myWriteFunction = async (filename) => {
     encoding: 'utf-8'
   });
 };
+
+mkdir(targetFolder, err => {
+  console.log(err);
+});
 
 myWriteFunction(targetPath).then().catch(reason => {
   console.log(reason);

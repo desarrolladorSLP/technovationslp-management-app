@@ -29,7 +29,13 @@ const envConfigFile: string = `export const environment = {
 
 console.log(colors.magenta(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`));
 console.log(colors.grey(envConfigFile));
-writeFileSync(targetPath, envConfigFile, {
-  encoding: 'utf-8'
-});
+
+const myWriteFunction = async (filename) => {
+  await writeFileSync(filename, envConfigFile, {
+    encoding: 'utf-8'
+  });
+};
+
+myWriteFunction(targetPath).then();
+
 console.log('done');

@@ -16,6 +16,7 @@ import {Page404Component} from "./components/page404/page404.component";
 import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from "@angular/router";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ActiveusersComponent } from './components/activeusers/activeusers.component';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -27,7 +28,8 @@ const ROUTES: Routes = [
     AppComponent,
     NavbarComponent,
     Page404Component,
-    FooterComponent
+    FooterComponent,
+    ActiveusersComponent
   ],
   imports: [
     BrowserModule,

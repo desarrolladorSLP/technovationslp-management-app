@@ -1,0 +1,47 @@
+<div class="container">
+    <h1 class="text-center">Active Users</h1>
+  <table class="table table-hover" ng-table="tableParams">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>validated</th>
+        <th>Roles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of activeUser">
+        <td>{{item.name}}</td>
+        <td>{{item.preferredEmail}}</td>
+        <td *ngIf="currentState; else elseBlock">
+            <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="valid" id="valid" value="checkedValue" checked>
+                  True
+                </label>
+                <br>
+                <label class="form-check-label" >
+                  <input type="radio" class="form-check-input" name="valid" id="valid" value="checkedValue">
+                  false
+                </label>
+              </div>
+        </td>
+        <ng-template #elseBlock>
+            <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="valid" id="valid" value="checkedValue">
+                  True
+                </label>
+                <br>
+                <label class="form-check-label" >
+                  <input type="radio" class="form-check-input" name="valid" id="valid" value="checkedValue" checked>
+                  false
+                </label>
+              </div>
+        </ng-template>
+        <td>{{item.roles}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>

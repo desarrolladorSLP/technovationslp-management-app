@@ -2,14 +2,13 @@ import {writeFileSync} from "fs";
 
 
 // Configure Angular `environment.ts` file path
-const targetPath = './src/environments/environment.ts';
+const targetPath = `${__dirname}/src/environments/environment.ts`;
 
 // Load node modules
 const colors = require('colors');
 require('dotenv').load();
 
 // `environment.ts` file structure
-console.log('A0');
 const envConfigFile: string = `export const environment = {
   backendUrl: '${process.env.BACKEND_URL}',
   client: {
@@ -26,11 +25,11 @@ const envConfigFile: string = `export const environment = {
     appId: '${process.env.FIREBASE_APP_ID}'
   },
   production: ${process.env.PRODUCTION}
-};
-`;
+};`;
 
 console.log(colors.magenta(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`));
 console.log(colors.grey(envConfigFile));
 writeFileSync(targetPath, envConfigFile, {
   encoding: 'utf-8'
 });
+console.log('done');

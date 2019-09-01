@@ -4,7 +4,6 @@
         <label class="h2"><strong>Username</strong></label>
         <br>
         <img class="imgProfile" src="assets/default-user.png">
-
         <div class="form-group">
             <input type="file" name="file" id="file" class="inputfile" />
             <label for="file" class="pointer btn btn-warning"><i class="fas fa-file-image"></i><strong>Cambiar imagen</strong></label>
@@ -14,19 +13,19 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Name</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Name" aria-label="Username" value="{{loggedUser.name}}">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Email</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Name" aria-label="Username" value="{{loggedUser.email}}">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Number Phone</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Name" aria-label="Number" value="{{loggedUser}}">
               </div>
         </div>
     </div>

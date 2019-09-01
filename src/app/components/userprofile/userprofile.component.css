@@ -7,6 +7,7 @@ display: flex;
 border: 1px black solid;
 background-color: ghostwhite;
 margin-top: 3%;
+border-radius: 40px;
 }
 
 .inputfile {

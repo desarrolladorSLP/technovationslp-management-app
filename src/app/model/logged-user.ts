@@ -6,4 +6,5 @@ export class LoggedUser {
   email: string;
   enabled: string;
   roles: string[];
+  image: string;
 }

@@ -1,4 +1,4 @@
-import {writeFileSync, mkdir} from "fs";
+import {writeFileSync, mkdirSync} from "fs";
 
 
 // Configure Angular `environment.ts` file path
@@ -31,15 +31,19 @@ const envConfigFile: string = `export const environment = {
 console.log(colors.magenta(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`));
 console.log(colors.grey(envConfigFile));
 
+const myMkdirFunction = async (dirname) => {
+  await mkdirSync(targetFolder);
+};
+
 const myWriteFunction = async (filename) => {
   await writeFileSync(filename, envConfigFile, {
     encoding: 'utf-8'
   });
 };
 
-mkdir(targetFolder, err => {
-  console.log(err);
-});
+myMkdirFunction(targetFolder).then().catch(reason => {
+  console.log(reason);
+});;
 
 myWriteFunction(targetPath).then().catch(reason => {
   console.log(reason);

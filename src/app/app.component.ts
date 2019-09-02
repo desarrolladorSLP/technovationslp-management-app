@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { from } from 'rxjs';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',

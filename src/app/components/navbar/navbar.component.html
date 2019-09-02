@@ -1,21 +1,48 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style='background-color: #8F5BA5' >
-    <img src="assets/logo-10.png" height="50px" />
-    <div class="container">
-        <div class="navbar-translate">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-                </button>
-        </div>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link " *ngIf="islogged" routerLink ="programs">Programs</a></li>
-        </ul>
+<nav class="navbar navbar-expand-lg teckers-color navbar-dark mb-3">
+  <a class="navbar-brand">
+    <img class="logo" src="assets/logo-10.png"/>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="mr-auto">
+      <ul class="navbar-nav " *ngIf="loggedUser">
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['programs']" class="nav-link">Programs</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['batches']" class="nav-link">Batches</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['sessions']" class="nav-link">Sessions</a>
+        </li>
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Users
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['users', 'active']">Active</a>
+            <a class="dropdown-item" [routerLink]="['users', 'inactive']">Inactive</a>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div>
-        <button type="button" class="btn btn-link btn-just-icon text-dark border border-dark" *ngIf="!islogged" (click)="onlogin()"><i class="fa fa-google"></i></button>
-        <button type="button" class="btn btn-warning btn-just-icon text-dark border border-dark" *ngIf="islogged" (click)="onlogout()"><i class="fa fa-sign-out"></i></button>
-    </div>
+    <form class="form-inline my-2 my-lg-0">
+      <a [routerLink]="['profile']" class="name" *ngIf="loggedUser">{{loggedUser.name}}</a>
+      <button *ngIf="!loggedUser" type="button"
+              class="btn btn-warning btn-just-icon text-dark border border-dark"
+              (click)="loginWithGoogle()" title="Iniciar Sesión"
+              data-toggle="tooltip"><i
+        class="fa fa-google"></i></button>
+      <button (click)="onLogout()" *ngIf="loggedUser"
+              class="btn btn-warning btn-just-icon text-dark border border-dark"
+              data-toggle="tooltip" title="Cerrar Sesión"
+              type="button"><i
+        class="fa fa-sign-out"></i></button>
+    </form>
+  </div>
 </nav>
-<router-outlet></router-outlet>
-

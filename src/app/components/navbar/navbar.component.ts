@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { from } from 'rxjs';
+import {Component, OnInit} from "@angular/core";
+import {LoggedUser} from "../../model/logged-user";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services";
 
 @Component({
   selector: 'app-navbar',
@@ -11,33 +9,34 @@ import { from } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService) { }
-  public islogged = false;
+
+  protected loggedUser: LoggedUser;
+
+  constructor(private router: Router,
+              private authService: AuthService) {
+  }
 
   ngOnInit() {
-    this.getCurrentUser();
-  }
+    if (this.authService.isAuthenticated()) {
+      this.loggedUser = this.authService.getLoggedUser();
+    }
 
-  onlogin() {
-    this.authService.loginGoogleUser()
-    .then ((res) => {
-      this.router.navigate(['main']);
-    }).catch (err => console.log('err' , err ));
-  }
-
-  onlogout() {
-    this.authService.logoutUser();
-    this.router.navigate(['']);
-  }
-
-
-  getCurrentUser() {
-    this.authService.isAuth().subscribe( auth => {
-      if (auth) {
-        this.islogged = true;
-      } else {
-        this.islogged = false;
-      }
+    this.authService.onLogin.subscribe(user => {
+      this.loggedUser = user;
+      this.router.navigate(['programs']).then();
     });
+
+    this.authService.onLogout.subscribe(() => {
+      this.loggedUser = null;
+      this.router.navigate(['']).then();
+    });
+  }
+
+  loginWithGoogle() {
+    this.authService.doGoogleLogin().subscribe();
+  }
+
+  onLogout() {
+    this.authService.logout().subscribe();
   }
 }

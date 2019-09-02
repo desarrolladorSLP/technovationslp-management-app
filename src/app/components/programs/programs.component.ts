@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgramsService } from '../../services/programs.service';
+import {Router} from "@angular/router";
+import { programs } from 'src/app/model/program';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-programs',
@@ -7,15 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgramsComponent implements OnInit {
 
-  constructor() { }
-  public showform = false;
+  protected listProgram: programs[];
+
+  constructor(private router: Router,
+  private programService: ProgramsService) {
+        this.programService.getPrograms().subscribe(data => {this.listProgram = data;});
+        console.log(this.listProgram);
+  }
+
   ngOnInit() {
   }
-   showFormP() {
-    if ( !this.showform ) {
-      this.showform = true;
-    } else {
-      this.showform = false;
-    }
-   }
 }

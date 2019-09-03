@@ -3,8 +3,10 @@
   <!--<button id="bNewProgram" type="button" *ngIf="!showform"  (click)='showFormP()' class="btn btn-outline-info">New Program</button>
 
   -->
+    <input type="search" class="form-control" name="" id="">
+
     <div class="row">
-      <div *ngFor="let item of listPrograms" class="card col-md-3   mr-3" style="width: 18rem;">
+      <div *ngFor="let item of listPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">  {{item.name}}</h5>
           <p class="card-text">{{item.description}}</p>
@@ -14,7 +16,8 @@
           <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
         </div>
       </div>
-      <div class="card col-md-4 mr-3">
+
+      <div class="card col-md-3 mr-3 mt-2">
           <div class="card-body">
               <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i class="fas fa-plus-circle"></i></button>
               <div  *ngIf='addingProgram' >

@@ -3,6 +3,10 @@ form.formPrograms input,textarea{
   width: 100%;
   margin-bottom: 10px;
 }
+input[type="search"] {
+  width: 20%;
+  float: right;
+}
 
 form.formPrograms button{
   padding: 5px;

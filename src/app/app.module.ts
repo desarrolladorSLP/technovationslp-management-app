@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ProgramsComponent } from './components/programs/programs.component';
 
 
@@ -14,6 +14,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {Page404Component} from './components/page404/page404.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
+import { TokenInterceptor } from './services/auth/token.interceptor';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -36,7 +37,12 @@ const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
   ],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {

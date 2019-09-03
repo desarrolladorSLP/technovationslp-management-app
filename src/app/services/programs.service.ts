@@ -22,12 +22,12 @@ export class ProgramsService {
    */
   public getPrograms(): Observable<Program[]> {
 
-    /* const httpHeaders = new HttpHeaders({
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${ sessionStorage.getItem('ACCESS_TOKEN')}`
-    }); */
+    });
 
-    return this.httpClient.get<Program[]>(this.urlEndpoint);
+    return this.httpClient.get<Program[]>(this.urlEndpoint, {headers : httpHeaders });
   }
 
   public addProgram(program: Program): Observable<Program> {

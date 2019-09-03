@@ -1,12 +1,12 @@
 form.formPrograms input,textarea{
-  padding: 10px;
-  width: 50%;
+  padding: 5px;
+  width: 100%;
   margin-bottom: 10px;
 }
 
 form.formPrograms button{
-  padding: 10px;
-  width: 10%;
+  padding: 5px;
+  width: 100%;
   margin:5px;
 
 }

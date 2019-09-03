@@ -2,18 +2,9 @@
 <div class="container">
   <!--<button id="bNewProgram" type="button" *ngIf="!showform"  (click)='showFormP()' class="btn btn-outline-info">New Program</button>
 
-  <div  *ngIf='showform' >
-    <form class="formPrograms" action="" >
-      <h1>New Program</h1>
-        <input class="form-control" type="text" name="" id="" placeholder="Name">
-        <textarea class="form-control" name="" id="" cols="20" rows="5" placeholder="Description"></textarea>
-        <input class="form-control" type="text" name="" id="" placeholder="Responsible">
-        <button type="button" *ngIf="showform"  (click)='showFormP()' class="btn btn-outline-success">Save</button>
-        <button type="button" *ngIf="showform"  (click)='showFormP()' class="btn btn-outline-danger">Cancel</button>
-    </form>
-  </div>-->
+  -->
     <div class="row">
-      <div *ngFor="let item of listProgram" class="card col-md-3   mr-3" style="width: 18rem;">
+      <div *ngFor="let item of listPrograms" class="card col-md-3   mr-3" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">  {{item.name}}</h5>
           <p class="card-text">{{item.description}}</p>
@@ -23,10 +14,19 @@
           <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
         </div>
       </div>
-      <div class="card col-md-2 mr-3" style="width: 18rem;">
+      <div class="card col-md-4 mr-3">
           <div class="card-body">
-              <button type="button" class="btn btn-gray"><i class="fas fa-plus-circle"></i></button>
-          </div>
+              <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i class="fas fa-plus-circle"></i></button>
+              <div  *ngIf='addingProgram' >
+                <form class="formPrograms" action="" >
+                    <input class="form-control" type="text" #name name="name" id="name" placeholder="Name">
+                    <textarea class="form-control" #description name="description" id="description" cols="20" rows="5" placeholder="Description"></textarea>
+                    <input class="form-control" #responsible type="text" name="responsible" id="responsible" placeholder="Responsible">
+                    <button type="button"  (click)='addProgram(name.value, description.value, responsible.value);' class="btn btn-outline-success">Save</button>
+                    <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger">Cancel</button>
+                </form>
+              </div>
+            </div>
         </div>
     </div>
 </div>

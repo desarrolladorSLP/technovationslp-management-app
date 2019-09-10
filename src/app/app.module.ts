@@ -20,6 +20,7 @@ import { ActiveusersComponent } from './components/activeusers/activeusers.compo
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
+  {path: 'users/active', component: ActiveusersComponent},
   {path: '**', component: Page404Component}
 ];
 

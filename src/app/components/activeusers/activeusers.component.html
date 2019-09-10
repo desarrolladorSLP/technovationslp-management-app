@@ -1,6 +1,7 @@
+<script src="/node_modules/angular/angular.js"></script>
 <div class="container">
-    <h1 class="text-center">Active Users</h1>
-  <table class="table table-hover" ng-table="tableParams">
+  <h1 class="text-center">Active Users</h1>
+  <!-- <table class="table table-hover" ng-table="tableParams">
     <thead class="thead-dark">
       <tr>
         <th>Name</th>
@@ -43,5 +44,23 @@
       </tr>
 
     </tbody>
-  </table>
-  </div>
+  </table> -->
+  <div ng-init="friends = [{name:'John', phone:'555-1276'},
+                         {name:'Mary', phone:'800-BIG-MARY'},
+                         {name:'Mike', phone:'555-4321'},
+                         {name:'Adam', phone:'555-5678'},
+                         {name:'Julie', phone:'555-8765'},
+                         {name:'Juliette', phone:'555-5678'}]"></div>
+                         <label>Any: <input ng-model="search.$"></label> <br>
+                         <label>Name only <input ng-model="search.name"></label><br>
+                         <label>Phone only <input ng-model="search.phone"></label><br>
+                         <label>Equality <input type="checkbox" ng-model="strict"></label><br>
+                         <table id="searchObjResults">
+                           <tr><th>Name</th><th>Phone</th></tr>
+                           <tr ng-repeat="friendObj in friends | filter:search:strict">
+                             <td>{{friendObj.name}}</td>
+                             <td>{{friendObj.phone}}</td>
+                           </tr>
+                         </table>
+
+</div>

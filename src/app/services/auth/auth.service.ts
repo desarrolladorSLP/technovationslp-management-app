@@ -1,13 +1,13 @@
 import {EventEmitter, Injectable, NgZone, Output} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {tap} from 'rxjs/operators';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 import * as firebase from 'firebase/app';
 
 import {environment} from '../../../environments/environment';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LoggedUser} from "../../model/logged-user";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoggedUser} from '../../model/logged-user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,9 @@ export class AuthService {
 
   private ACCESS_TOKEN = 'ACCESS_TOKEN';
   private loggedUser: LoggedUser;
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onLogin: EventEmitter<LoggedUser> = new EventEmitter();
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onLogout: EventEmitter<void> = new EventEmitter();
 
   constructor(private angularFirebaseAuthenticator: AngularFireAuth,
@@ -65,6 +67,10 @@ export class AuthService {
   }
 
   getLoggedUser(): LoggedUser {
+    const accessToken = sessionStorage.getItem(this.ACCESS_TOKEN);
+    if (accessToken) {
+      this.loggedUser = this.buildUser(accessToken);
+    }
     return this.loggedUser;
   }
 

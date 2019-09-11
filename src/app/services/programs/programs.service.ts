@@ -1,11 +1,11 @@
 
 import { Injectable } from '@angular/core';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {LoggedUser} from '../model/logged-user';
+import {LoggedUser} from '../../model/logged-user';
 import { Observable } from 'rxjs';
 import {tap, map} from 'rxjs/operators';
-import { Program } from '../model/program';
+import { Program } from '../../model/program';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,12 @@ export class ProgramsService {
    * showPrograms
    */
   public getPrograms(): Observable<Program[]> {
-    return this.httpClient.get<Program[]>(this.urlEndpoint);
+    const httpHeaders = new HttpHeaders({
+      'Authorization': `Bearer ${ sessionStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.httpClient.get<Program[]>(this.urlEndpoint,  {headers : httpHeaders });
+    //    return this.httpClient.get<Program[]>(`${this.urlEndpoint}?random=${Math.random()}`);
+
   }
 
   public addProgram(program: Program): Observable<Program> {

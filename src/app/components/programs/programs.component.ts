@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramsService } from '../../services/programs.service';
+import { ProgramsService } from '../../services/programs/programs.service';
 import {Router} from '@angular/router';
 import { Program } from 'src/app/model/program';
 import { Observable } from 'rxjs';
@@ -11,11 +11,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./programs.component.css']
 })
 
-export class ProgramsComponent{
+export class ProgramsComponent implements OnInit{
 
   public addingProgram = false;
   public updatingProgram = false;
   protected listPrograms: Program[];
+
+  ngOnInit(): void {
+    this.refreshPrograms();
+  }
 
   constructor(private router: Router, private programService: ProgramsService) {
       this.refreshPrograms();

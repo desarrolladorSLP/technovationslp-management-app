@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, NgZone, Output} from '@angular/core';
+import {EventEmitter, Injectable, NgZone} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
@@ -16,10 +16,8 @@ export class AuthService {
 
   private ACCESS_TOKEN = 'ACCESS_TOKEN';
   private loggedUser: LoggedUser;
-  // tslint:disable-next-line: no-output-on-prefix
-  @Output() onLogin: EventEmitter<LoggedUser> = new EventEmitter();
-  // tslint:disable-next-line: no-output-on-prefix
-  @Output() onLogout: EventEmitter<void> = new EventEmitter();
+  onLogin: EventEmitter<LoggedUser> = new EventEmitter();
+  onLogout: EventEmitter<void> = new EventEmitter();
 
   constructor(private angularFirebaseAuthenticator: AngularFireAuth,
               private httpClient: HttpClient,
@@ -96,8 +94,8 @@ export class AuthService {
 
   private buildUser(accessToken: string): LoggedUser {
     if (accessToken) {
-      accessToken = accessToken.split('.')[1];
-      const userInfo: any = JSON.parse(atob(accessToken));
+      const parsedAccessToken = accessToken.split('.')[1];
+      const userInfo: any = JSON.parse(atob(parsedAccessToken));
       this.loggedUser = new LoggedUser();
 
       this.loggedUser.access_token = accessToken;

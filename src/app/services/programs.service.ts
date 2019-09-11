@@ -13,7 +13,6 @@ import { Program } from '../model/program';
 export class ProgramsService {
 
   protected urlEndpoint = `${environment.backendUrl}/api/program`;
-  //protected credentials = btoa(`${environment.client.username}:${environment.client.password}`);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,13 +20,7 @@ export class ProgramsService {
    * showPrograms
    */
   public getPrograms(): Observable<Program[]> {
-
-    const httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${ sessionStorage.getItem('ACCESS_TOKEN')}`
-    });
-
-    return this.httpClient.get<Program[]>(this.urlEndpoint, {headers : httpHeaders });
+    return this.httpClient.get<Program[]>(this.urlEndpoint);
   }
 
   public addProgram(program: Program): Observable<Program> {

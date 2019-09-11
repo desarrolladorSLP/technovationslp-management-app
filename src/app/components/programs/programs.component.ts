@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ProgramsService } from '../../services/programs/programs.service';
+import {Component} from '@angular/core';
+import {ProgramsService} from '../../services/programs/programs.service';
 import {Router} from '@angular/router';
-import { Program } from 'src/app/model/program';
-import { Observable } from 'rxjs';
+import {Program} from 'src/app/model/program';
 
 
 @Component({
@@ -11,21 +10,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./programs.component.css']
 })
 
-export class ProgramsComponent implements OnInit{
+export class ProgramsComponent {
 
   public addingProgram = false;
-  public updatingProgram = false;
   protected listPrograms: Program[];
 
-  ngOnInit(): void {
+  constructor(private router: Router, private programService: ProgramsService) {
     this.refreshPrograms();
   }
 
-  constructor(private router: Router, private programService: ProgramsService) {
-      this.refreshPrograms();
-  }
-
-  addProgram(name: string, description: string, responsible: string){
+  addProgram(name: string, description: string, responsible: string) {
 
     const newProgram = new Program();
     newProgram.name = name;
@@ -37,12 +31,14 @@ export class ProgramsComponent implements OnInit{
     });
   }
 
-   refreshPrograms() {
-    this.programService.getPrograms().subscribe(data => {this.listPrograms = data; });
+  refreshPrograms() {
+    this.programService.getPrograms().subscribe(data => {
+      this.listPrograms = data;
+    });
     console.log(this.listPrograms);
-   }
+  }
 
-   formUpdate() {
+  formUpdate() {
 
-   }
+  }
 }

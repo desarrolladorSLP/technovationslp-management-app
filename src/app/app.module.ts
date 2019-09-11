@@ -15,6 +15,8 @@ import {Page404Component} from './components/page404/page404.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
+import { ProgramCardComponent } from './components/program-card/program-card.component';
+import {FormsModule} from "@angular/forms";
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -28,7 +30,8 @@ const ROUTES: Routes = [
     NavbarComponent,
     Page404Component,
     FooterComponent,
-    ProgramsComponent
+    ProgramsComponent,
+    ProgramCardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ const ROUTES: Routes = [
     AngularFireDatabaseModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
+    FormsModule,
   ],
   providers: [AngularFireAuth, {
     provide: HTTP_INTERCEPTORS,

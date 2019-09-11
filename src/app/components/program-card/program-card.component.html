@@ -1,0 +1,32 @@
+<div class="card-body">
+  <!--Show the list of Programs-->
+  <div *ngIf='!updatingProgram'>
+    <h5 class="card-title">  {{program.name}}</h5>
+    <p class="card-text">{{program.description}}</p>
+    <h6 class="card-subtitle text-muted">{{program.responsible}}</h6>
+  </div>
+
+  <!--Form to edit the information-->
+  <div *ngIf='updatingProgram'>
+    <form class="formPrograms" action="">
+      <input class="form-control" type="text" name="name" id="name" placeholder="Name"
+             [(ngModel)]="program.name">
+      <textarea class="form-control" name="description" [(ngModel)]="program.description"
+                id="description" cols="20" rows="5" placeholder="Description"></textarea>
+      <input class="form-control" type="text" name="responsible" [(ngModel)]="program.responsible"
+             id="responsible" placeholder="Responsible">
+
+      <button type="button" (click)='saveProgram()'
+              class="btn btn-outline-success">Save
+      </button>
+      <button type="button" (click)='updatingProgram = false' class="btn btn-outline-danger">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <button id={{item.id}} type="button" *ngIf='!updatingProgram' class="btn btn-light"
+          (click)='updatingProgram = !updatingProgram'><i class="fas fa-edit"></i></button>
+  <button type="button" *ngIf='!updatingProgram' class="btn btn-danger"><i
+    class="far fa-trash-alt"></i></button>
+</div>

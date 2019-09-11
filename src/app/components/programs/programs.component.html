@@ -1,51 +1,36 @@
-
 <div class="container">
   <!--<button id="bNewProgram" type="button" *ngIf="!showform"  (click)='showFormP()' class="btn btn-outline-info">New Program</button>
 
   -->
-    <input type="search" class="form-control" name="" id="">
+  <input type="search" class="form-control" name="" id="">
 
-    <div class="row">
-      <div *ngFor="let item of listPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
-        <div class="card-body">
-          <!--Show the list of Programs-->
-          <div *ngIf='!updatingProgram'>
-            <h5 class="card-title">  {{item.name}}</h5>
-            <p class="card-text">{{item.description}}</p>
-            <h6 class="card-subtitle text-muted">{{item.responsible}}</h6>
-          </div>
+  <div class="row">
+    <div *ngFor="let item of listPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
+      <app-program-card [program]="item"></app-program-card>
+    </div>
 
-          <!--Form to edit the information-->
-          <div  *ngIf='updatingProgram'>
-              <form class="formPrograms"   action="" >
-                <input class="form-control" value= "{{item.name}}" type="text" #name name="name" id="name" placeholder="Name">
-                <textarea class="form-control" value= "{{item.description}}" #description name="description" id="description" cols="20" rows="5" placeholder="Description"></textarea>
-                <input class="form-control"value= "{{item.responsible}}" #responsible type="text" name="responsible" id="responsible" placeholder="Responsible">
-
-                <button type="button"   (click)='updatingProgram = false' class="btn btn-outline-success">Save</button>
-                <button type="button" (click)='updatingProgram = false' class="btn btn-outline-danger">Cancel</button>
-              </form>
-          </div>
-
-          <button id = {{item.id}} type="button" *ngIf='!updatingProgram' class="btn btn-light" (click)='updatingProgram = !updatingProgram' ><i class="fas fa-edit"></i></button>
-          <button type="button" *ngIf='!updatingProgram' class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+    <div class="card col-md-3 mr-3 mt-2">
+      <div class="card-body">
+        <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i
+          class="fas fa-plus-circle"></i></button>
+        <div *ngIf='addingProgram'>
+          <form class="formPrograms" action="">
+            <input class="form-control" type="text" #name name="name" id="name" placeholder="Name">
+            <textarea class="form-control" #description name="description" id="description"
+                      cols="20" rows="5" placeholder="Description"></textarea>
+            <input class="form-control" #responsible type="text" name="responsible" id="responsible"
+                   placeholder="Responsible">
+            <button type="button"
+                    (click)='addProgram(name.value, description.value, responsible.value);'
+                    class="btn btn-outline-success">Save
+            </button>
+            <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger">
+              Cancel
+            </button>
+          </form>
         </div>
       </div>
-
-      <div class="card col-md-3 mr-3 mt-2">
-          <div class="card-body">
-              <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i class="fas fa-plus-circle"></i></button>
-              <div  *ngIf='addingProgram' >
-                <form class="formPrograms" action="" >
-                    <input class="form-control" type="text" #name name="name" id="name" placeholder="Name">
-                    <textarea class="form-control" #description name="description" id="description" cols="20" rows="5" placeholder="Description"></textarea>
-                    <input class="form-control" #responsible type="text" name="responsible" id="responsible" placeholder="Responsible">
-                    <button type="button"  (click)='addProgram(name.value, description.value, responsible.value);' class="btn btn-outline-success">Save</button>
-                    <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger">Cancel</button>
-                </form>
-              </div>
-            </div>
-        </div>
     </div>
+  </div>
 </div>
 

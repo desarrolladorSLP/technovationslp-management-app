@@ -27,4 +27,8 @@ export class ProgramsService {
 
     return this.httpClient.post<Program>(this.urlEndpoint, program);
   }
+
+  save(program: Program) {
+    return this.httpClient.put<Program>(this.urlEndpoint, program);
+  }
 }

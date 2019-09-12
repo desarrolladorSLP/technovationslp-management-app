@@ -51,7 +51,7 @@ export class ActiveusersComponent implements OnInit {
     console.log('Selected item Id: ', selectedItem.id); // You get the Id of the selected item here
 }
 
-  private assigmentUser(selectedItem: any, enabled: boolean) {
+  private assigmentUser(selectedItem: any) {
     this.UserUpdate = new ActiveUser();
     this.UserUpdate.id = selectedItem.id;
     this.UserUpdate.enable = selectedItem.enabled;

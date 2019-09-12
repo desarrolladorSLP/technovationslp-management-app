@@ -6,7 +6,6 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { ActiveUser } from 'src/app/model/activeuser';
-import {NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-activeusers',
@@ -22,8 +21,7 @@ export class ActiveusersComponent implements OnInit {
   filterNumber = '';
   filterRoles = '';
   UserUpdate: ActiveUser;
-
-  protected urlEndpoint = `${environment.backendUrl}/api/user/activate`;
+  marked: any;
 
   constructor(private authService: AuthService, private httpClient: HttpClient) {
     if (this.authService.isAuthenticated()) {
@@ -47,14 +45,15 @@ export class ActiveusersComponent implements OnInit {
         }));
   }
 
-  onSelect(selectedItem: any) {
-    console.log('Selected item Id: ', selectedItem.id); // You get the Id of the selected item here
-}
+  public toggleVisibility(e) {
+    this.marked = e.target.checked;
+    console.log(this.marked);
+  }
 
   private assigmentUser(selectedItem: any) {
     this.UserUpdate = new ActiveUser();
     this.UserUpdate.id = selectedItem.id;
-    this.UserUpdate.enable = selectedItem.enabled;
+    this.UserUpdate.enable = this.marked;
     this.UserUpdate.validated = selectedItem.validated;
     this.UserUpdate.roles = selectedItem.roles;
     //this.UpdateUserActive(this.UserUpdate).subscribe();
@@ -62,10 +61,11 @@ export class ActiveusersComponent implements OnInit {
   }
 
   private UpdateUserActive(user: ActiveUser): Observable<ActiveUser> {
+    const urlEndpoint = `${environment.backendUrl}/api/user/activate`;
     const httpHeaders = new HttpHeaders({
       'Authorization': `Bearer ${this.loggedUser.access_token}`,
     });
-    return this.httpClient.post<ActiveUser>(this.urlEndpoint, user, {headers: httpHeaders}).pipe(
+    return this.httpClient.post<ActiveUser>(urlEndpoint, user, {headers: httpHeaders}).pipe(
       tap(response => {
         console.log(response);
       })

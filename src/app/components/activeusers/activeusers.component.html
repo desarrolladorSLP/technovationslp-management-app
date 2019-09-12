@@ -48,18 +48,17 @@
         <td>{{item.preferredEmail}}</td>
         <td>{{item.phoneNumber}}</td>
          <td *ngIf="item.enabled; else elseBlock">
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" value=true id=enable checked=true id={{item.id}}>
-                <label class="custom-control-label" for={{item.id}}>Enable</label>
-              </div>
+            <input type="checkbox" id={{item.id}} checked=true (change)="toggleVisibility($event)">
         </td>
         <ng-template #elseBlock>
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" value="false" id=enable id="{{item.id}}">
-                <label class="custom-control-label" for={{item.id}}>Enable</label>
-              </div>
+            <input type="checkbox" id={{item.id}} checked=false (change)="toggleVisibility($event)">
         </ng-template>
-        <td><span *ngFor="let role of item.roles" class="badge badge-pill badge-primary">{{role}}</span></td>
+        <td id="roles">
+          <!-- <span *ngFor="let role of item.roles" class="badge badge-pill badge-primary">{{role}}</span> -->
+          <div class="form-group">
+            <textarea class="form-control" name="" id="" rows="3"></textarea>
+          </div>
+        </td>
         <td><button class="btn btn-link" (click)="assigmentUser(item)">Save</button></td>
       </tr>
 

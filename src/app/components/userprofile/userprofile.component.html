@@ -1,33 +1,36 @@
 <div class="container">
-  <div class="row Credentials justify-content-center ">
-    <div class="text-center col-5">
-        <label class="h2"><strong>Username</strong></label>
-        <br>
-        <img class="imgProfile" src="assets/default-user.png">
-        <div class="form-group">
-            <input type="file" name="file" id="file" class="inputfile" />
-            <label for="file" class="pointer btn btn-warning"><i class="fas fa-file-image"></i><strong>Cambiar imagen</strong></label>
-        </div>
-        <div >
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Name</span>
+    <div class="row Credentials justify-content-center ">
+        <div class="text-center col-5">
+            <label class="h2"><strong>Username</strong></label>
+            <br>
+            <img class="imgProfile" [src]="imageProfile">
+            <div class="form-group">
+                <input type="file" name="file" id="file" class="inputfile" />
+                <label for="file" class="pointer btn btn-warning" (change)="onUpload($event)"><i class="fas fa-file-image"></i><strong>Cambiar imagen</strong></label>
+            </div>
+            <div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Name</span>
+                    </div>
+
+                    <input type="text" class="form-control" placeholder="Name" value="{{loggedUser.name}}" [(ngModel)]="name">
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Username" value="{{loggedUser.name}}">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Email</span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="email" aria-label="Username" value="{{loggedUser.email}}" [(ngModel)]="preferredEmail">
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Username" value="{{loggedUser.email}}">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Number Phone</span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Number Phone</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Number Phone" aria-label="Number" value="{{loggedUser.phoneNumber}}" [(ngModel)]="phoneNumber">
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Number" value="{{loggedUser}}">
-              </div>
+                <button class="btn btn-primary btn-lg btn-block mb-5" (click)="assignNewUser()">Save</button>
+
+            </div>
         </div>
     </div>
-  </div>
 </div>

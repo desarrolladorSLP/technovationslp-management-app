@@ -4,5 +4,7 @@ export class User {
   preferredEmail: string;
   enable: boolean;
   validated: Boolean;
+  pictureUrl: string;
+  phoneNumber: string;
   roles: string[];
 }

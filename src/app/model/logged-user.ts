@@ -5,6 +5,8 @@ export class LoggedUser {
   name: string;
   email: string;
   enabled: string;
+  pictureUrl: string;
+  phoneNumber: string;
   roles: string[];
   image: string;
 }

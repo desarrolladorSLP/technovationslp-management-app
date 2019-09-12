@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -8,7 +8,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 import {environment} from '../environments/environment';
 import {NavbarComponent} from "./components/navbar/navbar.component";
@@ -37,7 +37,9 @@ const ROUTES: Routes = [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     HttpClientModule,
+    FormsModule,
     NgbModule,
     RouterModule.forRoot(ROUTES),
     TranslateModule.forRoot({

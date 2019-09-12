@@ -99,6 +99,7 @@ export class AuthService {
       this.loggedUser.name = userInfo.name;
       this.loggedUser.email = userInfo.email;
       this.loggedUser.enabled = userInfo.enabled;
+      this.loggedUser.pictureUrl = userInfo.pictureUrl;
       this.loggedUser.expiresIn = userInfo.expiresIn;
       this.loggedUser.roles = userInfo.roles;
       this.loggedUser.validated = userInfo.validated;

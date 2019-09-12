@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
@@ -17,6 +18,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from "@angular/router";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ActiveusersComponent } from './components/activeusers/activeusers.component';
+import { FilteruseractivePipe } from './pipes/filteruseractive.pipe';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -30,7 +32,8 @@ const ROUTES: Routes = [
     NavbarComponent,
     Page404Component,
     FooterComponent,
-    ActiveusersComponent
+    ActiveusersComponent,
+    FilteruseractivePipe
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ const ROUTES: Routes = [
     AngularFireDatabaseModule,
     HttpClientModule,
     NgbModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES),
     TranslateModule.forRoot({
       loader: {

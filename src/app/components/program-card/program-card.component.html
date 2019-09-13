@@ -25,8 +25,15 @@
     </form>
   </div>
 
-  <button id={{item.id}} type="button" *ngIf='!updatingProgram' class="btn btn-light"
+  <!--Form for dlete the program-->
+
+  <div>
+
+  </div>
+
+  <button  type="button" *ngIf='!updatingProgram' class="btn btn-light"
           (click)='updatingProgram = !updatingProgram'><i class="fas fa-edit"></i></button>
+
   <button type="button" *ngIf='!updatingProgram' class="btn btn-danger"><i
     class="far fa-trash-alt"></i></button>
 </div>

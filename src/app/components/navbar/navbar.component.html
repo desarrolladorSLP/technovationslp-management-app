@@ -36,11 +36,11 @@
       <button *ngIf="!loggedUser" type="button"
               class="btn btn-warning btn-just-icon text-dark border border-dark"
               (click)="loginWithGoogle()" title="Iniciar Sesión"
-              data-toggle="tooltip"><i
+              ><i
         class="fa fa-google"></i></button>
       <button (click)="onLogout()" *ngIf="loggedUser"
               class="btn btn-warning btn-just-icon text-dark border border-dark"
-              data-toggle="tooltip" title="Cerrar Sesión"
+              title="Cerrar Sesión"
               type="button"><i
         class="fa fa-sign-out"> </i></button>
     </form>

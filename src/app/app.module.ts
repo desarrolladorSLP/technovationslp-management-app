@@ -16,7 +16,8 @@ import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
+import { DeleteProgramComponent } from './components/delete-program/delete-program.component';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -31,7 +32,9 @@ const ROUTES: Routes = [
     Page404Component,
     FooterComponent,
     ProgramsComponent,
-    ProgramCardComponent
+    ProgramCardComponent,
+    DeleteProgramComponent,
+
   ],
   imports: [
     BrowserModule,

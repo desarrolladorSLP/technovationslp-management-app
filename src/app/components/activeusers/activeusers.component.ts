@@ -6,6 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { ActiveUser } from 'src/app/model/activeuser';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-activeusers',
@@ -22,15 +23,18 @@ export class ActiveusersComponent implements OnInit {
   filterRoles = '';
   UserUpdate: ActiveUser;
   marked: any;
+  roles: string[];
 
   constructor(private authService: AuthService, private httpClient: HttpClient) {
     if (this.authService.isAuthenticated()) {
       this.loggedUser = this.authService.getLoggedUser();
       this.getActiveUsers().subscribe();
+      this.getNewsRoles();
     }
   }
 
   ngOnInit() {
+
   }
 
   private getActiveUsers(): Observable<ActiveUser[]> {
@@ -48,6 +52,19 @@ export class ActiveusersComponent implements OnInit {
   public toggleVisibility(e) {
     this.marked = e.target.checked;
     console.log(this.marked);
+  }
+
+  public getNewsRoles() {
+    $( document ).ready(function() {
+      this.roles = [];
+    $('div .roles').click(function (event) {
+      var kids = $(event.target).children();
+      $.each(kids, function (i, value) {
+        this.roles.push(value.innerText);
+      });
+      console.log(this.roles);
+    });
+  });
   }
 
   private assigmentUser(selectedItem: any) {

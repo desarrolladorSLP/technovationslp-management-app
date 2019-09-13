@@ -8,7 +8,7 @@
     <div class="col">
       <div class="form-group">
         <label for="" class="d-block">Name</label>
-        <input type="text" name="filterName" id="" class="form-control-sm" placeholder="Name" [(ngModel)]="filterName">
+        <input type="text" name="filterName" id="" class="form-control-sm" placeholder="Name" [(ngModel)]="filterName" [minLength]=1 maxlength=50>
       </div>
     </div>
     <div class="col">
@@ -31,7 +31,7 @@
     </div>
   </div>
   <hr>
-   <table class="table table-hover" ng-table="tableParams">
+   <table class="table table-hover text-center" ng-table="tableParams">
     <thead class="bg-info text-light">
       <tr>
         <th>Name</th>
@@ -43,26 +43,32 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of activeUser | filteruseractive: filterName:filterEmail">
+      <tr *ngFor="let item of activeUser | filteruseractive: filterName:filterEmail" >
         <td>{{item.name}}</td>
         <td>{{item.preferredEmail}}</td>
         <td>{{item.phoneNumber}}</td>
-         <td *ngIf="item.enabled; else elseBlock">
+          <td *ngIf="item.enabled; else elseBlock">
             <input type="checkbox" id={{item.id}} checked=true (change)="toggleVisibility($event)">
         </td>
         <ng-template #elseBlock>
             <input type="checkbox" id={{item.id}} checked=false (change)="toggleVisibility($event)">
         </ng-template>
-        <td id="roles">
-          <!-- <span *ngFor="let role of item.roles" class="badge badge-pill badge-primary">{{role}}</span> -->
-          <div class="form-group">
-            <textarea class="form-control" name="" id="" rows="3"></textarea>
-          </div>
+        <td class="roles">
+           <!-- <span *ngFor="let role of item.roles" class="badge badge-pill badge-primary alert-dismissible fade show">{{role}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+           </span> -->
+           <div class="alert badge-pill badge-info alert-dismissible fade show" role="alert" *ngFor="let role of item.roles">
+              {{role}}
+              <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
         </td>
         <td><button class="btn btn-link" (click)="assigmentUser(item)">Save</button></td>
       </tr>
-
     </tbody>
   </table>
-
+  {{roles}}
 </div>

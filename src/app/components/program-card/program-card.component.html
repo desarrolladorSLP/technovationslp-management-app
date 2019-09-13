@@ -1,7 +1,7 @@
 <div class="card-body">
   <!--Show the list of Programs-->
   <div *ngIf='!updatingProgram'>
-    <h5 class="card-title">  {{program.name}}</h5>
+    <h5 class="card-header text-center mb-2">  {{program.name}}</h5>
     <p class="card-text">{{program.description}}</p>
     <h6 class="card-subtitle text-muted">{{program.responsible}}</h6>
   </div>
@@ -27,13 +27,19 @@
 
   <!--Form for dlete the program-->
 
-  <div>
-
+  <div *ngIf='deletingProgram'>
+    <p>¿Desea Eliminar este Programa?</p>
+    <button type="button" (click)='deleteProgram();'
+              class="btn btn-outline-success">Yes
+      </button>
+      <button type="button" (click)='deletingProgram = false' class="btn btn-outline-danger">
+        No
+      </button>
   </div>
 
-  <button  type="button" *ngIf='!updatingProgram' class="btn btn-light"
+  <button  type="button" *ngIf='!updatingProgram' class="btn btn-light mt-5 mr-2"
           (click)='updatingProgram = !updatingProgram'><i class="fas fa-edit"></i></button>
 
-  <button type="button" *ngIf='!updatingProgram' class="btn btn-danger"><i
+  <button type="button" *ngIf='!deletingProgram' (click)='deletingProgram = !deletingProgram' class="btn btn-danger  mt-5"><i
     class="far fa-trash-alt"></i></button>
 </div>

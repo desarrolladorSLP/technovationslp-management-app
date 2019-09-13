@@ -27,6 +27,7 @@ export class ProgramsComponent {
     newProgram.responsible = responsible;
     this.programService.addProgram(newProgram).subscribe(data => {
       console.log(data);
+      this.addingProgram = false;
       this.refreshPrograms();
     });
   }
@@ -38,7 +39,4 @@ export class ProgramsComponent {
     console.log(this.listPrograms);
   }
 
-  formUpdate() {
-
-  }
 }

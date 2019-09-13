@@ -9,13 +9,15 @@ import {Program} from '../../model/program';
 })
 export class ProgramsService {
 
-  protected urlEndpoint = `${environment.backendUrl}/api/program`;
-
   constructor(private httpClient: HttpClient) {
   }
 
+  protected urlEndpoint = `${environment.backendUrl}/api/program`;
+
+
+
   /**
-   * showPrograms
+   * get the list of program from Backend
    */
   public getPrograms(): Observable<Program[]> {
     //return this.httpClient.get<Program[]>(this.urlEndpoint, {headers: httpHeaders});
@@ -30,5 +32,9 @@ export class ProgramsService {
 
   save(program: Program) {
     return this.httpClient.put<Program>(this.urlEndpoint, program);
+  }
+
+  delete(program: Program) {
+    return this.httpClient.delete<Program>(this.urlEndpoint +'/'+ program.id );
   }
 }

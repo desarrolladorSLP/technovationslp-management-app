@@ -19,7 +19,7 @@ describe('ProgramsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {2
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

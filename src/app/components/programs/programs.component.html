@@ -1,8 +1,9 @@
+<input type="search" class="form-control" placeholder="Searhc..." name="" id="">
+<h1>Programs</h1>
 <div class="container">
   <!--<button id="bNewProgram" type="button" *ngIf="!showform"  (click)='showFormP()' class="btn btn-outline-info">New Program</button>
 
   -->
-  <input type="search" class="form-control" name="" id="">
 
   <div class="row">
     <div *ngFor="let item of listPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
@@ -20,11 +21,11 @@
                       cols="20" rows="5" placeholder="Description"></textarea>
             <input class="form-control" #responsible type="text" name="responsible" id="responsible"
                    placeholder="Responsible">
-            <button type="button"
+            <button type="button" 
                     (click)='addProgram(name.value, description.value, responsible.value);'
                     class="btn btn-outline-success">Save
             </button>
-            <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger">
+            <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5">
               Cancel
             </button>
           </form>

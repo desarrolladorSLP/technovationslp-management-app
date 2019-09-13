@@ -8,6 +8,10 @@ input[type="search"] {
   float: right;
 }
 
+.card{
+  background-color: rgba(83, 138, 145, 0.342);
+}
+S
 form.formPrograms button{
   padding: 5px;
   width: 100%;

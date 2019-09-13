@@ -14,6 +14,7 @@ export class ProgramsComponent {
 
   public addingProgram = false;
   protected listPrograms: Program[];
+  public filterPrograms = '';
 
   constructor(private router: Router, private programService: ProgramsService) {
     this.refreshPrograms();

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Program} from '../../model/program';
 import {ProgramsService} from '../../services/programs/programs.service';
 import {Router} from '@angular/router';
+import { ProgramsComponent } from '../programs/programs.component';
 
 @Component({
   selector: 'app-program-card',
@@ -15,7 +16,8 @@ export class ProgramCardComponent implements OnInit {
 
   @Input() program: Program;
 
-  constructor(private programService: ProgramsService, private router: Router) {
+  constructor(private programService: ProgramsService, private router: Router,
+    private programComponent: ProgramsComponent) {
   }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class ProgramCardComponent implements OnInit {
   deleteProgram() {
     this.programService.delete(this.program).subscribe(data => {
       this.deletingProgram = false;
-      this.router.navigate(['/programs']);
+      this.programComponent.refreshPrograms();
     });
 
   }

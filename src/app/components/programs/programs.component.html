@@ -16,12 +16,30 @@
         <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i
           class="fas fa-plus-circle"></i></button>
         <div *ngIf='addingProgram'>
-          <form class="formPrograms" action="">
-            <input class="form-control" type="text" #name name="name" id="name" placeholder="Name">
-            <textarea class="form-control" #description name="description" id="description"
+          <form  class="formPrograms" action="">
+              <div class="input-group  mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">Name</span>
+                  </div>
+                  <input class="form-control" type="text" #name name="name" id="name" placeholder="Name">
+              </div>  
+
+              <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">Description</span>
+                  </div>
+                  <textarea class="form-control" #description name="description" id="description"
                       cols="20" rows="5" placeholder="Description"></textarea>
-            <input class="form-control" #responsible type="text" name="responsible" id="responsible"
+            </div> 
+             
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Responsible</span>
+                </div>
+                <input class="form-control" #responsible type="text" name="responsible" id="responsible"
                    placeholder="Responsible">
+            </div> 
+
             <button type="button"
                     (click)='addProgram(name.value, description.value, responsible.value);'
                     class="btn btn-outline-success">Save
@@ -35,4 +53,3 @@
     </div>
   </div>
 </div>
-

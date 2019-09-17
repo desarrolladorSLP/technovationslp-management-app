@@ -1,17 +1,14 @@
-form.formPrograms input,textarea{
-  padding: 5px;
-  width: 100%;
-  margin-bottom: 10px;
-}
+
 input[type="search"] {
   width: 20%;
   float: right;
 }
 
-.card{
+.card {
   background-color: rgba(83, 138, 145, 0.342);
+  padding:0;
 }
-S
+
 form.formPrograms button{
   padding: 5px;
   width: 100%;
@@ -29,7 +26,7 @@ form.formPrograms h1{
   font-size: 30px;
   line-height: 30px;
   font-weight: 20;
-  width: 50%;
+  width: 100%;
   text-align: center;
   padding: 10px;
   margin: 5px 5px 24px;

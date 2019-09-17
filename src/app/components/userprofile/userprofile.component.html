@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="row Credentials justify-content-center ">
+    <div class="row credential justify-content-center ">
         <div class="text-center col-5">
-            <label class="h2"><strong>Username</strong></label>
+            <label class="h2"><strong>{{'USERPROFILE' | translate}}</strong></label>
             <br>
-            <img class="imgProfile" [src]="imageProfile">
+            <img class="image-profile" [src]="imageProfile">
             <div class="form-group">
-                <input type="file" name="file" id="file" class="inputfile" />
+                <input type="file" name="file" id="file" class="input-file" />
                 <label for="file" class="pointer btn btn-warning" (change)="onUpload($event)"><i class="fas fa-file-image"></i><strong>Cambiar imagen</strong></label>
             </div>
             <div>
@@ -14,21 +14,21 @@
                         <span class="input-group-text">Name</span>
                     </div>
 
-                    <input type="text" class="form-control" placeholder="Name" value="{{loggedUser.name}}" [(ngModel)]="name">
+                    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name" required>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Email</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="email" aria-label="Username" value="{{loggedUser.email}}" [(ngModel)]="preferredEmail">
+                    <input type="text" class="form-control" placeholder="email" aria-label="Username" [(ngModel)]="preferredEmail" required>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Number Phone</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Number Phone" aria-label="Number" value="{{loggedUser.phoneNumber}}" [(ngModel)]="phoneNumber">
+                    <input type="text" class="form-control" placeholder="Number Phone" aria-label="Number" [(ngModel)]="phoneNumber" required>
                 </div>
-                <button class="btn btn-primary btn-lg btn-block mb-5" (click)="assignNewUser()">Save</button>
+                <button class="btn btn-primary btn-lg btn-block mb-5" (click)="updateInformationUser()">Save</button>
 
             </div>
         </div>

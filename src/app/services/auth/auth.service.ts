@@ -1,13 +1,13 @@
-import {EventEmitter, Injectable, NgZone, Output} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {tap} from 'rxjs/operators';
-import {Observable} from "rxjs";
+import { EventEmitter, Injectable, NgZone } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { tap } from 'rxjs/operators';
+import { Observable } from "rxjs";
 
 import * as firebase from 'firebase/app';
 
-import {environment} from '../../../environments/environment';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LoggedUser} from "../../model/logged-user";
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { LoggedUser } from "../../model/logged-user";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,12 @@ export class AuthService {
 
   private ACCESS_TOKEN = 'ACCESS_TOKEN';
   private loggedUser: LoggedUser;
-  @Output() onLogin: EventEmitter<LoggedUser> = new EventEmitter();
-  @Output() onLogout: EventEmitter<void> = new EventEmitter();
+  onLogin: EventEmitter<LoggedUser> = new EventEmitter();
+  onLogout: EventEmitter<void> = new EventEmitter();
 
   constructor(private angularFirebaseAuthenticator: AngularFireAuth,
-              private httpClient: HttpClient,
-              private ngZone: NgZone) {
+    private httpClient: HttpClient,
+    private ngZone: NgZone) {
     const accessToken = sessionStorage.getItem(this.ACCESS_TOKEN);
     if (accessToken) {
       this.loggedUser = this.buildUser(accessToken);
@@ -66,6 +66,10 @@ export class AuthService {
   }
 
   getLoggedUser(): LoggedUser {
+    const accessToken = sessionStorage.getItem(this.ACCESS_TOKEN);
+    if (accessToken) {
+      this.loggedUser = this.buildUser(accessToken);
+    }
     return this.loggedUser;
   }
 
@@ -80,7 +84,7 @@ export class AuthService {
     params.set('grant_type', 'firebase');
     params.set('firebase_token_id', tokenId);
 
-    return this.httpClient.post<LoggedUser>(urlEndpoint, params.toString(), {headers: httpHeaders})
+    return this.httpClient.post<LoggedUser>(urlEndpoint, params.toString(), { headers: httpHeaders })
       .pipe(
         tap(response => {
           console.log(response);
@@ -91,19 +95,16 @@ export class AuthService {
 
   private buildUser(accessToken: string): LoggedUser {
     if (accessToken) {
-      accessToken = accessToken.split('.')[1];
-      const userInfo: any = JSON.parse(atob(accessToken));
+      const parsedAccessToken = accessToken.split('.')[1];
+      const userInfo: any = JSON.parse(atob(parsedAccessToken));
       this.loggedUser = new LoggedUser();
 
       this.loggedUser.access_token = accessToken;
       this.loggedUser.name = userInfo.name;
       this.loggedUser.email = userInfo.email;
       this.loggedUser.enabled = userInfo.enabled;
-      this.loggedUser.pictureUrl = userInfo.pictureUrl;
       this.loggedUser.expiresIn = userInfo.expiresIn;
-      this.loggedUser.roles = userInfo.roles;
       this.loggedUser.validated = userInfo.validated;
-
       return this.loggedUser;
     }
     return null;

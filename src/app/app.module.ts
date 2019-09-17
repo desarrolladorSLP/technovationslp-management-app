@@ -15,7 +15,6 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from "@angular/router";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
 const ROUTES: Routes = [
@@ -40,7 +39,6 @@ const ROUTES: Routes = [
     AngularFireStorageModule,
     HttpClientModule,
     FormsModule,
-    NgbModule,
     RouterModule.forRoot(ROUTES),
     TranslateModule.forRoot({
       loader: {

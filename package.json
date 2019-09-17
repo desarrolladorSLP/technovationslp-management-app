@@ -1,14 +1,14 @@
 {
-  "name": "managment-app",
+  "name": "management-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build --prod --base-href /management/",
-    "test": "ng test",
+    "config": "npx ts-node -O '{\"module\": \"commonjs\"}' set-env.ts",
+    "start": "npm install && npm run build && node server.js",
+    "build": "npm run config && ng build --base-href /management/",
+    "test": "npm run config && ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod --base-href /management/"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -21,9 +21,8 @@
     "@angular/platform-browser": "7.2.15",
     "@angular/platform-browser-dynamic": "7.2.15",
     "@angular/router": "7.2.15",
-    "@ng-bootstrap/ng-bootstrap": "~4.2.1",
-    "@ngx-translate/core": "~11.0.1",
-    "@ngx-translate/http-loader": "~4.0.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "4.3.1",
     "core-js": "2.6.9",
     "firebase": "6.4.2",

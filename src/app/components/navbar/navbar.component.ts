@@ -11,10 +11,12 @@ import { UserprofileComponent } from "../userprofile/userprofile.component";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  loggedUser: LoggedUser;
+   loggedUser: LoggedUser;
   constructor(private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private translate: TranslateService) {
+    this.translate.setDefaultLang('es');
+
   }
 
   ngOnInit() {
@@ -41,4 +43,7 @@ export class NavbarComponent implements OnInit {
     this.authService.logout().subscribe();
   }
 
+  setLanguage(language) {
+    this.translate.setDefaultLang(language);
+  }
 }

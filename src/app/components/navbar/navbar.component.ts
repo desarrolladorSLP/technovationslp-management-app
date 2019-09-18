@@ -14,14 +14,10 @@ export class NavbarComponent implements OnInit {
 
   loggedUser: LoggedUser;
   constructor(private router: Router,
-              private authService: AuthService,
-              private translate: TranslateService) {
-    this.translate.setDefaultLang('es');
-
+              private authService: AuthService) {
   }
 
   ngOnInit() {
-
     if (this.authService.isAuthenticated()) {
       this.loggedUser = this.authService.getLoggedUser();
     }
@@ -45,7 +41,4 @@ export class NavbarComponent implements OnInit {
     this.authService.logout().subscribe();
   }
 
-  setLanguage(language) {
-    this.translate.setDefaultLang(language);
-  }
 }

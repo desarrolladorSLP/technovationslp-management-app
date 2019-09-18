@@ -1,13 +1,13 @@
-import { EventEmitter, Injectable, NgZone } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { tap } from 'rxjs/operators';
-import { Observable } from "rxjs";
+import {EventEmitter, Injectable, NgZone} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 import * as firebase from 'firebase/app';
 
-import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { LoggedUser } from "../../model/logged-user";
+import {environment} from '../../../environments/environment';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoggedUser} from '../../model/logged-user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,6 @@ export class AuthService {
       this.angularFirebaseAuthenticator.auth
         .signInWithPopup(provider)
         .then(res => {
-          console.log(res.user['ra']);
           if (res.user && res.user['ra']) {
             this.ngZone.run(() =>
               this.loginWithBackend(res.user['ra']).subscribe(user => {
@@ -83,8 +82,8 @@ export class AuthService {
     const params = new URLSearchParams();
     params.set('grant_type', 'firebase');
     params.set('firebase_token_id', tokenId);
-
-    return this.httpClient.post<LoggedUser>(urlEndpoint, params.toString(), { headers: httpHeaders })
+    console.log(tokenId);
+    return this.httpClient.post<LoggedUser>(urlEndpoint, params.toString(), {headers: httpHeaders})
       .pipe(
         tap(response => {
           console.log(response);

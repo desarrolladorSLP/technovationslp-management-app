@@ -3,7 +3,17 @@
   "BATCHES":"Periodos",
   "SESSIONS":"Sesiones",
   "USERS":"Usuarios",
-  "LANGUAGES":"Lenguajes",
+  "LANGUAGES":"Idiomas",
   "ACTIVE": "Activo",
-  "INACTIVE": "Inactivo"
+  "INACTIVE": "Inactivo",
+  "USERPROFILE": "Perfil de Usuario",
+  "CHANGEIMAGE": "Cambiar Imagen",
+  "NAME": "Nombre",
+  "MESSAGEVALID": "Gran Elección",
+  "MESSAGEINVALID": "Vuelve a intentar",
+  "EMAIL": "Email",
+  "PHONENUMBER": "Numero de telefono",
+  "NOTE": "Nota",
+  "NOTEMESSAGE": "Recuerda que el numero de telefono requiere 10 numeros",
+  "SAVE": "Guardar"
 }

@@ -1,9 +1,19 @@
 {
-  "PROGRAMS": "Programs", 
+  "PROGRAMS": "Programs",
   "BATCHES":"Batches",
   "SESSIONS":"Sessions",
   "USERS":"Users",
   "LANGUAGES":"Languages",
   "ACTIVE": "Active",
-  "INACTIVE": "Inactive"
+  "INACTIVE": "Inactive",
+  "USERPROFILE": "User Profile",
+  "CHANGEIMAGE": "Change Image",
+  "NAME": "Name",
+  "MESSAGEVALID": "Great Choice",
+  "MESSAGEINVALID": "Try Again",
+  "EMAIL": "Email",
+  "PHONENUMBER": "Phone Number",
+  "NOTE": "Nota",
+  "NOTEMESSAGE": "Remember that the phone number requires 10 Numbers",
+  "SAVE": "Save"
 }

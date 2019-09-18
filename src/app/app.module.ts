@@ -8,8 +8,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AngularFireStorageModule} from '@angular/fire/storage';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { ProgramsComponent } from './components/programs/programs.component';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 
 
 import {environment} from '../environments/environment';
@@ -20,12 +19,10 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 
 import {RouterModule, Routes} from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
-import { ProgramCardComponent } from './components/program-card/program-card.component';
 import { FilterPipe } from './pipes/filter.pipe';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
-  {path: 'programs', component: ProgramsComponent},
   {path:'profile',component:UserprofileComponent},
   {path: '**', component: Page404Component}
 ];
@@ -37,8 +34,6 @@ const ROUTES: Routes = [
     Page404Component,
     FooterComponent,
     UserprofileComponent,
-    ProgramsComponent,
-    ProgramCardComponent,
     FilterPipe,
 
 
@@ -51,6 +46,14 @@ const ROUTES: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader, useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [AngularFireAuth, {
     provide: HTTP_INTERCEPTORS,

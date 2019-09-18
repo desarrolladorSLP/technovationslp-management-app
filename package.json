@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build --base-href /management/",
-    "test": "ng test",
+    "config": "npx ts-node -O '{\"module\": \"commonjs\"}' set-env.ts",
+    "start": "npm install && npm run build && node server.js",
+    "build": "npm run config && ng build --base-href /management/",
+    "test": "npm run config && ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot --base-href /management/"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -58,6 +58,8 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "colors": "~1.1.2",
+    "dotenv": "~5.0.0",
     "typescript": "~3.2.2"
   },
   "engines": {

@@ -59,11 +59,12 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
            </span> -->
-           <div class="alert badge-pill badge-info alert-dismissible fade show" role="alert" *ngFor="let role of item.roles">
+           <div class="badge badge-pill badge-info alert-dismissible fade show" role="alert" *ngFor="let role of item.roles">
               {{role}}
               <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button> -->
+              <i class="fas fa-plus-square"></i>
             </div>
         </td>
         <td><button class="btn btn-link" (click)="assigmentUser(item)">Save</button></td>

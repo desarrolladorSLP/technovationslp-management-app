@@ -20,11 +20,12 @@ export class ProgramsService {
    * get the list of program from Backend
    */
   public getPrograms(): Observable<Program[]> {
-    //return this.httpClient.get<Program[]>(this.urlEndpoint, {headers: httpHeaders});
     return this.httpClient.get<Program[]>(`${this.urlEndpoint}?random=${Math.random()}`);
 
   }
-
+  /**
+   *add a new Program
+   */
   public addProgram(program: Program): Observable<Program> {
 
     return this.httpClient.post<Program>(this.urlEndpoint, program);

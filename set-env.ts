@@ -2,8 +2,8 @@ import {existsSync, mkdirSync, writeFileSync} from "fs";
 
 
 // Configure Angular `environment.ts` file path
-const targetFolder = `${__dirname}\\src\\environments`;
-const targetPath = `${targetFolder}\\environment.ts`;
+const targetFolder = `${__dirname}/src/environments`;
+const targetPath = `${targetFolder}/environment.ts`;
 
 // Load node modules
 const colors = require('colors');

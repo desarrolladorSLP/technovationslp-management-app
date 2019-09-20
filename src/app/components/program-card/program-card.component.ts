@@ -8,7 +8,7 @@ import { ProgramsComponent } from '../programs/programs.component';
   selector: 'app-program-card',
   templateUrl: './program-card.component.html',
   styles: []
-})
+})   
 export class ProgramCardComponent implements OnInit {
 
   public updatingProgram = false;
@@ -38,12 +38,4 @@ export class ProgramCardComponent implements OnInit {
     });
 
   }
-  open(client) {
-    this._modal.open();
-}
-
-close() {
-    this._modal.close();
-}
-
 }

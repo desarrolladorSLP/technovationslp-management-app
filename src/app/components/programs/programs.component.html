@@ -14,7 +14,7 @@
     <div class="card col-md-3 mr-3 mt-2">
       <div class="card-body">
         <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i
-          class="fas fa-plus-circle"></i></button>
+          class="fa fa-plus-circle"></i></button>
         <div *ngIf='addingProgram'>
           <form  class="formPrograms" action="">
               <div class="input-group  mb-2">
@@ -22,7 +22,7 @@
                       <span class="input-group-text">Name</span>
                   </div>
                   <input class="form-control" type="text" #name name="name" id="name" placeholder="Name">
-              </div>  
+              </div>
 
               <div class="input-group mb-2">
                   <div class="input-group-prepend">
@@ -30,15 +30,15 @@
                   </div>
                   <textarea class="form-control" #description name="description" id="description"
                       cols="20" rows="5" placeholder="Description"></textarea>
-            </div> 
-             
+            </div>
+
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Responsible</span>
                 </div>
                 <input class="form-control" #responsible type="text" name="responsible" id="responsible"
                    placeholder="Responsible">
-            </div> 
+            </div>
 
             <button type="button"
                     (click)='addProgram(name.value, description.value, responsible.value);'

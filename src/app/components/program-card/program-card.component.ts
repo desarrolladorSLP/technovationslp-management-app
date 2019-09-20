@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Program} from '../../model/program';
 import {ProgramsService} from '../../services/programs/programs.service';
 import {Router} from '@angular/router';
@@ -30,10 +30,20 @@ export class ProgramCardComponent implements OnInit {
   }
 
   deleteProgram() {
+    console.log(this.program);
+
     this.programService.delete(this.program).subscribe(data => {
       this.deletingProgram = false;
       this.programComponent.refreshPrograms();
     });
 
   }
+  open(client) {
+    this._modal.open();
+}
+
+close() {
+    this._modal.close();
+}
+
 }

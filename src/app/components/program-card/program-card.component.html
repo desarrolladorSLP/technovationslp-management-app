@@ -29,7 +29,7 @@
         <input class="form-control" type="text" name="responsible" [(ngModel)]="program.responsible" id="responsible"
           placeholder="Responsible">
       </div>
-      <button type="button" (click)='saveProgram()' class="btn btn-outline-success">Save
+      <button type="button"  (click)='saveProgram()' class="btn btn-outline-success">Save
       </button>
       <button type="button" (click)='updatingProgram = false' class="btn btn-outline-danger">
         Cancel
@@ -37,20 +37,12 @@
     </form>
   </div>
 
-  <!--Form for dlete the program-->
-
-  <div *ngIf='deletingProgram'>
-    <p>¿Desea Eliminar este Programa?</p>
-    <button type="button" (click)='deleteProgram();' class="btn btn-outline-success">Yes
-    </button>
-    <button type="button" (click)='deletingProgram = false' class="btn btn-outline-danger">
-      No
-    </button>
-  </div>
-
   <button type="button" *ngIf='!updatingProgram' class="btn btn-light mt-5 mr-2"
     (click)='updatingProgram = !updatingProgram'><i class="fa fa-edit"></i></button>
 
-  <button type="button" *ngIf='!deletingProgram && !updatingProgram' (click)='deletingProgram = !deletingProgram'
+  <button type="button" *ngIf='!deletingProgram && !updatingProgram' (click)='showAlertDelete()'
     class="btn btn-danger  mt-5"><i class="fa fa-trash-o"></i></button>
+
 </div>
+
+

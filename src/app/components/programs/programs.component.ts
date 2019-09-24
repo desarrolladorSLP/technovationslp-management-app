@@ -37,7 +37,5 @@ export class ProgramsComponent {
     this.programService.getPrograms().subscribe(data => {
       this.listPrograms = data;
     });
-    console.log(this.listPrograms);
   }
-
 }

@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClient, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ProgramsComponent } from './components/programs/programs.component';
 
 
@@ -18,6 +18,8 @@ import { TokenInterceptor } from './services/auth/token.interceptor';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
 import {FormsModule} from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -42,6 +44,14 @@ const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader, useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [AngularFireAuth, {
     provide: HTTP_INTERCEPTORS,

@@ -7,13 +7,14 @@ export class FilterPipe implements PipeTransform {
 
   transform(value: any, name: any): any {
     const resultName = [];
-    for (const programName of value) {
-      if (programName.name.indexOf(name) > -1) {
-        console.log('sip');
-        resultName.push(programName);
-      }
+    if (name.length > 0) {
+        for (const programName of value) {
+          if (programName.name.toLowerCase().indexOf(name.toLowerCase()) > -1) {
+            resultName.push(programName);
+          }
+        }
+        return resultName;
     }
-    return resultName;
+    return value;
   }
-
 }

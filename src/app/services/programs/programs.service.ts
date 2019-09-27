@@ -12,11 +12,10 @@ import { TeckersError } from 'src/app/model/error';
 })
 export class ProgramsService {
 
-  constructor(private httpClient: HttpClient) {
-  }
-
   protected urlEndpoint = `${environment.backendUrl}/api/program`;
 
+  constructor(private httpClient: HttpClient) {
+  }
 
   public getPrograms(): Observable<Program[]> {
     return this.httpClient.get<Program[]>(`${this.urlEndpoint}?random=${Math.random()}`);

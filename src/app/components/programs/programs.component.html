@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <div *ngFor="let item of listPrograms | filter:filterPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
-      <app-program-card (programDeleted)="refreshPrograms()" [program]="item"></app-program-card>
+      <app-program-card (programDeleted)="refreshPrograms()" (userRoleList)= "getUserforRole()" [listUserRole] = "listUserRole" [program]="item"></app-program-card>
     </div>
 
     <div class="card col-md-3 mr-3 mt-2">
@@ -33,14 +33,16 @@
 
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Responsible</span>
+                    <span class="input-group-text">Responsibles</span>
                 </div>
-                <input class="form-control" #responsible type="text" name="responsible" id="responsible"
-                   placeholder="Responsible">
+
+                <div *ngFor="let user of listUserRole">
+                    <input type="checkbox" [value]="user.isChecked" [checked]="user.isChecked" (change)="$event.target.checked ? user.isChecked = true : user.isChecked = false"> {{user.name}}
+                </div>
             </div>
 
             <button type="button"
-                    (click)='addProgram(name.value, description.value, responsible.value);'
+                    (click)='addProgram(name.value, description.value);'
                     class="btn btn-outline-success">Save
             </button>
             <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5">

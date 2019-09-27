@@ -3,6 +3,7 @@ import {Program} from '../../model/program';
 import {ProgramsService} from '../../services/programs/programs.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
+import { UserRole } from 'src/app/model/user-role';
 
 @Component({
   selector: 'app-program-card',
@@ -10,19 +11,48 @@ import swal from 'sweetalert2';
   styles: []
 })
 export class ProgramCardComponent {
-
   public updatingProgram = false;
   public deletingProgram = false;
   @Output() public programDeleted = new EventEmitter();
+  @Output() public userRoleList = new EventEmitter();
   @Input() program: Program;
+  @Input() listUserRole: UserRole[];
+  protected responsibles = '';
+
 
   constructor(private programService: ProgramsService, private router: Router) {
   }
 
   saveProgram() {
+    for (const user of this.listUserRole) {
+      if (user.isChecked) {
+        this.responsibles += user.name + ',';
+      }
+    }
+    this.program.responsible = this.responsibles;
     this.programService.save(this.program).subscribe(() => {
       this.updatingProgram = false;
     });
+  }
+
+  updateProgram() {
+    this.updatingProgram = !this.updatingProgram;
+    this.divideResponsibles();
+  }
+
+  divideResponsibles() {
+    for (const user of this.listUserRole) {
+          user.isChecked = false;
+    }
+    const arrayUsers = this.program.responsible.split(',');
+    console.log(arrayUsers);
+    for (const aUser of arrayUsers) {
+      for (const user of this.listUserRole) {
+        if (aUser === user.name) {
+            user.isChecked = true;
+        }
+      }
+    }
   }
 
   deleteProgram() {

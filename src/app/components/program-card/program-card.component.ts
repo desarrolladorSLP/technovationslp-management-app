@@ -3,6 +3,8 @@ import {Program} from '../../model/program';
 import {ProgramsService} from '../../services/programs/programs.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
+import {TranslateService} from '@ngx-translate/core';
+
 import { UserRole } from 'src/app/model/user-role';
 
 @Component({
@@ -18,9 +20,11 @@ export class ProgramCardComponent {
   @Input() program: Program;
   @Input() listUserRole: UserRole[];
   protected responsibles = '';
+  messageError: string;
+  yesdelete: string;
 
 
-  constructor(private programService: ProgramsService, private router: Router) {
+  constructor(private programService: ProgramsService, private router: Router, private translate: TranslateService) {
   }
 
   saveProgram() {
@@ -29,10 +33,14 @@ export class ProgramCardComponent {
         this.responsibles += user.name + ',';
       }
     }
-    this.program.responsible = this.responsibles;
-    this.programService.save(this.program).subscribe(() => {
-      this.updatingProgram = false;
-    });
+    if (this.program.name) {
+      this.program.responsible = this.responsibles;
+      this.programService.save(this.program).subscribe(() => {
+        this.updatingProgram = false;
+      });
+    } else {
+      alert('Invalid name');
+    }
   }
 
   updateProgram() {
@@ -41,9 +49,9 @@ export class ProgramCardComponent {
   }
 
   divideResponsibles() {
-    for (const user of this.listUserRole) {
-          user.isChecked = false;
-    }
+      for (const user of this.listUserRole) {
+            user.isChecked = false;
+      }
     const arrayUsers = this.program.responsible.split(',');
     console.log(arrayUsers);
     for (const aUser of arrayUsers) {
@@ -59,24 +67,37 @@ export class ProgramCardComponent {
     this.programService.delete(this.program.id).subscribe(data => {
       this.deletingProgram = false;
       this.programDeleted.emit('program removed');
-      swal.fire(
-        'Deleted!',
-        'The program has been deleted.',
-        'success'
-      );
+      this.translate.get('DELETED').subscribe((text => {
+        swal.fire(
+          {
+            type: 'success',
+            text: text,
+          }
+        );
+      }));
     },
-    error => swal.fire(error.message));
+    error => swal.fire(
+      {
+        title: 'Error',
+        text: error.message,
+      }
+    )
+    );
   }
 
   showAlertDelete() {
-    swal.fire({
-      title: 'Are you sure to delete this program?',
+
+   this.translate.get('DELETEPROGRAM').subscribe((text: string) => { this.messageError = text; });
+   this.translate.get('YES').subscribe((text: string) => { this.yesdelete = text; });
+   swal.fire({
+      title: this.messageError ,
       text: this.program.name,
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      cancelButtonText: 'No',
+      confirmButtonText: this.yesdelete,
     }).then((result) => {
       if (result.value) {
         this.deleteProgram();

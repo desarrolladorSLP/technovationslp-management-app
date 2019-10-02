@@ -16,7 +16,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -44,6 +44,7 @@ const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader, useFactory: (http: HttpClient) => {

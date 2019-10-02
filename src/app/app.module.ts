@@ -1,30 +1,34 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {AppComponent} from './app.component';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 
 
-import {environment} from '../environments/environment';
-import {NavbarComponent} from './components/navbar/navbar.component';
-import {Page404Component} from './components/page404/page404.component';
-import {FooterComponent} from './components/footer/footer.component';
+import { environment } from '../environments/environment';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { Page404Component } from './components/page404/page404.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { FilterPipe } from './pipes/filter.pipe';
+import { InactiveComponent } from './components/user/inactive/inactive.component';
+import { NgxTagsInputModule } from 'ngx-tags-input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const ROUTES: Routes = [
-  {path: '', redirectTo: '/', pathMatch: 'full'},
-  {path:'profile',component:UserprofileComponent},
-  {path: '**', component: Page404Component}
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'profile', component: UserprofileComponent },
+  { path: 'users/inactive', component: InactiveComponent },
+  { path: '**', component: Page404Component }
 ];
 
 @NgModule({
@@ -35,11 +39,14 @@ const ROUTES: Routes = [
     FooterComponent,
     UserprofileComponent,
     FilterPipe,
+    InactiveComponent,
 
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NgxTagsInputModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
@@ -60,7 +67,7 @@ const ROUTES: Routes = [
     useClass: TokenInterceptor,
     multi: true
   }
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

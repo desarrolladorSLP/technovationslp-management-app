@@ -15,11 +15,11 @@ export class ActiveService {
 
   constructor(private authService: AuthService, private httpClient: HttpClient) { }
 
-
+  //getprofileinformation
   public getMyInformation(): Observable<User> {
     return this.httpClient.get<User>(`${this.urlEndpoint}`);
   }
-
+  //
   public updateUserActive(user: User): Observable<User> {
     return this.httpClient.post<User>(this.urlEndpoint, user);
   }

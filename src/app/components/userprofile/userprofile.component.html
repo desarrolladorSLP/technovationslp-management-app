@@ -27,8 +27,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text">{{'EMAIL'|translate}}</span>
             </div>
-            <input type="email" class="form-control" aria-label="Username" name="email"
-              [(ngModel)]="preferredEmail" required>
+            <input type="email" class="form-control" aria-label="Username" name="email" [(ngModel)]="preferredEmail"
+              required>
             <div class="valid-feedback">
               {{'MESSAGEVALID'|translate}}
             </div>
@@ -40,9 +40,10 @@
             <div class="input-group-prepend">
               <span class="input-group-text">{{'PHONENUMBER'|translate}}</span>
             </div>
-            <input type="number" class="form-control" min="10" max="10" placeholder="Phone Number"
+            <input type="number" class="form-control" min="10" max="13" placeholder="{{'PHONENUMBER'|translate}}"
               aria-label="Number" name="Number" [(ngModel)]="phoneNumber">
-            <small class="text-capitalize text-muted"><strong>{{'NOTE'|translate}}: </strong>{{'NOTEMESSAGE'|translate}}</small>
+            <small class=" text-muted"><strong>{{'NOTE'|translate}}:
+              </strong>{{'NOTEMESSAGE'|translate}}</small>
           </div>
           <button class="btn btn-primary btn-lg btn-block mb-5" (click)="updateInformationUser()"
             type="submit">{{'SAVE'|translate}}</button>

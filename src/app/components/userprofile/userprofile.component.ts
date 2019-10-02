@@ -24,6 +24,7 @@ export class UserprofileComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       this.loggedUser = this.authService.getLoggedUser();
       if (!this.isUser) {
+        // corregir esta variable USERACtive
         UserActive.getMyInformation().subscribe(data => {
           this.user = data;
           this.name = data.name;

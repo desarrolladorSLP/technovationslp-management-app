@@ -5,15 +5,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, Name: any): any {
+  transform(value: any, Name: any, Email: any): any {
     const resultName = [];
-    for (const programName of value) {
-      if (programName.name.indexOf(Name) > -1) {
-        console.log('sip');
-        resultName.push(programName);
+    if (Name.length > 0) {
+      for (const user of value) {
+        if (user.name.toLowerCase().indexOf(Name.toLowerCase()) > -1) {
+          if (user.preferredEmail.toLowerCase().indexOf(Email.toLowerCase()) > -1) {
+            resultName.push(user);
+          }
+        }
       }
+      return resultName;
     }
-    return resultName;
+    return value;
   }
 
 }

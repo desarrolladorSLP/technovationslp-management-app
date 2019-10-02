@@ -14,7 +14,6 @@ export class ProgramCardComponent {
   public updatingProgram = false;
   public deletingProgram = false;
   @Output() public programDeleted = new EventEmitter();
-  @Output() public userRoleList = new EventEmitter();
   @Input() program: Program;
   @Input() listUserRole: UserRole[];
   protected responsibles = '';

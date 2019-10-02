@@ -1,0 +1,25 @@
+  <div class="card-body">
+    <div *ngIf="!updatingBatch">
+        <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
+        <span class="input-group-text">startDate:   {{batch.startDate}} </span>
+        <span class="input-group-text">endtDate:   {{batch.endDate}} </span>
+        <p>{{batch.notes}}</p>
+        <p>{{batch.nameProgram}}</p>
+    </div>
+
+
+    <div *ngIf="updatingBatch">
+        <input class="form-control" type="text" name="name" [(ngModel)]="batch.name" id="name">
+        <input  class="form-control" type="date" name="startDate" id="startDate"  [(ngModel)]="batch.startDate" >
+        <input  class="form-control" type="date" name="endDate" id="endDate"  [(ngModel)]="batch.endDate " >
+        <textarea class="form-control" type="text" name="notes" [(ngModel)]="batch.notes" id="notes"> </textarea>
+
+      </div>
+
+
+        <button type="button" *ngIf='!updatingBatch' (click) = "updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"
+        ><i class="fa fa-edit"></i></button>
+
+        <button type="button" *ngIf='!deletingBatch && !updatingBatch'
+        class="btn btn-danger  mt-5"><i class="fa fa-trash-o"></i></button>
+    </div>

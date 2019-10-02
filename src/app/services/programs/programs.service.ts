@@ -18,8 +18,7 @@ export class ProgramsService {
   }
 
   public getPrograms(): Observable<Program[]> {
-    return this.httpClient.get<Program[]>(`${this.urlEndpoint}?random=${Math.random()}`);
-
+    return this.httpClient.get<Program[]>(this.urlEndpoint);
   }
 
   public addProgram(program: Program): Observable<Program> {

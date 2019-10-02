@@ -14,16 +14,19 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {Page404Component} from './components/page404/page404.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
-import { TokenInterceptor } from './services/auth/token.interceptor';
-import { ProgramCardComponent } from './components/program-card/program-card.component';
+import {TokenInterceptor } from './services/auth/token.interceptor';
+import {ProgramCardComponent } from './components/program-card/program-card.component';
 import {FormsModule} from '@angular/forms';
-import { FilterPipe } from './pipes/filter.pipe';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {FilterPipe } from './pipes/filter.pipe';
+import {TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {BatchesComponent } from './components/batches/batches.component';
+import {BatchesCardComponent } from './components/batches-card/batches-card.component';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'programs', component: ProgramsComponent},
+  {path: 'batches', component: BatchesComponent},
   {path: '**', component: Page404Component}
 ];
 
@@ -36,6 +39,8 @@ const ROUTES: Routes = [
     ProgramsComponent,
     ProgramCardComponent,
     FilterPipe,
+    BatchesComponent,
+    BatchesCardComponent,
   ],
   imports: [
     BrowserModule,

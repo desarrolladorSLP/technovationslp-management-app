@@ -7,8 +7,11 @@
   "ACTIVE": "Activo",
   "INACTIVE": "Inactivo",
   "NAME": "Nombre",
-  "STARTDATE": "Fecha de Inicio",
-  "ENDDATE": "Fecha Final",
+  "START_DATE": "Fecha de Inicio",
+  "END_DATE": "Fecha Final",
   "NOTES": "Notas",
-  "FIELDEMPTY": "Llenar el campo"
+  "FIELD_EMPTY": "Llenar el campo",
+  "DELETE_BATCH": "¿Está seguro de eliminar este batch?",
+  "YES": "Si",
+  "DELETED_BATCH": "El  batch ha sido eliminado"
 }

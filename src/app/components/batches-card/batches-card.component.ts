@@ -3,6 +3,7 @@ import { Batch } from 'src/app/model/batch';
 import { Program } from 'src/app/model/program';
 import { BatchesService } from 'src/app/services/batches/batches.service';
 import swal from 'sweetalert2';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-batches-card',
@@ -18,9 +19,10 @@ export class BatchesCardComponent {
   public updatingBatch = false;
   public deletingBatch = false;
   optionProgram: Program;
+  messageError: string;
+  yesdelete: string;
 
-
-  constructor(private batchService: BatchesService) {
+  constructor(private batchService: BatchesService, private translate: TranslateService) {
   }
 
    updateBatch() {
@@ -35,11 +37,14 @@ export class BatchesCardComponent {
     this.batchService.delete(this.batch.id).subscribe(data => {
       this.deletingBatch = false;
       this.batchDeleted.emit();
-      swal.fire(
-        'Deleted!',
-        'The program has been deleted.',
-        'success'
-      );
+      this.translate.get('DELETED_BATCH').subscribe((text => {
+        swal.fire(
+          {
+            type: 'success',
+            text: text,
+          }
+        );
+      }));
     },
     error => swal.fire(
       {
@@ -51,14 +56,16 @@ export class BatchesCardComponent {
   }
 
   showAlertDelete() {
+    this.translate.get('DELETE_BATCH').subscribe((text: string) => { this.messageError = text; });
+    this.translate.get('YES').subscribe((text: string) => { this.yesdelete = text; });
     swal.fire({
-      title: 'Are you sure to delete this program?',
+      title: this.messageError,
       text: this.batch.name,
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: this.yesdelete
     }).then((result) => {
       if (result.value) {
         this.deleteBatch();

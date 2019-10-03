@@ -5,5 +5,10 @@
   "USERS":"Users",
   "LANGUAGES":"Languages",
   "ACTIVE": "Active",
-  "INACTIVE": "Inactive"
+  "INACTIVE": "Inactive",
+  "NAME": "Name",
+  "STARTDATE": "startDate",
+  "ENDDATE": "endDate",
+  "NOTES": "Notes",
+  "FIELDEMPTY": "please fill field"
 }

@@ -13,6 +13,7 @@ export class BatchesComponent {
 
   protected listBatches: Batch[];
   protected listPrograms: Program[];
+  public filterBatch = '';
   addingBatch = false;
   optionProgram: Program;
   startDate: string;
@@ -22,9 +23,6 @@ export class BatchesComponent {
     this.refreshBatches();
   }
 
-  selectChange() {
-    console.log(this.optionProgram);
-  }
 
   refreshBatches() {
     this.batchesService.getBatches().subscribe(data => {
@@ -34,7 +32,11 @@ export class BatchesComponent {
   }
 
   addBatch() {
-    console.log(this.batch.startDate);
+    console.log(this.batch);
+      this.batchesService.addBatch(this.batch).subscribe(data => {
+        this.addingBatch = false;
+        this.refreshBatches();
+      });
   }
 
   getNameProgram() {

@@ -1,50 +1,77 @@
+<input type="search"  name="filterBatch" class="form-control" placeholder="Search..."
+ [(ngModel)]="filterBatch" id="">
+
 <h1>Batches</h1>
 <div class="container">
   <div class="row">
-    <div *ngFor="let batch of listBatches" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
-          <app-batches-card [batch]= "batch" [listPrograms]= "listPrograms"></app-batches-card>
-    </div>
     <div class="card col-md-3 mr-3 mt-2">
         <div class="card-body">
             <button type="button" *ngIf="!addingBatch" (click)='addingBatch = !addingBatch'><i
               class="fa fa-plus-circle"></i></button>
-          <div *ngIf="addingBatch">
-
+          <form  class="was-validated" novalidate >
+             <div *ngIf="addingBatch">
               <div class="input-group  mb-2">
                   <div class="input-group-prepend">
-                      <span class="input-group-text">Name</span>
-                      <input class="form-control" type="text" name="name" id="name">
-                  </div>
+                      <span class="input-group-text">{{'NAME' | translate}}</span>
+                      <input [(ngModel)] = "batch.name"  required  class="form-control" type="text" name="name" id="name">
+                   </div>
+                   <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                      Please fill the Field
+                    </div>
               </div>
 
               <div class="input-group  mb-2">
                   <div class="input-group-prepend">
-                      <span class="input-group-text">StartDate</span>
-                      <input  class="form-control" [(ngModel)] = "batch.startDate" type="date" name="startDate" id="startDate"  >
+                      <span class="input-group-text">{{'STARTDATE' | translate}}</span>
                   </div>
+                  <input  class="form-control" required style="width: 160px" [(ngModel)] = "batch.startDate" type="date" name="startDate" id="startDate"  >
+                  <div class="valid-feedback">
+                    </div>
+                    <div class="invalid-feedback">
+                        {{'FIELDEMPTY' | translate}}
+                    </div>
+                </div>
+
+              <div class="input-group  mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">{{'ENDDATE' | translate}}</span>
+                  </div>
+                  <input   class="form-control" required style="width: 160px" [(ngModel)] = "batch.endDate" type="date" name="endDate" id="endDate" >
+                  <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        {{'FIELDEMPTY' | translate}}
+                    </div>
+               </div>
+
+              <div class="input-group  mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">{{'NOTES' | translate}}</span>
+                      <textarea required class="form-control" [(ngModel)] = "batch.notes" type="text" name="notes" id="notes"> </textarea>
+                  </div>
+                    <div class="valid-feedback">
+                    </div>
+                    <div class="invalid-feedback">
+                        {{'FIELDEMPTY' | translate}}
+                    </div>
               </div>
 
               <div class="input-group  mb-2">
                   <div class="input-group-prepend">
-                      <span class="input-group-text">End</span>
-                      <input  class="form-control" [(ngModel)] = "batch.endDate" type="date" name="endDate" id="endDate" >
-                  </div>
-              </div>
-
-              <div class="input-group  mb-2">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text">Notes</span>
-                      <textarea class="form-control" [(ngModel)] = "batch.notes" type="text" name="notes" id="notes"> </textarea>
-                  </div>
-              </div>
-
-              <div class="input-group  mb-2">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text">Programs</span>
-                      <select class="form-control" (ngModelChange)="selectChange()" [(ngModel)]="batch.programId">
+                      <span class="input-group-text">{{'PROGRAMS' | translate}}</span>
+                      <select required class="form-control" name="program" [(ngModel)]="batch.programId">
                           <option *ngFor="let program of listPrograms" [value]="program.id">{{program.name}}</option>
                         </select>
                   </div>
+                  <div class="valid-feedback">
+                    </div>
+                    <div class="invalid-feedback">
+                        {{'FIELDEMPTY' | translate}}
+                    </div>
               </div>
 
               <button type="button"
@@ -54,8 +81,13 @@
             <button type="button" (click)='addingBatch = false' class="btn btn-outline-danger mr-5">
               Cancel
             </button>
-          </div>
+             </div>
+          </form>
         </div>
     </div>
+    <div *ngFor="let batch of listBatches | filter: filterBatch" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
+          <app-batches-card (batchDeleted) = "refreshBatches()" [batch]= "batch" [listPrograms]= "listPrograms"></app-batches-card>
+    </div>
+    
   </div>
 </div>

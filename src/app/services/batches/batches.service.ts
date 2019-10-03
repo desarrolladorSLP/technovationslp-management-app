@@ -3,6 +3,8 @@ import {environment} from '../../../environments/environment';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {Batch} from '../../model/batch';
+import { catchError } from 'rxjs/operators';
+import { TeckersError } from 'src/app/model/error';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,19 @@ export class BatchesService {
   }
 
 
-  public addProgram(batch: Batch): Observable<Batch> {
-
+  public addBatch(batch: Batch): Observable<Batch> {
     return this.httpClient.post<Batch>(this.urlEndpoint, batch);
   }
 
+  update(batch: Batch) {
+    return this.httpClient.put<Batch>(this.urlEndpoint, batch);
+  }
+
+  delete(id: string) {
+    return this.httpClient.delete<Batch>(this.urlEndpoint + '/' + id)
+    .pipe(catchError(error => {
+      console.log(error);
+      return throwError(new TeckersError(error.error.error, error.error.message));
+    }));
+  }
 }

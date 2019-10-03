@@ -4,6 +4,7 @@ import { AuthService } from '../../services';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from 'src/app/model';
 import { UsersService } from '../../services/Users/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-userprofile',
@@ -23,13 +24,7 @@ export class UserprofileComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       this.loggedUser = this.authService.getLoggedUser();
       if (!this.isUser) {
-        UserActive.getProfileInformation().subscribe(data => {
-          this.user = data;
-          this.name = this.user.name;
-          this.preferredEmail = this.user.preferredEmail;
-          this.phoneNumber = this.user.phoneNumber;
-          this.pictureUrl = this.user.pictureUrl;
-        });
+        this.refreshInformation();
       }
     }
   }
@@ -42,12 +37,51 @@ export class UserprofileComponent implements OnInit {
     this.user.pictureUrl = this.pictureUrl;
     this.user.preferredEmail = this.preferredEmail;
     this.user.phoneNumber = this.phoneNumber;
-    this.UserActive.updateProfileInformation(this.user).subscribe(data => {
-      if (data) {
-        alert('informacion actualizada correctamente');
+    if (this.user.name === '') {
+      Swal.fire(
+        'Error!',
+        'You need to enter your name.',
+        'error'
+      );
+    } else {
+      if (!this.user.preferredEmail.includes('@')) {
+        Swal.fire(
+          'Error!',
+          'You need to enter a email validate.',
+          'error'
+        );
       } else {
-        alert('Hubo un problema al intentar actualizar la información');
+        if (this.user.phoneNumber.length !== 10) {
+          Swal.fire(
+            'Error!',
+            'You need to enter a phone number with 10 numbers.',
+            'error'
+          );
+        } else {
+          this.UserActive.updateProfileInformation(this.user).subscribe(data => {
+            if (data) {
+              this.refreshInformation();
+              Swal.fire({
+                position: 'top',
+                type: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          });
+        }
       }
+    }
+  }
+
+  public refreshInformation() {
+    this.UserActive.getProfileInformation().subscribe(data => {
+      this.user = data;
+      this.name = this.user.name;
+      this.preferredEmail = this.user.preferredEmail;
+      this.phoneNumber = this.user.phoneNumber;
+      this.pictureUrl = this.user.pictureUrl;
     });
   }
 

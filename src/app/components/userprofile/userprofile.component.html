@@ -2,13 +2,13 @@
   <form class="was-validated" novalidate>
     <div class="row credential justify-content-center ">
       <div class="text-center col-5">
-        <label class="h2"><strong>{{'USERPROFILE'|translate}}</strong></label>
+        <label class="h2"><strong>{{'USER_PROFILE'|translate}}</strong></label>
         <br>
         <img class="image-profile" [src]="pictureUrl">
         <div class="form-group">
           <input type="file" name="file" id="file" class="input-file" />
           <label for="file" class="pointer btn btn-warning" (change)="onUpload($event)"><i
-              class="fas fa-file-image"></i><strong> {{'CHANGEIMAGE'|translate}}</strong></label>
+              class="fas fa-file-image"></i><strong> {{'CHANGE_IMAGE'|translate}}</strong></label>
         </div>
         <div>
           <div class="input-group mb-3">
@@ -17,10 +17,10 @@
             </div>
             <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
             <div class="valid-feedback">
-              {{'MESSAGEVALID'|translate}}
+              {{'MESSAGE_VALID'|translate}}
             </div>
             <div class="invalid-feedback">
-              {{'MESSAGEINVALID'|translate}}
+              {{'MESSAGE_INVALID'|translate}}
             </div>
           </div>
           <div class="input-group mb-3">
@@ -30,20 +30,20 @@
             <input type="email" class="form-control" aria-label="Username" name="email" [(ngModel)]="preferredEmail"
               required>
             <div class="valid-feedback">
-              {{'MESSAGEVALID'|translate}}
+              {{'MESSAGE_VALID'|translate}}
             </div>
             <div class="invalid-feedback">
-              {{'MESSAGEINVALID'|translate}}
+              {{'MESSAGE_INVALID'|translate}}
             </div>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">{{'PHONENUMBER'|translate}}</span>
+              <span class="input-group-text">{{'PHONE_NUMBER'|translate}}</span>
             </div>
             <input type="tel" pattern=".{10}" class="form-control" min="10" max="10" placeholder="Phone Number"
               aria-label="Number" name="Number" [(ngModel)]="phoneNumber" required>
             <small class="text-capitalize text-muted"><strong>{{'NOTE'|translate}}:
-              </strong>{{'NOTEMESSAGE'|translate}}</small>
+              </strong>{{'NOTE_MESSAGE'|translate}}</small>
           </div>
           <button class="btn btn-primary btn-lg btn-block mb-5" (click)="updateInformationUser()"
             type="submit">{{'SAVE'|translate}}</button>

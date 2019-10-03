@@ -5,14 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, Name: any, Email: any): any {
+  transform(value: any, Name: any, Email: any, number: any): any {
     const resultName = [];
     if (Name.length > 0) {
       for (const user of value) {
-        if (user.name.toLowerCase().indexOf(Name.toLowerCase()) > -1) {
-          if (user.preferredEmail.toLowerCase().indexOf(Email.toLowerCase()) > -1) {
-            resultName.push(user);
-          }
+        // tslint:disable-next-line: max-line-length
+        if (user.name.toLowerCase().indexOf(Name.toLowerCase()) > -1 && user.preferredEmail.toLowerCase().indexOf(Email.toLowerCase()) > -1 && user.phoneNumber !== number) {
+          resultName.push(user);
         }
       }
       return resultName;

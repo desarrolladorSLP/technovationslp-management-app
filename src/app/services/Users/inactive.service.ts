@@ -13,12 +13,12 @@ export class InactiveService {
   constructor(private httpClient: HttpClient) { }
 
 
-  public getListUserInactive() {
-    const urlEndpoint = `${environment.backendUrl}/api/user/inactive`;
+  public getListUserActive() {
+    const urlEndpoint = `${environment.backendUrl}/api/user/active`;
     return this.httpClient.get<User[]>(`${urlEndpoint}`);
   }
 
-  public updateUserInactive(user: Inactiveuser): Observable<Inactiveuser> {
+  public updateUserActive(user: Inactiveuser): Observable<Inactiveuser> {
     const urlEndpoint = `${environment.backendUrl}/api/user/activate`;
     return this.httpClient.post<Inactiveuser>(urlEndpoint, user);
   }

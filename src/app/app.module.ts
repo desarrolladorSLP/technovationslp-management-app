@@ -20,14 +20,14 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 import { RouterModule, Routes } from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { FilterPipe } from './pipes/filter.pipe';
-import { InactiveComponent } from './components/user/inactive/inactive.component';
 import { NgxTagsInputModule } from 'ngx-tags-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActiveComponent } from './components/user/active/active.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'profile', component: UserprofileComponent },
-  { path: 'users/inactive', component: InactiveComponent },
+  { path: 'users/active', component: ActiveComponent },
   { path: '**', component: Page404Component }
 ];
 
@@ -39,7 +39,7 @@ const ROUTES: Routes = [
     FooterComponent,
     UserprofileComponent,
     FilterPipe,
-    InactiveComponent,
+    ActiveComponent,
 
 
   ],

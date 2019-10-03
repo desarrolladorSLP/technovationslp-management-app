@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class InactiveService {
+export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 

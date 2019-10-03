@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { UsersService } from './users.service';
 
-import { InactiveService } from './inactive.service';
-
-describe('InactiveService', () => {
+describe('UsersService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: InactiveService = TestBed.get(InactiveService);
+    const service: UsersService = TestBed.get(UsersService);
     expect(service).toBeTruthy();
   });
 });

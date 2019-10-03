@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InactiveService } from 'src/app/services/Users/inactive.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { UsersService } from 'src/app/services/Users/users.service';
 import * as $ from 'jquery';
 import { Inactiveuser } from 'src/app/model/inactiveuser';
 import { TagsChangedEvent } from 'ngx-tags-input/public-api';
@@ -32,7 +31,7 @@ export class InactiveComponent implements OnInit {
     displayValue: 'Parent'
   }];
 
-  constructor(private listInactive: InactiveService) {
+  constructor(private listInactive: UsersService) {
     listInactive.getListUserInactive().subscribe(data => {
       this.listInactiveUser = data;
     });
@@ -47,6 +46,7 @@ export class InactiveComponent implements OnInit {
     this.inactiveUser.enable = row['enabled'];
     this.inactiveUser.validated = row['validated'];
     this.inactiveUser.roles = row['roles'];
+    this.currentRoles = [];
     $('#modalName').empty();
     $('#modalName').append(row['name']);
     $('#modalImage').attr('src', row['pictureUrl']);
@@ -55,20 +55,37 @@ export class InactiveComponent implements OnInit {
   }
 
   public updateInactiveUser() {
-    this.currentRoles.forEach(element => {
-      if (this.inactiveUser.roles.some) {
-        if (!this.inactiveUser.roles.includes(element)) {
-          this.inactiveUser.roles.push(element.displayValue);
+    if (this.currentRoles.length === 0) {
+      alert('Debes de tener al menos una etiqueta');
+      console.log(this.currentRoles);
+    } else {
+      this.currentRoles.forEach(element => {
+        switch (element['displayValue']) {
+          case 'Administrator':
+            if (!this.inactiveUser.roles.includes('ROLE_ADMINISTRATOR')) {
+              this.inactiveUser.roles.push('ROLE_ADMINISTRATOR');
+            } break;
+          case 'Tecker':
+            if (!this.inactiveUser.roles.includes('ROLE_TECKER')) {
+              this.inactiveUser.roles.push('ROLE_TECKER');
+            } break;
+          case 'Mentor':
+            if (!this.inactiveUser.roles.includes('ROLE_MENTOR')) {
+              this.inactiveUser.roles.push('ROLE_MENTOR');
+            } break;
+          case 'Staff':
+            if (!this.inactiveUser.roles.includes('ROLE_STAFF')) {
+              this.inactiveUser.roles.push('ROLE_STAFF');
+            } break;
+          case 'Parent':
+            if (!this.inactiveUser.roles.includes('ROLE_PARENT')) {
+              this.inactiveUser.roles.push('ROLE_PARENT');
+            } break;
         }
-      } else {
-        this.inactiveUser.roles.push(element.displayValue);
-      }
-    });
-    this.inactiveUser.enable = this.isEnable;
-    console.log(this.inactiveUser);
-    // this.listInactive.updateUserInactive(this.inactiveUser).subscribe(data => {
-    //   console.log(data);
-    // });
+      });
+      this.inactiveUser.enable = this.isEnable;
+      this.listInactive.updateUserInactive(this.inactiveUser).subscribe();
+    }
   }
 
   public clickName() {

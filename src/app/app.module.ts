@@ -40,8 +40,6 @@ const ROUTES: Routes = [
     UserprofileComponent,
     FilterPipe,
     InactiveComponent,
-
-
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import { Activeuser } from 'src/app/model/activeuser';
 import { TagsChangedEvent } from 'ngx-tags-input/public-api';
 import { forEach } from '@angular/router/src/utils/collection';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-active',
@@ -34,9 +35,7 @@ export class ActiveComponent implements OnInit {
   }];
 
   constructor(private listActive: UsersService) {
-    listActive.getListUserActive().subscribe(data => {
-      this.listActiveUser = data;
-    });
+    this.refreshList();
   }
 
   ngOnInit() {
@@ -68,9 +67,14 @@ export class ActiveComponent implements OnInit {
 
   public updateActiveUser() {
     if (this.currentRoles.length === 0) {
-      alert('Debes de tener al menos una etiqueta');
+      Swal.fire(
+        'Error!',
+        'you need me to have at least one role.',
+        'error'
+      );
     } else {
       console.log(this.currentRoles);
+      this.activeUser.roles = [];
       this.currentRoles.forEach(element => {
         switch (element['displayValue']) {
           case 'Administrator':
@@ -98,11 +102,23 @@ export class ActiveComponent implements OnInit {
       this.activeUser.enabled = this.isEnable;
       console.log(this.activeUser);
       this.listActive.updateUserActive(this.activeUser).subscribe(data => {
-        console.log(data);
+        Swal.fire({
+          position: 'top',
+          type: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.refreshList();
       });
     }
   }
 
+  public refreshList() {
+    this.listActive.getListUserActive().subscribe(elements => {
+      this.listActiveUser = elements;
+    });
+  }
   public clickName() {
     $('#Sname').toggleClass('d-none');
   }

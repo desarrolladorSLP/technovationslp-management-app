@@ -4,23 +4,23 @@ import { tap } from 'rxjs/operators';
 import { User } from 'src/app/model';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services';
+import { AuthService } from '..';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActiveService {
+export class UsersService {
   user: User;
   protected urlEndpoint = `${environment.backendUrl}/api/user/me`;
 
   constructor(private authService: AuthService, private httpClient: HttpClient) { }
 
 
-  public getMyInformation(): Observable<User> {
+  public getProfileInformation(): Observable<User> {
     return this.httpClient.get<User>(`${this.urlEndpoint}`);
   }
 
-  public updateUserActive(user: User): Observable<User> {
+  public updateProfileInformation(user: User): Observable<User> {
     return this.httpClient.post<User>(this.urlEndpoint, user);
   }
 }

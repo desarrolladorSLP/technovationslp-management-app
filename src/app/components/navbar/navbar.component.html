@@ -48,9 +48,9 @@
     <form class="form-inline my-2 my-lg-0">
       <a [routerLink]="['profile']" class="name" *ngIf="loggedUser">{{loggedUser.name}}</a>
       <button *ngIf="!loggedUser" type="button" class="btn button-loggin text-light border border-dark"
-        (click)="loginWithGoogle()" title="Iniciar Sesión"><i class="fab fa-google" aria-hidden="true"></i></button>
+        (click)="loginWithGoogle()"><i class="fab fa-google" aria-hidden="true"></i></button>
       <button (click)="onLogout()" *ngIf="loggedUser" class="btn button-loggin text-light border border-dark"
-        title="Cerrar Sesión" type="button"><i class="fas fa-sign-out-alt"></i></button>
+        type="button"><i class="fas fa-sign-out-alt"></i></button>
     </form>
   </div>
 </nav>

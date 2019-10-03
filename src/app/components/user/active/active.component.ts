@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InactiveService } from 'src/app/services/Users/inactive.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { UsersService } from 'src/app/services/Users/users.service';
 import * as $ from 'jquery';
-import { Inactiveuser } from 'src/app/model/inactiveuser';
+import { Activeuser } from 'src/app/model/activeuser';
 import { TagsChangedEvent } from 'ngx-tags-input/public-api';
 import { forEach } from '@angular/router/src/utils/collection';
 
@@ -14,7 +13,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class ActiveComponent implements OnInit {
 
   listActiveUser: any;
-  activeUser: Inactiveuser;
+  activeUser: Activeuser;
   isEnable;
   filterName = '';
   filterEmail = '';
@@ -34,8 +33,8 @@ export class ActiveComponent implements OnInit {
     displayValue: 'Parent'
   }];
 
-  constructor(private listInactive: InactiveService) {
-    listInactive.getListUserActive().subscribe(data => {
+  constructor(private listActive: UsersService) {
+    listActive.getListUserActive().subscribe(data => {
       this.listActiveUser = data;
     });
   }
@@ -44,7 +43,7 @@ export class ActiveComponent implements OnInit {
   }
 
   public getSelectedUser(row) {
-    this.activeUser = new Inactiveuser();
+    this.activeUser = new Activeuser();
     this.activeUser.id = row['id'];
     this.activeUser.enable = row['enabled'];
     this.activeUser.validated = row['validated'];
@@ -67,7 +66,7 @@ export class ActiveComponent implements OnInit {
     $('#modalRoles').append(row['roles']);
   }
 
-  public updateInactiveUser() {
+  public updateActiveUser() {
     if (this.currentRoles.length === 0) {
       alert('Debes de tener al menos una etiqueta');
       console.log(this.currentRoles);
@@ -102,7 +101,7 @@ export class ActiveComponent implements OnInit {
       });
       this.activeUser.enable = this.isEnable;
       console.log(this.activeUser);
-      // this.listInactive.updateUserActive(this.activeUser).subscribe(data => {
+      // this.listActive.updateUserActive(this.activeUser).subscribe(data => {
       //   console.log(data);
       // });
     }

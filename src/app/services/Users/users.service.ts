@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Inactiveuser } from 'src/app/model/inactiveuser';
+import { Activeuser } from 'src/app/model/activeuser';
 import { User } from 'src/app/model/user';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InactiveService {
+export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,8 +18,8 @@ export class InactiveService {
     return this.httpClient.get<User[]>(`${urlEndpoint}`);
   }
 
-  public updateUserActive(user: Inactiveuser): Observable<Inactiveuser> {
+  public updateUserActive(user: Activeuser): Observable<Activeuser> {
     const urlEndpoint = `${environment.backendUrl}/api/user/activate`;
-    return this.httpClient.post<Inactiveuser>(urlEndpoint, user);
+    return this.httpClient.post<Activeuser>(urlEndpoint, user);
   }
 }

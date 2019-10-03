@@ -1,11 +1,11 @@
 <div class="container">
-  <h1 class="text-center">List active users</h1>
+  <h1 class="text-center">{{'TITLE_ACTIVE'|translate}}</h1>
   <table class="table table-hover text-center table-striped">
     <thead style="background-color: #B4CCE3">
       <tr class="align-middle">
         <th>
           <div class="form-group">
-            <label for="Sname" class="col-12 buttonsearch" (click)="clickName()"> Name <i class="fa fa-search"
+            <label class="col-12 buttonsearch" (click)="clickName()"> {{'NAME'|translate}} <i class="fa fa-search"
                 aria-hidden="true"></i></label>
             <input type="text" name="filterName" id="Sname" class="form-control-sm rounded-pill d-none"
               [(ngModel)]="filterName" />
@@ -14,7 +14,7 @@
         </th>
         <th>
           <div class="form-group">
-            <label for="Sname" class="col-12 buttonsearch" (click)="clickEmail()"> Email <i class=" fa fa-search"
+            <label class="col-12 buttonsearch" (click)="clickEmail()"> {{'EMAIL'|translate}} <i class=" fa fa-search"
                 aria-hidden="true"></i></label>
             <input type="text" name="filterEmail" id="Semail" class="form-control-sm rounded-pill d-none"
               [(ngModel)]="filterEmail" />
@@ -22,13 +22,13 @@
         </th>
         <th class="align-top">
           <div class="form-group">
-            <label for="Sname" class="col-12 buttonsearch" (click)="clickNumber()"> Phone Number <i
+            <label class="col-12 buttonsearch" (click)="clickNumber()">{{'PHONE_NUMBER'|translate}} <i
                 class=" fa fa-search" aria-hidden="true"></i></label>
             <input type="number" name="filterNumber" id="Snumber" class="form-control-sm rounded-pill d-none"
               [(ngModel)]="filterNumber" />
           </div>
         </th>
-        <th class="align-top">Enable</th>
+        <th class="align-top">{{'ENABLE'|translate}}</th>
         <th class="align-top">Roles</th>
         <th></th>
       </tr>
@@ -38,14 +38,14 @@
         <td>{{item.name}}</td>
         <td>{{item.preferredEmail}}</td>
         <td>{{item.phoneNumber}}</td>
-        <td *ngIf="item.enabled; else loggedOut">Enabled</td>
+        <td *ngIf="item.enabled; else loggedOut">{{'ENABLED'|translate}}</td>
         <ng-template #loggedOut>
-          <td>Disabled</td>
+          <td>{{'DISABLED'|translate}}</td>
         </ng-template>
         <td>
           <ul *ngFor="let item of item.roles">
             <ng-container *ngIf="item==='ROLE_ADMINISTRATOR'">
-              <li>Administrador</li>
+              <li>{{'ADMINISTRATOR'|translate}}</li>
             </ng-container>
             <ng-container *ngIf="item==='ROLE_MENTOR'">
               <li>Mentor</li>
@@ -54,7 +54,7 @@
               <li>Staff</li>
             </ng-container>
             <ng-container *ngIf="item==='ROLE_PARENT'">
-              <li>Parent</li>
+              <li>{{'PARENT'|translate}}</li>
             </ng-container>
             <ng-container *ngIf="item==='ROLE_TECKER'">
               <li>Tecker</li>
@@ -88,7 +88,7 @@
           </div>
           <div class="col-6">
             <div class="row mt-3 justify-content-center">
-              <h5>Add and remove a role</h5>
+              <h5>{{'TITLE_MODAL'|translate}}</h5>
               <ngx-tags-input class="form-control" [(ngModel)]="currentRoles" [options]="optionsRoles"
                 [minLengthBeforeOptions]="3" [maxTags]="5" placeholder="will only match when 3 characters are typed"
                 style="height:100px;">
@@ -96,12 +96,12 @@
             </div>
             <div class="custom-control custom-switch" *ngIf="!isEnable; else elseBlock">
               <input type="checkbox" class="custom-control-input" id="customSwitches" [(ngModel)]="isEnable">
-              <label class="custom-control-label" for="customSwitches"><strong>Disable</strong></label>
+              <label class="custom-control-label" for="customSwitches"><strong>{{'DISABLE'|translate}}</strong></label>
             </div>
             <ng-template #elseBlock>
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitches" checked [(ngModel)]="isEnable">
-                <label class="custom-control-label" for="customSwitches"><strong>Enable</strong></label>
+                <label class="custom-control-label" for="customSwitches"><strong>{{'ENABLE'|translate}}</strong></label>
               </div>
             </ng-template>
             <hr>
@@ -110,8 +110,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updateInactiveUser()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'CLOSE'|translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="updateActiveUser()">{{'SAVE'|translate}}</button>
       </div>
     </div>
   </div>

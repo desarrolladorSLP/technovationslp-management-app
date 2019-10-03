@@ -1,8 +1,8 @@
   <div class="card-body">
     <div *ngIf="!updatingBatch">
         <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
-        <span class="input-group-text">startDate:   {{batch.startDate}} </span>
-        <span class="input-group-text">endtDate:   {{batch.endDate}} </span>
+        <span class="input-group-text">{{'START_DATE' | translate}} :   {{batch.startDate}} </span>
+        <span class="input-group-text">{{'END_DATE' | translate}} :   {{batch.endDate}} </span>
         <p>{{batch.notes}}</p>
         <p>{{batch.nameProgram}}</p>
     </div>

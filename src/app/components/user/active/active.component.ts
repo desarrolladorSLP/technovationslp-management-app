@@ -45,7 +45,7 @@ export class ActiveComponent implements OnInit {
   public getSelectedUser(row) {
     this.activeUser = new Activeuser();
     this.activeUser.id = row['id'];
-    this.activeUser.enable = row['enabled'];
+    this.activeUser.enabled = row['enabled'];
     this.activeUser.validated = row['validated'];
     this.activeUser.roles = row['roles'];
     this.currentRoles = [];
@@ -69,41 +69,37 @@ export class ActiveComponent implements OnInit {
   public updateActiveUser() {
     if (this.currentRoles.length === 0) {
       alert('Debes de tener al menos una etiqueta');
-      console.log(this.currentRoles);
     } else {
+      console.log(this.currentRoles);
       this.currentRoles.forEach(element => {
-        if (this.activeUser.roles.some) {
-          switch (element) {
-            case 'Administrator':
-              if (!this.activeUser.roles.includes('ROLE_ADMINISTRATOR')) {
-                this.activeUser.roles.push('ROLE_ADMINISTRATOR');
-              } break;
-            case 'Tecker':
-              if (!this.activeUser.roles.includes('ROLE_TECKER')) {
-                this.activeUser.roles.push('ROLE_TECKER');
-              } break;
-            case 'Mentor':
-              if (!this.activeUser.roles.includes('ROLE_MENTOR')) {
-                this.activeUser.roles.push('ROLE_MENTOR');
-              } break;
-            case 'Staff':
-              if (!this.activeUser.roles.includes('ROLE_STAFF')) {
-                this.activeUser.roles.push('ROLE_STAFF');
-              } break;
-            case 'Parent':
-              if (!this.activeUser.roles.includes('ROLE_PARENT')) {
-                this.activeUser.roles.push('ROLE_PARENT');
-              } break;
-          }
-        } else {
-          this.activeUser.roles.push(element.displayValue);
+        switch (element['displayValue']) {
+          case 'Administrator':
+            if (!this.activeUser.roles.includes('ROLE_ADMINISTRATOR')) {
+              this.activeUser.roles.push('ROLE_ADMINISTRATOR');
+            } break;
+          case 'Tecker':
+            if (!this.activeUser.roles.includes('ROLE_TECKER')) {
+              this.activeUser.roles.push('ROLE_TECKER');
+            } break;
+          case 'Mentor':
+            if (!this.activeUser.roles.includes('ROLE_MENTOR')) {
+              this.activeUser.roles.push('ROLE_MENTOR');
+            } break;
+          case 'Staff':
+            if (!this.activeUser.roles.includes('ROLE_STAFF')) {
+              this.activeUser.roles.push('ROLE_STAFF');
+            } break;
+          case 'Parent':
+            if (!this.activeUser.roles.includes('ROLE_PARENT')) {
+              this.activeUser.roles.push('ROLE_PARENT');
+            } break;
         }
       });
-      this.activeUser.enable = this.isEnable;
+      this.activeUser.enabled = this.isEnable;
       console.log(this.activeUser);
-      // this.listActive.updateUserActive(this.activeUser).subscribe(data => {
-      //   console.log(data);
-      // });
+      this.listActive.updateUserActive(this.activeUser).subscribe(data => {
+        console.log(data);
+      });
     }
   }
 

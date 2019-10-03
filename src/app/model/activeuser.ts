@@ -1,6 +1,6 @@
 export class Activeuser {
   id: string;
-  enable: boolean;
+  enabled: boolean;
   validated: Boolean;
   phoneNumber: number;
   roles: string[];

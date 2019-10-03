@@ -3,6 +3,7 @@ import { UsersService } from 'src/app/services/Users/users.service';
 import * as $ from 'jquery';
 import { Inactiveuser } from 'src/app/model/inactiveuser';
 import { TagsChangedEvent } from 'ngx-tags-input/public-api';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inactive',
@@ -32,9 +33,7 @@ export class InactiveComponent implements OnInit {
   }];
 
   constructor(private listInactive: UsersService) {
-    listInactive.getListUserInactive().subscribe(data => {
-      this.listInactiveUser = data;
-    });
+    this.refreshList();
   }
 
   ngOnInit() {
@@ -56,8 +55,11 @@ export class InactiveComponent implements OnInit {
 
   public updateInactiveUser() {
     if (this.currentRoles.length === 0) {
-      alert('Debes de tener al menos una etiqueta');
-      console.log(this.currentRoles);
+      Swal.fire(
+        'Error!',
+        'you need me to have at least one role.',
+        'error'
+      );
     } else {
       this.currentRoles.forEach(element => {
         switch (element['displayValue']) {
@@ -84,8 +86,23 @@ export class InactiveComponent implements OnInit {
         }
       });
       this.inactiveUser.enable = this.isEnable;
-      this.listInactive.updateUserInactive(this.inactiveUser).subscribe();
+      this.listInactive.updateUserInactive(this.inactiveUser).subscribe(data => {
+        Swal.fire({
+          position: 'top',
+          type: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.refreshList();
+      });
     }
+  }
+
+  public refreshList() {
+    this.listInactive.getListUserInactive().subscribe(data => {
+      this.listInactiveUser = data;
+    });
   }
 
   public clickName() {

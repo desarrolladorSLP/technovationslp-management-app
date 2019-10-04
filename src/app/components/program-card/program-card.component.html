@@ -1,0 +1,53 @@
+<div class="card-body">
+  <!--Show the list of Programs-->
+  <div *ngIf='!updatingProgram'>
+    <h5 class="card-header text-center mb-2"> {{program.name}}</h5>
+    <p class="card-text">{{program.description}}</p>
+    <h6 class="card-subtitle text-muted">{{program.responsible}}</h6>
+  </div>
+
+  <!--Form to edit the information-->
+  <div *ngIf='updatingProgram'>
+    <form class="formPrograms" action="">
+      <div class="input-group  mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{'NAME' | translate}}</span>
+        </div>
+        <input class="form-control" type="text" name="name" id="name" placeholder="Name" [(ngModel)]="program.name">
+      </div>
+      <div class="input-group  mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
+        </div>
+        <textarea class="form-control" name="description" [(ngModel)]="program.description" id="description" cols="20"
+          rows="5" placeholder="Description"></textarea>
+      </div>
+
+      <div class="input-group  mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{'RESPONSIBLES' | translate}}</span>
+        </div>
+       <div>
+        <div *ngFor="let user of listUserRole">
+            <input type="checkbox" [value]="user.isChecked" [checked]="user.isChecked" (change)="$event.target.checked ? user.isChecked = true : user.isChecked = false"> {{user.name}}
+        </div>
+      </div>
+      </div>
+
+      <button type="button"  (click)='saveProgram()' class="btn btn-outline-success">{{'SAVE' | translate}}
+      </button>
+      <button type="button" (click)='updatingProgram = false' class="btn btn-outline-danger">
+          {{'CANCEL' | translate}}
+      </button>
+    </form>
+  </div>
+
+  <button type="button" *ngIf='!updatingProgram' class="btn btn-light mt-5 mr-2"
+    (click)='updateProgram()'><i class="fa fa-edit"></i></button>
+
+  <button type="button" *ngIf='!deletingProgram && !updatingProgram' (click)='showAlertDelete()'
+    class="btn btn-danger  mt-5"><i class="fa fa-trash-o"></i></button>
+
+</div>
+
+

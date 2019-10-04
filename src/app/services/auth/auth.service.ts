@@ -1,13 +1,13 @@
-import {EventEmitter, Injectable, NgZone, Output} from '@angular/core';
+import {EventEmitter, Injectable, NgZone} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {tap} from 'rxjs/operators';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 import * as firebase from 'firebase/app';
 
 import {environment} from '../../../environments/environment';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LoggedUser} from "../../model/logged-user";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoggedUser} from '../../model/logged-user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class AuthService {
 
   private ACCESS_TOKEN = 'ACCESS_TOKEN';
   private loggedUser: LoggedUser;
-  @Output() onLogin: EventEmitter<LoggedUser> = new EventEmitter();
-  @Output() onLogout: EventEmitter<void> = new EventEmitter();
+  onLogin: EventEmitter<LoggedUser> = new EventEmitter();
+  onLogout: EventEmitter<void> = new EventEmitter();
 
   constructor(private angularFirebaseAuthenticator: AngularFireAuth,
               private httpClient: HttpClient,
@@ -36,7 +36,6 @@ export class AuthService {
       this.angularFirebaseAuthenticator.auth
         .signInWithPopup(provider)
         .then(res => {
-          console.log(res.user['ra']);
           if (res.user && res.user['ra']) {
             this.ngZone.run(() =>
               this.loginWithBackend(res.user['ra']).subscribe(user => {
@@ -66,6 +65,10 @@ export class AuthService {
   }
 
   getLoggedUser(): LoggedUser {
+    const accessToken = sessionStorage.getItem(this.ACCESS_TOKEN);
+    if (accessToken) {
+      this.loggedUser = this.buildUser(accessToken);
+    }
     return this.loggedUser;
   }
 
@@ -79,7 +82,7 @@ export class AuthService {
     const params = new URLSearchParams();
     params.set('grant_type', 'firebase');
     params.set('firebase_token_id', tokenId);
-
+    console.log(tokenId);
     return this.httpClient.post<LoggedUser>(urlEndpoint, params.toString(), {headers: httpHeaders})
       .pipe(
         tap(response => {
@@ -91,8 +94,8 @@ export class AuthService {
 
   private buildUser(accessToken: string): LoggedUser {
     if (accessToken) {
-      accessToken = accessToken.split('.')[1];
-      const userInfo: any = JSON.parse(atob(accessToken));
+      const parsedAccessToken = accessToken.split('.')[1];
+      const userInfo: any = JSON.parse(atob(parsedAccessToken));
       this.loggedUser = new LoggedUser();
 
       this.loggedUser.access_token = accessToken;

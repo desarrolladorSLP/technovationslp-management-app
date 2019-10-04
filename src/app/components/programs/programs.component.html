@@ -1,0 +1,55 @@
+<input type="search"  name="filterPrograms" class="form-control" placeholder="Search..."
+ [(ngModel)]="filterPrograms" id="">
+<h1>{{'PROGRAMS' | translate}}</h1>
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let item of listPrograms | filter:filterPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
+      <app-program-card (programDeleted)="refreshPrograms()" [listUserRole] = "listUserRole" [program]="item"></app-program-card>
+    </div>
+
+    <div class="card col-md-3 mr-3 mt-2">
+      <div class="card-body">
+        <button type="button" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i
+          class="fa fa-plus-circle"></i></button>
+       
+          <div *ngIf='addingProgram'>
+          <form class="formPrograms" action="">
+              <div class="input-group  mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">{{'NAME' | translate}}</span>
+                  </div>
+                  <input  class="form-control" required type="text" #name name="name" id="name" placeholder="Name">
+              </div>
+              
+              <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
+                  </div>
+                  <textarea class="form-control" #description name="description" id="description"
+                      cols="20" rows="5" placeholder="Description"></textarea>
+            </div>
+
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'RESPONSIBLES' | translate}}</span>
+                </div>
+
+                <div *ngFor="let user of listUserRole">
+                    <input type="checkbox" [value]="user.isChecked" [checked]="user.isChecked" (change)="$event.target.checked ? user.isChecked = true : user.isChecked = false"> {{user.name}}
+                </div>
+            </div>
+
+            <button type="button"
+                    (click)='addProgram(name.value, description.value);'
+                    class="btn btn-outline-success">{{'SAVE' | translate}}
+            </button>
+            <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5">
+                {{'CANCEL' | translate}}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

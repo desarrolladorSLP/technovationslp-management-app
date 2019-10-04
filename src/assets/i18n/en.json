@@ -5,5 +5,13 @@
   "USERS":"Users",
   "LANGUAGES":"Languages",
   "ACTIVE": "Active",
-  "INACTIVE": "Inactive"
+  "INACTIVE": "Inactive",
+  "NAME": "Name",
+  "DESCRIPTION": "Description",
+  "RESPONSIBLES": "Responsibles",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETEPROGRAM" : "Are you sure to delete this program?",
+  "YES": "Yes, delete it!",
+  "DELETED": "The program has been deleted."
 }

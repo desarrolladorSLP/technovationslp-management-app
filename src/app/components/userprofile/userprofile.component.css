@@ -1,0 +1,24 @@
+.image-profile{
+  width: 150px;
+  margin-bottom: 20px;
+}
+.credential{
+display: flex;
+border: 1px black solid;
+background-color: ghostwhite;
+margin-top: 3%;
+border-radius: 40px;
+}
+
+.input-file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+  z-index: -1;
+}
+
+.pointer {
+  cursor: pointer;
+}

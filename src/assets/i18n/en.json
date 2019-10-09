@@ -1,9 +1,9 @@
 {
-  "PROGRAMS": "Programs", 
-  "BATCHES":"Batches",
-  "SESSIONS":"Sessions",
-  "USERS":"Users",
-  "LANGUAGES":"Languages",
+  "PROGRAMS": "Programs",
+  "BATCHES": "Batches",
+  "SESSIONS": "Sessions",
+  "USERS": "Users",
+  "LANGUAGES": "Languages",
   "ACTIVE": "Active",
   "INACTIVE": "Inactive",
   "NAME": "Name",
@@ -11,7 +11,20 @@
   "RESPONSIBLES": "Responsibles",
   "SAVE": "Save",
   "CANCEL": "Cancel",
-  "DELETEPROGRAM" : "Are you sure to delete this program?",
+  "DELETEPROGRAM": "Are you sure to delete this program?",
   "YES": "Yes, delete it!",
-  "DELETED": "The program has been deleted."
+  "DELETED": "The program has been deleted.",
+  "USER_PROFILE": "User Profile",
+  "CHANGE_IMAGE": "Change Image",
+  "MESSAGE_VALID": "Great Choice",
+  "MESSAGE_INVALID": "Try Again",
+  "EMAIL": "Email",
+  "PHONE_NUMBER": "Phone Number",
+  "NOTE": "Nota",
+  "NOTE_MESSAGE": "Remember that the phone number requires 10 Numbers",
+  "MESSAGE_NAME": "You need to enter a name",
+  "MESSAGE_EMAIL": "You need to enter a email validate.",
+  "MESSAGE_NUMBER": "You need to enter a phone number with 10 numbers.",
+  "MESSAGE_SUCCESS": "Your work has been saved"
+
 }

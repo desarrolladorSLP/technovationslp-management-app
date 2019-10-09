@@ -1,49 +1,46 @@
 <nav class="navbar navbar-expand-lg teckers-color navbar-dark mb-3">
   <a class="navbar-brand">
-    <img class="logo" src="assets/logo-10.png"/>
+    <img class="logo" src="assets/logo-10.png" />
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-          aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="mr-auto">
       <ul class="navbar-nav " *ngIf="loggedUser">
         <li class="nav-item" routerLinkActive="active">
-          <a [routerLink]="['programs']" class="nav-link">{{'PROGRAMS' | translate}}</a>
+          <a [routerLink]="['programs']" class="nav-link">{{'PROGRAMS'|translate}}</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a [routerLink]="['batches']" class="nav-link">{{'BATCHES' | translate}}</a>
+          <a [routerLink]="['batches']" class="nav-link">{{'Batch'|translate}}</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a [routerLink]="['sessions']" class="nav-link">{{'SESSIONS' | translate}}</a>
+          <a [routerLink]="['sessions']" class="nav-link">{{'SESSIONS'|translate}}</a>
         </li>
         <li class="nav-item dropdown" routerLinkActive="active">
-          <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{'USERS' | translate}}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{'USERS'|translate}}
           </a>
-          <div class="dropdown-menu" aria-labelledby="usersDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLink]="['users', 'active']">{{'ACTIVE'|translate}}</a>
-            <a class="dropdown-item"
-               [routerLink]="['users', 'inactive']">{{'INACTIVE'|translate}}</a></div>
+            <a class="dropdown-item" [routerLink]="['users', 'inactive']">{{'INACTIVE'|translate}}</a>
+          </div>
         </li>
       </ul>
     </div>
     <ul class="navbar-nav mr-2" *ngIf="loggedUser">
       <li class="nav-item dropdown" routerLinkActive="active">
-        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           {{'LANGUAGES' | translate}}
         </a>
 
         <div class="dropdown-menu text-center" aria-labelledby="languageDropdown">
-          <button class=" dropdown-item" (click)="setLanguage('es')"><img class="flag"
-                                                                          src="assets/flags/es-flag.png"/>
+          <button class=" dropdown-item" (click)="setLanguage('es')"><img class="flag" src="assets/flags/es-flag.png" />
           </button>
-          <button class="dropdown-item" (click)="setLanguage('en')"><img class="flag"
-                                                                         src="assets/flags/en-flag.png"/>
+          <button class="dropdown-item" (click)="setLanguage('en')"><img class="flag" src="assets/flags/en-flag.png" />
           </button>
         </div>
       </li>
@@ -51,16 +48,10 @@
     <form class="form-inline my-2 my-lg-0">
 
       <a [routerLink]="['profile']" class="name" *ngIf="loggedUser">{{loggedUser.name}}</a>
-      <button *ngIf="!loggedUser" type="button"
-              class="btn btn-warning btn-just-icon text-dark border border-dark"
-              (click)="loginWithGoogle()" title="Iniciar Sesión"
-              data-toggle="tooltip"><i
-        class="fa fa-google"></i></button>
-      <button (click)="onLogout()" *ngIf="loggedUser"
-              class="btn btn-warning btn-just-icon text-dark border border-dark"
-              data-toggle="tooltip" title="Cerrar Sesión"
-              type="button"><i
-        class="fa fa-sign-out"></i></button>
+      <button *ngIf="!loggedUser" type="button" class="btn button-loggin text-light border border-dark"
+        (click)="loginWithGoogle()"><i class="fa fa-google" aria-hidden="true"></i></button>
+      <button (click)="onLogout()" *ngIf="loggedUser" class="btn button-loggin text-light border border-dark"
+        type="button"><i class="fa fa-sign-out-alt"></i></button>
     </form>
 
   </div>

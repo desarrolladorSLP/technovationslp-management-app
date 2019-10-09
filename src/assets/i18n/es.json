@@ -1,9 +1,9 @@
 {
   "PROGRAMS": "Programas",
-  "BATCHES":"Periodos",
-  "SESSIONS":"Sesiones",
-  "USERS":"Usuarios",
-  "LANGUAGES":"Lenguajes",
+  "BATCHES": "Periodos",
+  "SESSIONS": "Sesiones",
+  "USERS": "Usuarios",
+  "LANGUAGES": "Idiomas",
   "ACTIVE": "Activo",
   "INACTIVE": "Inactivo",
   "NAME": "Nombre",
@@ -11,8 +11,20 @@
   "RESPONSIBLES": "Responsables",
   "SAVE": "Guardar",
   "CANCEL": "Cancelar",
-  "DELETEPROGRAM" : "¿Está seguro de eliminar este programa?",
+  "DELETEPROGRAM": "¿Está seguro de eliminar este programa?",
   "YES": "Si",
-  "DELETED": "!El programa ha sido eliminado!"
+  "DELETED": "!El programa ha sido eliminado!",
+  "USER_PROFILE": "Perfil de Usuario",
+  "CHANGE_IMAGE": "Cambiar Imagen",
+  "MESSAGE_VALID": "Gran Elección",
+  "MESSAGE_INVALID": "Vuelve a intentar",
+  "EMAIL": "Email",
+  "PHONE_NUMBER": "Numero de telefono",
+  "NOTE": "Nota",
+  "NOTE_MESSAGE": "Recuerda que el numero de telefono requiere 10 numeros",
+  "MESSAGE_NAME": "Ingresa tu nombre",
+  "MESSAGE_EMAIL": "Necesitas ingresar un email valido.",
+  "MESSAGE_NUMBER": "Necesitas ingresar un numero de telefono valido.",
+  "MESSAGE_SUCCESS": "Tu trabajo a sido guardado correctamente."
 
 }

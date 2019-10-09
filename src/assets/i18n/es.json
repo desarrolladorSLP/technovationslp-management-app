@@ -16,6 +16,11 @@
   "DELETED": "!El programa ha sido eliminado!",
   "USER_PROFILE": "Perfil de Usuario",
   "CHANGE_IMAGE": "Cambiar Imagen",
+  "START_DATE": "Fecha de Inicio",
+  "END_DATE": "Fecha Final",
+  "NOTES": "Notas",
+  "FIELD_EMPTY": "Llenar el campo",
+  "DELETE_BATCH": "¿Está seguro de eliminar este batch?",
   "MESSAGE_VALID": "Gran Elección",
   "MESSAGE_INVALID": "Vuelve a intentar",
   "EMAIL": "Email",
@@ -25,6 +30,17 @@
   "MESSAGE_NAME": "Ingresa tu nombre",
   "MESSAGE_EMAIL": "Necesitas ingresar un email valido.",
   "MESSAGE_NUMBER": "Necesitas ingresar un numero de telefono valido.",
-  "MESSAGE_SUCCESS": "Tu trabajo a sido guardado correctamente."
-
+  "MESSAGE_SUCCESS": "Tu trabajo a sido guardado correctamente.",
+  "MESSAGE_ERROR_ROLE": "Necesitas agregar por lo menos un role",
+  "TITLE_INACTIVE": "Lista de usuarios inactivos",
+  "TITLE_ACTIVE": "Lista de usuarios activos",
+  "ENABLE": "Habilitar",
+  "DISABLE": "Deshabilitado",
+  "ROLES": "Roles",
+  "ENABLED": "Habilitado",
+  "DISABLED": "Deshabilitado",
+  "ADMINISTRATOR": "Administrador",
+  "PARENT": "Padres",
+  "TITLE_MODAL": "Agregar o remover un rol",
+  "CLOSE": "Cerrar"
 }

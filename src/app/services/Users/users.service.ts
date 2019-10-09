@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Activeuser } from 'src/app/model/activeuser';
+import { Inactiveuser } from 'src/app/model/inactiveuser';
 import { User } from 'src/app/model/user';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { Activeuser } from 'src/app/model/activeuser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  user: User;
-  protected urlEndpoint = `${environment.backendUrl}/api/user/me`;
 
-  constructor(private authService: AuthService, private httpClient: HttpClient) { }
-
+  constructor(private httpClient: HttpClient) { }
 
   public getProfileInformation(): Observable<User> {
-    return this.httpClient.get<User>(`${this.urlEndpoint}`);
+    const urlEndpoint = `${environment.backendUrl}/api/user/me`;
+    return this.httpClient.get<User>(`${urlEndpoint}`);
   }
 
   public updateProfileInformation(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.urlEndpoint, user);
+    const urlEndpoint = `${environment.backendUrl}/api/user/me`;
+    return this.httpClient.post<User>(urlEndpoint, user);
   }
 
   public getListUserActive() {
@@ -32,6 +31,15 @@ export class UsersService {
   public updateUserActive(user: Activeuser): Observable<Activeuser> {
     const urlEndpoint = `${environment.backendUrl}/api/user/activate`;
     return this.httpClient.post<Activeuser>(urlEndpoint, user);
+  }
 
+  public getListUserInactive() {
+    const urlEndpoint = `${environment.backendUrl}/api/user/inactive`;
+    return this.httpClient.get<User[]>(`${urlEndpoint}`);
+  }
+
+  public updateUserInactive(user: Inactiveuser): Observable<Inactiveuser> {
+    const urlEndpoint = `${environment.backendUrl}/api/user/activate`;
+    return this.httpClient.post<Inactiveuser>(urlEndpoint, user);
   }
 }

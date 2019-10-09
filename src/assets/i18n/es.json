@@ -1,9 +1,9 @@
 {
   "PROGRAMS": "Programas",
-  "BATCHES":"Periodos",
-  "SESSIONS":"Sesiones",
-  "USERS":"Usuarios",
-  "LANGUAGES":"Lenguajes",
+  "BATCHES": "Periodos",
+  "SESSIONS": "Sesiones",
+  "USERS": "Usuarios",
+  "LANGUAGES": "Lenguajes",
   "ACTIVE": "Activo",
   "INACTIVE": "Inactivo",
   "NAME": "Nombre",
@@ -11,8 +11,9 @@
   "RESPONSIBLES": "Responsables",
   "SAVE": "Guardar",
   "CANCEL": "Cancelar",
-  "DELETEPROGRAM" : "¿Está seguro de eliminar este programa?",
+  "DELETEPROGRAM": "¿Está seguro de eliminar este programa?",
   "YES": "Si",
-  "DELETED": "!El programa ha sido eliminado!"
+  "DELETED": "!El programa ha sido eliminado!",
+  "DELIVERABLES": "Entregables"
 
 }

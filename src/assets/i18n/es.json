@@ -13,5 +13,12 @@
   "FIELD_EMPTY": "Llenar el campo",
   "DELETE_BATCH": "¿Está seguro de eliminar este batch?",
   "YES": "Si",
-  "DELETED_BATCH": "El  batch ha sido eliminado"
+  "DELETED_BATCH": "El  batch ha sido eliminado",
+  "DESCRIPTION": "Descripción",
+  "RESPONSIBLES": "Responsables",
+  "SAVE": "Guardar",
+  "CANCEL": "Cancelar",
+  "DELETEPROGRAM" : "¿Está seguro de eliminar este programa?",
+  "YES": "Si",
+  "DELETED": "!El programa ha sido eliminado!"
 }

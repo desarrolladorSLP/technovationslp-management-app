@@ -14,4 +14,10 @@
   "DELETE_BATCH": "Are you sure to delete this batch?",
   "YES": "yes, delete it!",
   "DELETED_BATCH": "The batch has been deleted!"
+  "DESCRIPTION": "Description",
+  "RESPONSIBLES": "Responsibles",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETEPROGRAM" : "Are you sure to delete this program?",
+  "DELETED": "The program has been deleted."
 }

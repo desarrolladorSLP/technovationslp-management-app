@@ -20,10 +20,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { SessionsComponent } from './components/sessions/sessions.component';
+import { SessionCardComponent } from './components/session-card/session-card.component';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'programs', component: ProgramsComponent},
+  {path: 'sessions', component: SessionsComponent},
   {path: '**', component: Page404Component}
 ];
 
@@ -36,6 +39,8 @@ const ROUTES: Routes = [
     ProgramsComponent,
     ProgramCardComponent,
     FilterPipe,
+    SessionsComponent,
+    SessionCardComponent,
   ],
   imports: [
     BrowserModule,

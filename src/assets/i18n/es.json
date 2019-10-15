@@ -13,6 +13,13 @@
   "CANCEL": "Cancelar",
   "DELETEPROGRAM" : "¿Está seguro de eliminar este programa?",
   "YES": "Si",
-  "DELETED": "!El programa ha sido eliminado!"
-
+  "DELETED": "!El programa ha sido eliminado!",
+  "TITLE": "Título",
+  "NOTES": "Notas",
+  "LOCATION": "Ubicación",
+  "SCHEDULE": "Horario",
+  "DATE": "Fecha",
+  "START_TIME": "Inicia",
+  "END_TIME": "Termina",
+  "DELETE_SESSION" : "¿Está seguro de eliminar esta Sesion?"
 }

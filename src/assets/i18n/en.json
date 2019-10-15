@@ -1,5 +1,5 @@
 {
-  "PROGRAMS": "Programs", 
+  "PROGRAMS": "Programs",
   "BATCHES":"Batches",
   "SESSIONS":"Sessions",
   "USERS":"Users",
@@ -13,5 +13,13 @@
   "CANCEL": "Cancel",
   "DELETEPROGRAM" : "Are you sure to delete this program?",
   "YES": "Yes, delete it!",
-  "DELETED": "The program has been deleted."
+  "DELETED": "The program has been deleted.",
+  "TITLE": "Title",
+  "NOTES": "Notes",
+  "LOCATION": "Location",
+  "SCHEDULE": "Schedule",
+  "DATE": "Date",
+  "START_TIME": "Start Time",
+  "END_TIME": "Start Time",
+  "DELETE_SESSION" : "Are you sure to delete this Session?"
 }

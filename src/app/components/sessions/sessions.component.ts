@@ -12,14 +12,16 @@ import { Session } from 'src/app/model/session';
 })
 
 export class SessionsComponent {
-  addSession = false;
+
   protected listPrograms: Program[];
   protected listBatch: Batch[];
-  addButton = false;
-  programId: string;
   protected listSessions: Session[];
-  session: Session = new Session();
+  addButton = false;
+  addSession = false;
   searchSession = false;
+  programId: string;
+  public filterSession = '';
+  session: Session = new Session();
 
   constructor(private programService: ProgramsService, private sessionsService: SessionsService ) {
     this.programService.getPrograms().subscribe(data => {
@@ -28,7 +30,6 @@ export class SessionsComponent {
    }
 
    onProgramChange(programId: string) {
-     console.log(programId);
       this.sessionsService.getBatchByPrograms(programId).subscribe(data => {
         this.listBatch = data;
         this.searchSession = false;

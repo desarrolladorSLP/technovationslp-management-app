@@ -21,7 +21,6 @@ export class SessionCardComponent  {
 
   updateSession() {
     this.session.batchId = this.batchId;
-    console.log(this.session);
     this.sessionsService.save(this.session).subscribe(() => {
       this.updatingSession = false;
     });

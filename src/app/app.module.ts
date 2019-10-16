@@ -22,6 +22,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { SessionsComponent } from './components/sessions/sessions.component';
 import { SessionCardComponent } from './components/session-card/session-card.component';
+import { FilterSessionPipe } from './pipes/filter-session.pipe';
 
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -41,6 +42,7 @@ const ROUTES: Routes = [
     FilterPipe,
     SessionsComponent,
     SessionCardComponent,
+    FilterSessionPipe,
   ],
   imports: [
     BrowserModule,

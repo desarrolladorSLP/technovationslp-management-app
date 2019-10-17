@@ -21,11 +21,14 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DeliverablesComponent } from './components/deliverables/deliverables.component';
+import { BatchesComponent } from './components/batches/batches.component';
+import { BatchesCardComponent } from './components/batches-card/batches-card.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'programs', component: ProgramsComponent },
   { path: 'deliverables', component: DeliverablesComponent },
+  { path: 'batches', component: BatchesComponent },
   { path: '**', component: Page404Component }
 ];
 
@@ -39,6 +42,8 @@ const ROUTES: Routes = [
     ProgramCardComponent,
     FilterPipe,
     DeliverablesComponent,
+    BatchesComponent,
+    BatchesCardComponent,
   ],
   imports: [
     BrowserModule,

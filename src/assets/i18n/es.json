@@ -14,6 +14,10 @@
   "DELETEPROGRAM": "¿Está seguro de eliminar este programa?",
   "YES": "Si",
   "DELETED": "!El programa ha sido eliminado!",
-  "DELIVERABLES": "Entregables"
-
+  "DELIVERABLES": "Entregables",
+  "TITLE": "Titulo",
+  "ERROR_DELIVERABLE_TITLE": "Debes de agregar un titulo a el entregable",
+  "ERROR_DELIVERABLE_DESCRIPTION": "Debes agregar una descripcion al entregable",
+  "SELECT_FILE": "Seleccionar Archivo...",
+  "SEARCH": "Busqueda"
 }

@@ -14,5 +14,11 @@
   "DELETEPROGRAM": "Are you sure to delete this program?",
   "YES": "Yes, delete it!",
   "DELETED": "The program has been deleted.",
-  "DELIVERABLES": "Deliverables"
+  "DELIVERABLES": "Deliverables",
+  "TITLE": "Title",
+  "ERROR_DELIVERABLE_TITLE": "You must add a title to the deliverable",
+  "ERROR_DELIVERABLE_DESCRIPTION": "You must add a description to the deliverable",
+  "SELECT_FILE": "Select File...",
+  "SEARCH": "Seach"
+
 }

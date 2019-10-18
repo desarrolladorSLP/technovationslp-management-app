@@ -1,4 +1,4 @@
-import {existsSync, mkdirSync, writeFileSync} from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 
 
 // Configure Angular `environment.ts` file path

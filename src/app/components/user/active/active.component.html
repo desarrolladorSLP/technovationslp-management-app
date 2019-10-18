@@ -1,0 +1,119 @@
+<div class="container">
+  <h1 class="text-center">{{'TITLE_ACTIVE'|translate}}</h1>
+  <table class="table table-hover text-center table-striped">
+    <thead style="background-color: #B4CCE3">
+      <tr class="align-middle">
+        <th>
+          <div class="form-group">
+            <label class="col-12 buttonsearch" (click)="clickName()"> {{'NAME'|translate}} <i class="fa fa-search"
+                aria-hidden="true"></i></label>
+            <input type="text" name="filterName" id="Sname" class="form-control-sm rounded-pill d-none"
+              [(ngModel)]="filterName" />
+          </div>
+
+        </th>
+        <th>
+          <div class="form-group">
+            <label class="col-12 buttonsearch" (click)="clickEmail()"> {{'EMAIL'|translate}} <i class=" fa fa-search"
+                aria-hidden="true"></i></label>
+            <input type="text" name="filterEmail" id="Semail" class="form-control-sm rounded-pill d-none"
+              [(ngModel)]="filterEmail" />
+          </div>
+        </th>
+        <th class="align-top">
+          <div class="form-group">
+            <label class="col-12 buttonsearch" (click)="clickNumber()">{{'PHONE_NUMBER'|translate}} <i
+                class=" fa fa-search" aria-hidden="true"></i></label>
+            <input type="number" name="filterNumber" id="Snumber" class="form-control-sm rounded-pill d-none"
+              [(ngModel)]="filterNumber" />
+          </div>
+        </th>
+        <th class="align-top">{{'ENABLE'|translate}}</th>
+        <th class="align-top">Roles</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listActiveUser | filter:filterName:filterEmail:filterNumber">
+        <td>{{item.name}}</td>
+        <td>{{item.preferredEmail}}</td>
+        <td>{{item.phoneNumber}}</td>
+        <td *ngIf="item.enabled; else loggedOut">{{'ENABLED'|translate}}</td>
+        <ng-template #loggedOut>
+          <td>{{'DISABLED'|translate}}</td>
+        </ng-template>
+        <td>
+          <ul *ngFor="let item of item.roles">
+            <ng-container *ngIf="item==='ROLE_ADMINISTRATOR'">
+              <li>{{'ADMINISTRATOR'|translate}}</li>
+            </ng-container>
+            <ng-container *ngIf="item==='ROLE_MENTOR'">
+              <li>Mentor</li>
+            </ng-container>
+            <ng-container *ngIf="item==='ROLE_STAFF'">
+              <li>Staff</li>
+            </ng-container>
+            <ng-container *ngIf="item==='ROLE_PARENT'">
+              <li>{{'PARENT'|translate}}</li>
+            </ng-container>
+            <ng-container *ngIf="item==='ROLE_TECKER'">
+              <li>Tecker</li>
+            </ng-container>
+          </ul>
+        </td>
+        <td>
+          <div>
+            <button class="btn btn-outline-success" id="buton" data-toggle="modal" data-target="#exampleModal"
+              (click)="getSelectedUser(item)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog .modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalName"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <div class="row text-center">
+          <div class="col-5">
+            <img style="width: 150px; border-radius: 150px" id="modalImage">
+          </div>
+          <div class="col-6">
+            <div class="row mt-3 justify-content-center">
+              <h5>{{'TITLE_MODAL'|translate}}</h5>
+              <ngx-tags-input class="form-control" [(ngModel)]="currentRoles" [options]="optionsRoles"
+                [minLengthBeforeOptions]="3" [maxTags]="5" placeholder="will only match when 3 characters are typed"
+                style="height:100px;">
+              </ngx-tags-input>
+            </div>
+            <div class="custom-control custom-switch" *ngIf="!isEnable; else elseBlock">
+              <input type="checkbox" class="custom-control-input" id="customSwitches" [(ngModel)]="isEnable">
+              <label class="custom-control-label" for="customSwitches"><strong>{{'DISABLE'|translate}}</strong></label>
+            </div>
+            <ng-template #elseBlock>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitches" checked [(ngModel)]="isEnable">
+                <label class="custom-control-label" for="customSwitches"><strong>{{'ENABLE'|translate}}</strong></label>
+              </div>
+            </ng-template>
+            <hr>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'CLOSE'|translate}}</button>
+        <button type="submit" class="btn btn-primary" (click)="updateActiveUser()"
+          data-dismiss="modal">{{'SAVE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

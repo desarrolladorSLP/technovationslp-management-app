@@ -40,9 +40,29 @@ export class SessionCardComponent  {
        confirmButtonText: this.yesdelete,
      }).then((result) => {
        if (result.value) {
-         // this.deleteProgram();
+          this.deleteSession();
        }
      } );
+  }
+
+  deleteSession() {
+      this.sessionsService.delete(this.session.id).subscribe(data => {
+      this.translate.get('DELETED').subscribe((text => {
+        swal.fire(
+          {
+            type: 'success',
+            text: text,
+          }
+        );
+      }));
+    },
+    error => swal.fire(
+      {
+        title: 'Error',
+        text: error.message,
+      }
+    )
+    );
   }
 
 }

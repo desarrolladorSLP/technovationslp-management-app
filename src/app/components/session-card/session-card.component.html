@@ -58,11 +58,6 @@
                   <span class="input-group-text">{{'LOCATION' | translate}}</span>
                   <input required class="form-control" [(ngModel)]="session.location" type="text" name="location" id="location">
               </div>
-                <div class="valid-feedback">
-                </div>
-                <div class="invalid-feedback">
-                    {{'FIELDEMPTY' | translate}}
-                </div>
               </div>
             <div class="col-md-4">
               <button type="button" (click)="updateSession();" class="btn btn-outline-success">{{'SAVE' | translate}}</button>

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Batch } from 'src/app/model/batch';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Session } from 'src/app/model/session';
+import { catchError } from 'rxjs/operators';
+import { TeckersError } from 'src/app/model/error';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +31,13 @@ export class SessionsService {
 
   save(session: Session) {
     return this.httpClient.put<Session>(this.urlEndpointSession, session);
+  }
+
+  delete(id: string) {
+    return this.httpClient.delete<Session>(this.urlEndpointSession + id)
+    .pipe(catchError(error => {
+      console.log(error);
+      return throwError(new TeckersError(error.error.error, error.error.message));
+    }));
   }
 }

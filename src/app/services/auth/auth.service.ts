@@ -20,8 +20,8 @@ export class AuthService {
   onLogout: EventEmitter<void> = new EventEmitter();
 
   constructor(private angularFirebaseAuthenticator: AngularFireAuth,
-              private httpClient: HttpClient,
-              private ngZone: NgZone) {
+    private httpClient: HttpClient,
+    private ngZone: NgZone) {
     const accessToken = sessionStorage.getItem(this.ACCESS_TOKEN);
     if (accessToken) {
       this.loggedUser = this.buildUser(accessToken);
@@ -103,9 +103,7 @@ export class AuthService {
       this.loggedUser.email = userInfo.email;
       this.loggedUser.enabled = userInfo.enabled;
       this.loggedUser.expiresIn = userInfo.expiresIn;
-      this.loggedUser.roles = userInfo.roles;
       this.loggedUser.validated = userInfo.validated;
-
       return this.loggedUser;
     }
     return null;

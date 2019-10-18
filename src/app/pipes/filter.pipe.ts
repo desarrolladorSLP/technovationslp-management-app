@@ -13,7 +13,8 @@ export class FilterPipe implements PipeTransform {
             resultName.push(nameSearch);
           }
         }
-        return resultName;
+      }
+      return resultName;
     }
     return value;
   }

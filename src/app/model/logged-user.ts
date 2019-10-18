@@ -5,5 +5,4 @@ export class LoggedUser {
   name: string;
   email: string;
   enabled: string;
-  roles: string[];
 }

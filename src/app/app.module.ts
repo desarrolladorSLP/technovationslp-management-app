@@ -21,6 +21,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DeliverablesComponent } from './components/deliverables/deliverables.component';
+import { DeliverableCardComponent } from './components/deliverable-card/deliverable-card.component';
 import { BatchesComponent } from './components/batches/batches.component';
 import { BatchesCardComponent } from './components/batches-card/batches-card.component';
 
@@ -42,6 +43,7 @@ const ROUTES: Routes = [
     ProgramCardComponent,
     FilterPipe,
     DeliverablesComponent,
+    DeliverableCardComponent,
     BatchesComponent,
     BatchesCardComponent,
   ],

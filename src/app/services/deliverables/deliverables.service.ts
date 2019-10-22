@@ -12,8 +12,8 @@ export class DeliverablesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getDeliverables(): Observable<Deliverable[]> {
-    const urlEndpoint = `${environment.backendUrl}/api/deliverable`;
+  public getDeliverablesforBatch(batchId: string): Observable<Deliverable[]> {
+    const urlEndpoint = `${environment.backendUrl}/api/deliverable/batch/` + batchId;
     return this.httpClient.get<Deliverable[]>(urlEndpoint);
   }
 

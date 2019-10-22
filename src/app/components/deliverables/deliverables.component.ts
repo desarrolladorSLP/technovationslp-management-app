@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { BatchesService } from 'src/app/services/batches/batches.service';
 import { Batch } from 'src/app/model/batch';
+import { ProgramsService } from 'src/app/services/programs/programs.service';
+import { Program } from 'src/app/model/program';
 
 @Component({
   selector: 'app-deliverables',
@@ -14,31 +16,46 @@ import { Batch } from 'src/app/model/batch';
 export class DeliverablesComponent implements OnInit {
   messageErrorName: string;
   messageErrorDesription: string;
-
-  constructor(private bachesService: BatchesService, private deliverable: DeliverablesService, private translate: TranslateService) {
-    this.getBaches();
-    this.getDeliverables();
-  }
+  listDeliverables: Deliverable[];
+  listPrograms: Program[];
+  selectedProgram: string;
+  isSelectedProgram: boolean;
+  deliverable: Deliverable;
+  batchId: string;
+  currentDate = new Date();
   isNew = false;
   addingProgram = false;
   filterPrograms = '';
   listBaches: Batch[];
+
+  constructor(private batchService: BatchesService, private deliverableService: DeliverablesService, private translate: TranslateService,
+    private programService: ProgramsService) {
+    this.getPrograms();
+  }
+
   ngOnInit() {
   }
 
-  getBaches() {
-    this.bachesService.getBatches().subscribe(data => {
+  getPrograms() {
+    this.programService.getPrograms().subscribe(data => {
+      this.listPrograms = data;
+    });
+  }
+
+  getBachesbyPrograms() {
+    this.batchService.getBatchbyProgram(this.selectedProgram).subscribe(data => {
       this.listBaches = data;
     });
   }
 
-  getDeliverables() {
-    this.deliverable.getDeliverables().subscribe(data => {
-      console.log(data);
-    })
+  getDeliverablesforBatch(batchId) {
+    this.batchId = batchId;
+    this.deliverableService.getDeliverablesforBatch(batchId).subscribe(data => {
+      this.listDeliverables = data;
+    });
   }
 
-  addDeliverable(name: string, description: string) {
+  addDeliverable(name: string, description: string, batch: string) {
     this.translate.get('ERROR_DELIVERABLE_TITLE').subscribe((text: string) => { this.messageErrorName = text; });
     this.translate.get('ERROR_DELIVERABLE_DESCRIPTION').subscribe((text: string) => { this.messageErrorDesription = text; });
     if (name.length === 0) {
@@ -54,9 +71,15 @@ export class DeliverablesComponent implements OnInit {
           this.messageErrorDesription,
           'error'
         );
+      } else {
+        this.deliverable.batchId = batch;
+        this.deliverable.description = description;
+        this.deliverable.title = name;
+        this.deliverable.dueDate = this.currentDate.getFullYear() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getDay()
+         + 'T' + this.currentDate.getHours() + ':' + this.currentDate.getMinutes() + ':' + this.currentDate.getSeconds() + 'Z';
+        this.deliverableService.addDeliverable(this.deliverable).subscribe();
+        console.log(this.deliverable);
       }
     }
-    console.log(name);
-    console.log(description);
   }
 }

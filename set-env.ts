@@ -1,5 +1,4 @@
-import { existsSync, mkdirSync, writeFileSync } from "fs";
-
+var fs = require('fs');
 
 // Configure Angular `environment.ts` file path
 const targetFolder = `${__dirname}/src/environments`;
@@ -9,9 +8,8 @@ const targetPath = `${targetFolder}/environment.ts`;
 const colors = require('colors');
 require('dotenv').config();
 
-
 // `environment.ts` file structure
-const envConfigFile: string = `export const environment = {
+const envConfigFile = `export const environment = {
   backendUrl: '${process.env.BACKEND_URL}',
   client: {
     username: '${process.env.CLIENT_USERNAME}',
@@ -32,24 +30,9 @@ const envConfigFile: string = `export const environment = {
 console.log(colors.magenta(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`));
 console.log(colors.grey(envConfigFile));
 
-const myMkdirFunction = async (dirname) => {
-  if (!existsSync(dirname)) {
-    await mkdirSync(dirname);
-  }
-};
-
-const myWriteFunction = async (filename) => {
-  await writeFileSync(filename, envConfigFile, {
-    encoding: 'utf-8'
-  });
-};
-
-myMkdirFunction(targetFolder).then().catch(reason => {
-  console.log(reason);
-});
-
-myWriteFunction(targetPath).then().catch(reason => {
-  console.log(reason);
+fs.writeFile(targetPath, envConfigFile, function (err) {
+  if (err) throw err;
+  console.log('File is created successfully.');
 });
 
 console.log('done');

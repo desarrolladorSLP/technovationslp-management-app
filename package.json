@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "config": "npx ts-node -O '{\"module\": \"commonjs\"}' set-env.ts",
-    "start": "npm run build && node server.js",
+    "start": "npm install && npm run build && node server.js",
     "build": "npm run config && ng build --base-href /management/",
     "test": "npm run config && ng test",
     "lint": "ng lint",

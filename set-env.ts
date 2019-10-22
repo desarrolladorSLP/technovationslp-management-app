@@ -30,6 +30,11 @@ const envConfigFile = `export const environment = {
 console.log(colors.magenta(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`));
 console.log(colors.grey(envConfigFile));
 
+if (!fs.existsSync(targetFolder)){
+  fs.mkdirSync(targetFolder);
+  console.log('Directory is created successfully.');
+}
+
 fs.writeFile(targetPath, envConfigFile, function (err) {
   if (err) throw err;
   console.log('File is created successfully.');

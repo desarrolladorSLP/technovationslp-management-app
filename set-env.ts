@@ -5,7 +5,6 @@ const targetFolder = `${__dirname}/src/environments`;
 const targetPath = `${targetFolder}/environment.ts`;
 
 // Load node modules
-const colors = require('colors');
 require('dotenv').config();
 
 // `environment.ts` file structure
@@ -27,8 +26,8 @@ const envConfigFile = `export const environment = {
   production: ${process.env.PRODUCTION}
 };`;
 
-console.log(colors.magenta(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`));
-console.log(colors.grey(envConfigFile));
+console.log(`The file 'environment.ts' will be written to ${targetPath} with the following content: \n`);
+console.log(envConfigFile);
 
 if (!fs.existsSync(targetFolder)){
   fs.mkdirSync(targetFolder);

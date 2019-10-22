@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "config": "npx ts-node -O '{\"module\": \"commonjs\"}' set-env.ts",
-    "start": "npm install && npm run build && node server.js",
+    "start": "npm run build && node server.js",
     "build": "npm run config && ng build --base-href /management/",
     "test": "npm run config && ng test",
     "lint": "ng lint",
@@ -29,7 +29,7 @@
     "font-awesome": "4.7.0",
     "jquery": "3.4.1",
     "jsonwebtoken": "8.5.1",
-    "ngx-bootstrap": "^5.1.2",
+    "ngx-bootstrap": "~4.0.0",
     "ngx-tags-input": "^2.0.1",
     "path": "0.12.7",
     "popper.js": "1.15.0",
@@ -57,7 +57,9 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "dotenv": "~8.2.0",
+    "express": "~4.17.1"
   },
   "engines": {
     "node": "10.16.3",

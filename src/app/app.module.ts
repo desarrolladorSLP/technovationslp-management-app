@@ -22,13 +22,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import {BatchesComponent } from './components/batches/batches.component';
+import {BatchesCardComponent } from './components/batches-card/batches-card.component';
+
 import { NgxTagsInputModule } from 'ngx-tags-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActiveComponent } from './components/user/active/active.component';
 import { InactiveComponent } from './components/user/inactive/inactive.component';
 
 const ROUTES: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  {path: '', redirectTo: '/', pathMatch: 'full'},
+  {path: 'programs', component: ProgramsComponent},
+  {path: 'batches', component: BatchesComponent},
   { path: 'profile', component: UserprofileComponent },
   { path: 'users/active', component: ActiveComponent },
   { path: 'users/inactive', component: InactiveComponent },
@@ -43,6 +48,10 @@ const ROUTES: Routes = [
     FooterComponent,
     UserprofileComponent,
     FilterPipe,
+    ProgramsComponent,
+    ProgramCardComponent,
+    BatchesComponent,
+    BatchesCardComponent,
     ActiveComponent,
     InactiveComponent,
   ],

@@ -4,11 +4,12 @@
   "scripts": {
     "ng": "ng",
     "config": "node set-env.ts",
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "build": "npm run config && ng build --base-href /management/",
     "test": "npm run config && ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "npm run config && ng build --base-href /management/"
   },
   "private": true,
   "dependencies": {
@@ -39,10 +40,10 @@
     "dotenv": "~8.2.0",
     "express": "~4.17.1",
     "@angular/cli": "7.3.9",
-    "@angular/compiler-cli": "7.2.15"
+    "@angular/compiler-cli": "7.2.15",
+    "@angular-devkit/build-angular": "~0.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
     "@angular/compiler": "7.2.15",
     "@angular/language-service": "7.2.15",
     "@types/node": "~8.9.4",

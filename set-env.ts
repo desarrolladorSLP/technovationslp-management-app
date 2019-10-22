@@ -1,4 +1,4 @@
-var fs = require('fs');
+const fs = require('fs');
 
 // Configure Angular `environment.ts` file path
 const targetFolder = `${__dirname}/src/environments`;

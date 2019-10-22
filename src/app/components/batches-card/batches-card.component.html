@@ -1,4 +1,18 @@
-  <div class="card-body">
+  <div class="card-body">   
+    <div *ngIf="addingTeckers">
+        <div class="form-group">
+          <select multiple class="form-control" name="" id="">
+            <option *ngFor="let tecker of listTeckers">{{tecker.name}}</option>
+          </select>
+        </div>
+      <button type="button" (click)= "registeringTeckers();"
+      class="btn btn-outline-success">Register
+      </button>
+      <button type="button" (click)='addingTeckers= false;' class="btn btn-outline-danger mr-5">
+      Cancel
+      </button>
+    </div>
+
     <div *ngIf="!updatingBatch">
         <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
         <span class="input-group-text">{{'START_DATE' | translate}} :   {{batch.startDate}} </span>
@@ -7,7 +21,7 @@
         <p>{{batch.nameProgram}}</p>
     </div>
 
-    <form  class="was-validated" novalidate > 
+    <form  class="was-validated" novalidate >
        <div *ngIf="updatingBatch">
           <div class="input-group  mb-2">
               <div class="input-group-prepend">
@@ -60,4 +74,10 @@
 
         <button type="button" *ngIf='!deletingBatch && !updatingBatch'
         class="btn btn-danger   mt-5" (click)= "showAlertDelete()"><i class="fa fa-trash-o"></i></button>
-    </div>
+
+        <button (click) ="addingTeckers = !addingTeckers" type="button" data-toggle="tooltip" data-placement="right" title="Register Teckers" *ngIf='!deletingBatch && !updatingBatch'
+        class="btn btn-outline-dark ml-2  mt-5" ><i class="fa fa-users" aria-hidden="true"></i>
+      </button>
+
+     </div>
+

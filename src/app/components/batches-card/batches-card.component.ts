@@ -4,6 +4,9 @@ import { Program } from 'src/app/model/program';
 import { BatchesService } from 'src/app/services/batches/batches.service';
 import swal from 'sweetalert2';
 import {TranslateService} from '@ngx-translate/core';
+import { UserRole } from 'src/app/model/user-role';
+import { UserRoleService } from 'src/app/services/user/user-role.service';
+import { RegisterTecker } from 'src/app/model/register-tecker';
 
 @Component({
   selector: 'app-batches-card',
@@ -16,13 +19,18 @@ export class BatchesCardComponent {
   @Input() batch: Batch;
   @Output() public batchDeleted = new EventEmitter();
   @Input()  listPrograms: Program[];
+
+  protected listTeckers: UserRole[];
+  protected registerTeckers: RegisterTecker;
   public updatingBatch = false;
   public deletingBatch = false;
+  public addingTeckers = false;
   optionProgram: Program;
   messageError: string;
   yesdelete: string;
 
-  constructor(private batchService: BatchesService, private translate: TranslateService) {
+  constructor(private batchService: BatchesService, private translate: TranslateService, private userRoleService: UserRoleService) {
+    this.getTeckers();
   }
 
    updateBatch() {
@@ -31,6 +39,12 @@ export class BatchesCardComponent {
       this.updatingBatch = false;
       this.batchDeleted.emit();
     });
+  }
+  registeringTeckers() {
+     for (const tecker of this.listTeckers) {
+      this.registerTeckers.register.push(tecker.id);
+     }
+      this.batchService.registerTeckers(this.registerTeckers).subscribe();
   }
 
   deleteBatch() {
@@ -71,5 +85,11 @@ export class BatchesCardComponent {
         this.deleteBatch();
       }
     } );
+   }
+
+   getTeckers() {
+    this.userRoleService.getUsersTecker().subscribe(data => {
+      this.listTeckers = data;
+  });
    }
 }

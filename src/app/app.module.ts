@@ -25,6 +25,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SessionsComponent } from './components/sessions/sessions.component';
 import { SessionCardComponent } from './components/session-card/session-card.component';
 import { FilterSessionPipe } from './pipes/filter-session.pipe';
+import {BatchesComponent } from './components/batches/batches.component';
+import {BatchesCardComponent } from './components/batches-card/batches-card.component';
+
 import { NgxTagsInputModule } from 'ngx-tags-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActiveComponent } from './components/user/active/active.component';
@@ -34,6 +37,7 @@ const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'programs', component: ProgramsComponent},
   {path: 'sessions', component: SessionsComponent},
+  {path: 'batches', component: BatchesComponent},
   { path: 'profile', component: UserprofileComponent },
   { path: 'users/active', component: ActiveComponent },
   { path: 'users/inactive', component: InactiveComponent },
@@ -48,12 +52,15 @@ const ROUTES: Routes = [
     FooterComponent,
     UserprofileComponent,
     FilterPipe,
-    SessionsComponent,
     SessionCardComponent,
+    SessionsComponent,
     FilterSessionPipe,
+    ProgramsComponent,
+    ProgramCardComponent,
+    BatchesComponent,
+    BatchesCardComponent,
     ActiveComponent,
     InactiveComponent,
-    ProgramCardComponent,
     ProgramsComponent
   ],
   imports: [

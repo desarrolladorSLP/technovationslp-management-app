@@ -27,5 +27,6 @@
     "SELECT_FILE": "Seleccionar Archivo...",
     "SEARCH": "Busqueda",
     "DELETED_DELIVERABLE": "¿Está seguro de eliminar este Entregable?",
-    "MESSAGE_SUCCESS": "Se han realizado los cambios correctamente"
+    "MESSAGE_SUCCESS": "Se han realizado los cambios correctamente",
+    "LIST_TECKERS": "Lista de Teckers"
 }

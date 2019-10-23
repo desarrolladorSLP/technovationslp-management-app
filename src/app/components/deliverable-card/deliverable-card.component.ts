@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Batch } from 'src/app/model/batch';
 import { Program } from 'src/app/model/program';
 import swal from 'sweetalert2';
@@ -6,11 +6,16 @@ import {TranslateService} from '@ngx-translate/core';
 import { Deliverable } from 'src/app/model/deliverables';
 import { DeliverablesService } from 'src/app/services/deliverables/deliverables.service';
 import Swal from 'sweetalert2';
+import { Tecker } from 'src/app/model/tecker';
+import DataSource from 'devextreme/data/data_source';
+import ArrayStore from 'devextreme/data/array_store';
+import { DxListComponent } from 'devextreme-angular';
+
 
 @Component({
   selector: 'app-deliverable-card',
   templateUrl: './deliverable-card.component.html',
-  styles: []
+  styleUrls: ['./deliverable-card.component.css']
 })
 
 export class DeliverableCardComponent {
@@ -18,14 +23,26 @@ export class DeliverableCardComponent {
   @Input() deliverable: Deliverable;
   @Output() public batchDeleted = new EventEmitter();
   @Input()  listBatch: Batch[];
+  @ViewChild(DxListComponent) list: DxListComponent;
   public updatingBatch = false;
   public deletingBatch = false;
   yesdelete: string;
   batch: string;
   messageSucess: string;
   messageDeleted: string;
+  listTeckers: Tecker[];
+  tasks: DataSource;
 
   constructor(private deliverableService: DeliverablesService, private translate: TranslateService) {
+  this.deliverableService.getTeckersforBatch().subscribe(data => {
+    this.listTeckers = data;
+    this.tasks = new DataSource({
+      store: new ArrayStore({
+        key: 'teckerId',
+        data: this.listTeckers
+      })
+    });
+  });
   }
 
    updateDeliverable() {
@@ -75,5 +92,12 @@ export class DeliverableCardComponent {
         this.deleteDeliverable();
       }
     } );
+  }
+
+  assingDeliverabletoTecker() {
+    console.log(this.list.selectedItems);
+    this.list.instance.unselectAll();
+    this.list.instance.reload();
+
   }
 }

@@ -2,7 +2,6 @@
     <div *ngIf="!updatingBatch">
         <h4 class="card-header text-center mb-2">{{deliverable.title}}</h4>
         <p>{{deliverable.description}}</p>
-        <small class="muted">{{deliverable.id}}</small>
     </div>
 
     <form class="was-validated" novalidate>
@@ -29,5 +28,38 @@
 
     <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
 
-    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger   mt-5" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+    <button type="button" class="btn btn-primary mt-5 " data-toggle="modal" data-target="#exampleModal"><i class="fa fa-users" aria-hidden="true"></i></button>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"LIST_TECKERS"|translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="widget-containe">
+                    <!-- <dx-list [dataSource]="tasks" [height]="400" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all"> -->
+                    <dx-list [items]="listTeckers" [height]="400" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+                        <div *dxTemplate="let item of 'item'">
+                            <div class="product row align-content-center ml-2">
+                                <img src="assets/boy.png" class="image rounded-circle" />
+                                <div>{{item.name}}</div>
+                            </div>
+                        </div>
+                    </dx-list>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="assingDeliverabletoTecker()">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

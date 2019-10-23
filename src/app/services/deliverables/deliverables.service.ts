@@ -3,6 +3,7 @@ import { Deliverable } from '../../model/deliverables';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Tecker } from 'src/app/model/tecker';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,10 @@ export class DeliverablesService {
   public deleteDeliverable(deliverableId: string): Observable<Deliverable> {
     const urlEndpoint = `${environment.backendUrl}/api/deliverable/` + deliverableId;
     return this.httpClient.delete<Deliverable>(urlEndpoint);
+  }
+  public getTeckersforBatch(): Observable<Tecker[]> {
+    // const urlEndpoint = `${environment.backendUrl}/api/deliverable/`;
+    const urlEndpoint = 'https://demo1677366.mockable.io/api/batch/teckers';
+    return this.httpClient.get<Tecker[]>(urlEndpoint);
   }
 }

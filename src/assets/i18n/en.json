@@ -26,5 +26,6 @@
     "SEARCH": "Seach",
     "DELETEPROGRAM": "Are you sure to delete this program?",
     "DELETED": "The program has been deleted.",
-    "DELETED_DELIVERABLE": "Are you sure to delete this deliverable?"
+    "DELETED_DELIVERABLE": "Are you sure to delete this deliverable?",
+    "LIST_TECKERS": "List of Teckers"
 }

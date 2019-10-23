@@ -41,10 +41,21 @@ export class BatchesCardComponent {
     });
   }
   registeringTeckers() {
+    this.registerTeckers = new RegisterTecker();
+    this.registerTeckers.batchId = this.batch.id;
+
      for (const tecker of this.listTeckers) {
       this.registerTeckers.register.push(tecker.id);
      }
-      this.batchService.registerTeckers(this.registerTeckers).subscribe();
+      this.batchService.registerTeckers(this.registerTeckers).subscribe(data => {
+          this.addingTeckers = false;
+          swal.fire (
+            {
+              type: 'success',
+            }
+          );
+        }
+      );
   }
 
   deleteBatch() {

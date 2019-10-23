@@ -1,5 +1,6 @@
   <div class="card-body">   
     <div *ngIf="addingTeckers">
+        <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
         <div class="form-group">
           <select multiple class="form-control" name="" id="">
             <option *ngFor="let tecker of listTeckers">{{tecker.name}}</option>
@@ -13,7 +14,7 @@
       </button>
     </div>
 
-    <div *ngIf="!updatingBatch">
+    <div *ngIf="!updatingBatch && !addingTeckers">
         <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
         <span class="input-group-text">{{'START_DATE' | translate}} :   {{batch.startDate}} </span>
         <span class="input-group-text">{{'END_DATE' | translate}} :   {{batch.endDate}} </span>
@@ -69,13 +70,13 @@
       </div>
      </form>
 
-      <button type="button" *ngIf='!updatingBatch' (click) = "updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"
+      <button type="button" *ngIf='!updatingBatch  && !addingTeckers' (click) = "updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"
       ><i class="fa fa-edit"></i></button>
 
-        <button type="button" *ngIf='!deletingBatch && !updatingBatch'
+        <button type="button" *ngIf='!deletingBatch && !updatingBatch  && !addingTeckers'
         class="btn btn-danger   mt-5" (click)= "showAlertDelete()"><i class="fa fa-trash-o"></i></button>
 
-        <button (click) ="addingTeckers = !addingTeckers" type="button" data-toggle="tooltip" data-placement="right" title="Register Teckers" *ngIf='!deletingBatch && !updatingBatch'
+        <button (click) ="addingTeckers = !addingTeckers" type="button" data-toggle="tooltip" data-placement="right" title="Register Teckers" *ngIf='!deletingBatch && !updatingBatch  && !addingTeckers'
         class="btn btn-outline-dark ml-2  mt-5" ><i class="fa fa-users" aria-hidden="true"></i>
       </button>
 

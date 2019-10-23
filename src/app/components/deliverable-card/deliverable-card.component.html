@@ -2,7 +2,7 @@
     <div *ngIf="!updatingBatch">
         <h4 class="card-header text-center mb-2">{{deliverable.title}}</h4>
         <p>{{deliverable.description}}</p>
-        <small class="muted">{{batch}}</small>
+        <small class="muted">{{deliverable.id}}</small>
     </div>
 
     <form class="was-validated" novalidate>
@@ -16,25 +16,14 @@
 
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">{{'NOTES' | translate}}</span>
+                    <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
                     <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" id="notes"> </textarea>
                 </div>
             </div>
-
-            <!-- <div class="input-group  mb-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">{{'PROGRAMS' | translate}}</span>
-                    <select class="form-control" [(ngModel)]="batch.programId" name="program">
-                      <option *ngFor="let program of listPrograms"  [value]="program.id">{{program.name}}</option>
-                  </select>
-                </div>
-            </div> -->
-
-            <button type="button" (click)="updateBatch();" class="btn btn-outline-success">Save
-        </button>
-            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">
-          Cancel
-        </button>
+            <input type="file" name="" id="">
+            <hr>
+            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success">Save</button>
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">Cancel</button>
         </div>
     </form>
 

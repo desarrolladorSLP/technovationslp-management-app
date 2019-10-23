@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Batch } from 'src/app/model/batch';
 import { Program } from 'src/app/model/program';
-import { BatchesService } from 'src/app/services/batches/batches.service';
 import swal from 'sweetalert2';
 import {TranslateService} from '@ngx-translate/core';
 import { Deliverable } from 'src/app/model/deliverables';
+import { DeliverablesService } from 'src/app/services/deliverables/deliverables.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-deliverable-card',
@@ -24,60 +25,54 @@ export class DeliverableCardComponent {
   yesdelete: string;
   batch: string;
 
-  constructor(private batchService: BatchesService, private translate: TranslateService) {
-    // this.listBatch.forEach(element => {
-    //   if (this.deliverable.batchId === element.id) {
-    //     this.batch = element.name;
-    //   }
-    // });
-    console.log(this.listBatch);
+  constructor(private deliverableService: DeliverablesService, private translate: TranslateService) {
   }
 
-   updateBatch() {
+   updateDeliverable() {
      this.updatingBatch = !this.updatingBatch;
-    // this.batchService.update(this.batch).subscribe(() => {
-    //   this.updatingBatch = false;
-    //   this.batchDeleted.emit();
-    // });
+      this.deliverableService.updateDeliverable(this.deliverable, this.deliverable.id).subscribe(data => {
+        this.updatingBatch = false;
+        this.batchDeleted.emit();
+        Swal.fire({
+          position: 'top',
+          type: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      });
   }
 
-  deleteBatch() {
-    // this.batchService.delete(this.batch.id).subscribe(data => {
-    //   this.deletingBatch = false;
-    //   this.batchDeleted.emit();
-    //   this.translate.get('DELETED_BATCH').subscribe((text => {
-    //     swal.fire(
-    //       {
-    //         type: 'success',
-    //         text: text,
-    //       }
-    //     );
-    //   }));
-    // },
-    // error => swal.fire(
-    //   {
-    //     title: 'Error',
-    //     text: error.message,
-    //   }
-    // )
-    // );
+  deleteDeliverable() {
+    this.deliverableService.deleteDeliverable(this.deliverable.id).subscribe(data => {
+      console.log(data);
+      this.deletingBatch = false;
+      this.batchDeleted.emit();
+      Swal.fire({
+        position: 'top',
+        type: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
   }
 
   showAlertDelete() {
-  //   this.translate.get('DELETE_BATCH').subscribe((text: string) => { this.messageError = text; });
-  //   this.translate.get('YES').subscribe((text: string) => { this.yesdelete = text; });
-  //   swal.fire({
-  //     title: this.messageError,
-  //     text: this.batch.name,
-  //     type: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: this.yesdelete
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       this.deleteBatch();
-  //     }
-  //   } );
+    this.translate.get('DELETE_BATCH').subscribe((text: string) => { this.messageError = text; });
+    this.translate.get('YES').subscribe((text: string) => { this.yesdelete = text; });
+    swal.fire({
+      title: this.messageError,
+      text: this.deliverable.title,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: this.yesdelete
+    }).then((result) => {
+      if (result.value) {
+        this.deleteDeliverable();
+      }
+    } );
   }
 }

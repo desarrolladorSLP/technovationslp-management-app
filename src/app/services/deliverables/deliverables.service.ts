@@ -21,4 +21,13 @@ export class DeliverablesService {
     const urlEndpoint = `${environment.backendUrl}/api/deliverable`;
     return this.httpClient.post<Deliverable[]>(urlEndpoint, deliverable);
   }
+
+  public updateDeliverable(deliverable: Deliverable, deliverableId: string): Observable<Deliverable> {
+    const urlEndpoint = `${environment.backendUrl}/api/deliverable/` + deliverableId;
+    return this.httpClient.put<Deliverable>(urlEndpoint, deliverable);
+  }
+  public deleteDeliverable(deliverableId: string): Observable<Deliverable> {
+    const urlEndpoint = `${environment.backendUrl}/api/deliverable/` + deliverableId;
+    return this.httpClient.delete<Deliverable>(urlEndpoint);
+  }
 }

@@ -11,7 +11,6 @@
                 <label class="input-group-text" for="inputGroupSelect01">Programs</label>
             </div>
             <select class="custom-select" id="inputGroupSelect01" (change)="getBachesbyPrograms()" [(ngModel)]="selectedProgram">
-              <option selected>Choose...</option>
               <option *ngFor="let item of listPrograms" value={{item.id}}>{{item.name}}</option>
             </select>
         </div>
@@ -46,15 +45,15 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect01">Baches</label>
                                 </div>
-                                <select class="custom-select" #batch name="batch" id="batch" required>
-                      <option value="{{batch.id}}" *ngFor="let batch of listBaches">{{batch.name}}</option>
+                                <select class="custom-select" name="batch" required [(ngModel)]="batchId">
+                      <option value="{{batch.id}}" *ngFor="let batch of listBaches" >{{batch.name}}</option>
                     </select>
                             </div>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFileLang" lang="es">
                                 <label class="custom-file-label" for="customFileLang">{{"SELECT_FILE" | translate}}</label>
                             </div>
-                            <button type="button" (click)='addDeliverable(name.value, description.value, batch.value);' class="btn btn-outline-success">{{'SAVE' | translate}}
+                            <button type="button" (click)='addDeliverable(name.value, description.value);' class="btn btn-outline-success">{{'SAVE' | translate}}
                   </button>
                             <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5">
                     {{'CANCEL' | translate}}

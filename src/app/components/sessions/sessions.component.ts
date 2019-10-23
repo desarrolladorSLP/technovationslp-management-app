@@ -16,12 +16,12 @@ export class SessionsComponent {
   protected listPrograms: Program[];
   protected listBatch: Batch[];
   protected listSessions: Session[];
+  public filterSession = '';
+  session: Session = new Session();
+  programId: string;
   addButton = false;
   addSession = false;
   searchSession = false;
-  programId: string;
-  public filterSession = '';
-  session: Session = new Session();
 
   constructor(private programService: ProgramsService, private sessionsService: SessionsService ) {
     this.programService.getPrograms().subscribe(data => {
@@ -29,11 +29,10 @@ export class SessionsComponent {
     });
    }
 
-   onProgramChange(programId: string) {
+  onProgramChange(programId: string) {
       this.sessionsService.getBatchByPrograms(programId).subscribe(data => {
         this.listBatch = data;
         this.searchSession = false;
-        console.log(this.session.batchId);
       });
   }
 
@@ -46,13 +45,11 @@ export class SessionsComponent {
 
   onBatchChange(batchId: string) {
     this.addButton = true;
-    console.log(batchId);
     this.session.batchId = batchId;
     this.refreshSessions();
   }
 
   refreshSessions() {
-    console.log(this.session.batchId);
     this.sessionsService.getSessionsByBatch(this.session.batchId).subscribe( data => {
         this.listSessions = data;
         this.searchSession = true;

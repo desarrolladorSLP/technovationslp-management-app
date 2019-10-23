@@ -33,22 +33,27 @@ export class SessionsComponent {
       this.sessionsService.getBatchByPrograms(programId).subscribe(data => {
         this.listBatch = data;
         this.searchSession = false;
+        console.log(this.session.batchId);
       });
   }
 
   addingSession() {
     this.sessionsService.addSession(this.session).subscribe( data => {
       this.addSession = false;
+      this.refreshSessions();
     });
   }
 
   onBatchChange(batchId: string) {
     this.addButton = true;
-    this.refreshSessions(batchId);
+    console.log(batchId);
+    this.session.batchId = batchId;
+    this.refreshSessions();
   }
 
-  refreshSessions(batchId: string) {
-    this.sessionsService.getSessionsByBatch(batchId).subscribe( data => {
+  refreshSessions() {
+    console.log(this.session.batchId);
+    this.sessionsService.getSessionsByBatch(this.session.batchId).subscribe( data => {
         this.listSessions = data;
         this.searchSession = true;
     });

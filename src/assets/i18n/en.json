@@ -9,7 +9,6 @@
   "NAME": "Name",
   "START_DATE": "startDate",
   "END_DATE": "endDate",
-  "NOTES": "Notes",
   "FIELD_EMPTY": "please fill field",
   "DELETE_BATCH": "Are you sure to delete this batch?",
   "YES": "yes, delete it!",
@@ -50,5 +49,6 @@
   "ADMINISTRATOR": "Administrator",
   "PARENT": "Parent",
   "TITLE_MODAL": "Add and remove a role",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+  "SELECT_BATCH": "select a Batch"
 }

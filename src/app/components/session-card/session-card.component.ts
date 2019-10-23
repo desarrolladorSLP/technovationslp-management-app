@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Session } from 'src/app/model/session';
 import swal from 'sweetalert2';
 import {TranslateService} from '@ngx-translate/core';
@@ -10,12 +10,13 @@ import { SessionsService } from 'src/app/services/sessions/sessions.service';
   styles: []
 })
 export class SessionCardComponent  {
-
+  @Output() public sessionDeleted = new EventEmitter();
   @Input() session: Session;
   messageDelete: string;
   yesdelete: string;
   updatingSession = false;
   @Input() batchId: string;
+
 
   constructor(private sessionsService: SessionsService, private translate: TranslateService) { }
 
@@ -47,7 +48,8 @@ export class SessionCardComponent  {
 
   deleteSession() {
       this.sessionsService.delete(this.session.id).subscribe(data => {
-      this.translate.get('DELETED').subscribe((text => {
+      this.sessionDeleted.emit();
+        this.translate.get('DELETED').subscribe((text => {
         swal.fire(
           {
             type: 'success',

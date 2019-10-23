@@ -7,11 +7,6 @@
   "ACTIVE": "Activo",
   "INACTIVE": "Inactivo",
   "NAME": "Nombre",
-  "START_DATE": "Fecha de Inicio",
-  "END_DATE": "Fecha Final",
-  "NOTES": "Notas",
-  "FIELD_EMPTY": "Llenar el campo",
-  "DELETE_BATCH": "¿Está seguro de eliminar este batch?",
   "DELETED_BATCH": "El  batch ha sido eliminado",
   "DESCRIPTION": "Descripción",
   "RESPONSIBLES": "Responsables",
@@ -54,5 +49,6 @@
   "ADMINISTRATOR": "Administrador",
   "PARENT": "Padres",
   "TITLE_MODAL": "Agregar o remover un rol",
-  "CLOSE": "Cerrar"
+  "CLOSE": "Cerrar",
+  "SELECT_BATCH": "Seleccionar Batch"
 }

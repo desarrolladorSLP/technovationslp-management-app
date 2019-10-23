@@ -27,6 +27,7 @@ export class DeliverablesComponent implements OnInit {
   addingProgram = false;
   filterPrograms = '';
   listBaches: Batch[];
+  messageSucess: string;
 
   constructor(private batchService: BatchesService, private deliverableService: DeliverablesService, private translate: TranslateService,
     private programService: ProgramsService) {
@@ -58,6 +59,7 @@ export class DeliverablesComponent implements OnInit {
   addDeliverable(name: string, description: string) {
     this.translate.get('ERROR_DELIVERABLE_TITLE').subscribe((text: string) => { this.messageErrorName = text; });
     this.translate.get('ERROR_DELIVERABLE_DESCRIPTION').subscribe((text: string) => { this.messageErrorDesription = text; });
+    this.translate.get('MESSAGE_SUCCESS').subscribe((text: string) => { this.messageSucess = text; });
     if (name.length === 0) {
       Swal.fire(
         'Error',
@@ -81,7 +83,7 @@ export class DeliverablesComponent implements OnInit {
         Swal.fire({
           position: 'top',
           type: 'success',
-          title: 'Your deliverable has been create',
+          title: this.messageSucess,
           showConfirmButton: false,
           timer: 1500
         });

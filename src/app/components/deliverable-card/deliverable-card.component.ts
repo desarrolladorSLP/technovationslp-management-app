@@ -20,15 +20,16 @@ export class DeliverableCardComponent {
   @Input()  listBatch: Batch[];
   public updatingBatch = false;
   public deletingBatch = false;
-  optionProgram: Program;
-  messageError: string;
   yesdelete: string;
   batch: string;
+  messageSucess: string;
+  messageDeleted: string;
 
   constructor(private deliverableService: DeliverablesService, private translate: TranslateService) {
   }
 
    updateDeliverable() {
+    this.translate.get('MESSAGE_SUCCESS').subscribe((text: string) => { this.messageSucess = text; });
      this.updatingBatch = !this.updatingBatch;
       this.deliverableService.updateDeliverable(this.deliverable, this.deliverable.id).subscribe(data => {
         this.updatingBatch = false;
@@ -36,7 +37,7 @@ export class DeliverableCardComponent {
         Swal.fire({
           position: 'top',
           type: 'success',
-          title: 'Your work has been saved',
+          title: this.messageSucess,
           showConfirmButton: false,
           timer: 1500
         });
@@ -44,14 +45,14 @@ export class DeliverableCardComponent {
   }
 
   deleteDeliverable() {
+    this.translate.get('MESSAGE_SUCCESS').subscribe((text: string) => { this.messageSucess = text; });
     this.deliverableService.deleteDeliverable(this.deliverable.id).subscribe(data => {
-      console.log(data);
       this.deletingBatch = false;
       this.batchDeleted.emit();
       Swal.fire({
         position: 'top',
         type: 'success',
-        title: 'Your work has been saved',
+        title: this.messageSucess,
         showConfirmButton: false,
         timer: 1500
       });
@@ -59,10 +60,10 @@ export class DeliverableCardComponent {
   }
 
   showAlertDelete() {
-    this.translate.get('DELETE_BATCH').subscribe((text: string) => { this.messageError = text; });
+    this.translate.get('DELETED_DELIVERABLE').subscribe((text: string) => { this.messageDeleted = text; });
     this.translate.get('YES').subscribe((text: string) => { this.yesdelete = text; });
     swal.fire({
-      title: this.messageError,
+      title: this.messageDeleted,
       text: this.deliverable.title,
       type: 'warning',
       showCancelButton: true,

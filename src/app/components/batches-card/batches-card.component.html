@@ -2,15 +2,22 @@
     <div *ngIf="addingTeckers">
         <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
         <div class="form-group">
-          <select multiple class="form-control" name="" id="">
-            <option *ngFor="let tecker of listTeckers">{{tecker.name}}</option>
-          </select>
+            <ng-multiselect-dropdown-angular7
+            [placeholder]="'Teckers'"
+            [data]="listTeckers"
+            [(ngModel)]="selectedTeckers"
+            [settings]="dropdownSettingsTeckers"
+            (onSelect)="onTeckerSelect($event)"
+            (onSelectAll)="onSelectAllTeckers($event)"
+            (onDeSelect)="onTeckerDeSelect($event)"
+            >
+            </ng-multiselect-dropdown-angular7>
         </div>
       <button type="button" (click)= "registeringTeckers();"
-      class="btn btn-outline-success">Register
+      class="btn btn-outline-success">{{'REGISTER' | translate}}  
       </button>
       <button type="button" (click)='addingTeckers= false;' class="btn btn-outline-danger mr-5">
-      Cancel
+          {{'CANCEL' | translate}}
       </button>
     </div>
 

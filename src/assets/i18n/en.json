@@ -42,5 +42,13 @@
     "ADMINISTRATOR": "Administrator",
     "PARENT": "Parent",
     "TITLE_MODAL": "Add and remove a role",
-    "CLOSE": "Close"
+    "CLOSE": "Close",
+    "DELIVERABLES": "Deliverables",
+    "TITLE": "Title",
+    "ERROR_DELIVERABLE_TITLE": "You must add a title to the deliverable",
+    "ERROR_DELIVERABLE_DESCRIPTION": "You must add a description to the deliverable",
+    "SELECT_FILE": "Select File...",
+    "SEARCH": "Seach",
+    "DELETED_DELIVERABLE": "Are you sure to delete this deliverable?",
+    "LIST_TECKERS": "List of Teckers"
 }

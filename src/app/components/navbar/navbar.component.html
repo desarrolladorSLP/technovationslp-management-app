@@ -9,22 +9,24 @@
         <div class="mr-auto">
             <ul class="navbar-nav " *ngIf="loggedUser">
                 <li class="nav-item" routerLinkActive="active">
-                    <a [routerLink]="['programs']" class="nav-link">{{'PROGRAMS'|translate}}</a>
+                    <a [routerLink]="['programs']" class="nav-link">{{'PROGRAMS' | translate}}</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
-                    <a [routerLink]="['batches']" class="nav-link">{{'Batch'|translate}}</a>
+                    <a [routerLink]="['batches']" class="nav-link">{{'BATCHES' | translate}}</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
-                    <a [routerLink]="['sessions']" class="nav-link">{{'SESSIONS'|translate}}</a>
+                    <a [routerLink]="['sessions']" class="nav-link">{{'SESSIONS' | translate}}</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a [routerLink]="['deliverables']" class="nav-link">{{'DELIVERABLES' | translate}}</a>
                 </li>
                 <li class="nav-item dropdown" routerLinkActive="active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{'USERS'|translate}}
+                    <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{'USERS' | translate}}
           </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="usersDropdown">
                         <a class="dropdown-item" [routerLink]="['users', 'active']">{{'ACTIVE'|translate}}</a>
-                        <a class="dropdown-item" [routerLink]="['users', 'inactive']">{{'INACTIVE'|translate}}</a>
-                    </div>
+                        <a class="dropdown-item" [routerLink]="['users', 'inactive']">{{'INACTIVE'|translate}}</a></div>
                 </li>
             </ul>
         </div>

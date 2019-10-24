@@ -43,5 +43,13 @@
     "PARENT": "Padres",
     "TITLE_MODAL": "Agregar o remover un rol",
     "CLOSE": "Cerrar",
-    "MESSAGE_VALID": "Gran elección"
+    "MESSAGE_VALID": "Gran elección",
+    "DELIVERABLES": "Entregables",
+    "TITLE": "Titulo",
+    "ERROR_DELIVERABLE_TITLE": "Debes de agregar un titulo a el entregable",
+    "ERROR_DELIVERABLE_DESCRIPTION": "Debes agregar una descripcion al entregable",
+    "SELECT_FILE": "Seleccionar Archivo...",
+    "SEARCH": "Busqueda",
+    "DELETED_DELIVERABLE": "¿Está seguro de eliminar este Entregable?",
+    "LIST_TECKERS": "Lista de Teckers"
 }

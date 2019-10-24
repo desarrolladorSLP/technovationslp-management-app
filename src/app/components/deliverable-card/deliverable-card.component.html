@@ -1,0 +1,65 @@
+<div class="card-body">
+    <div *ngIf="!updatingBatch">
+        <h4 class="card-header text-center mb-2">{{deliverable.title}}</h4>
+        <p>{{deliverable.description}}</p>
+    </div>
+
+    <form class="was-validated" novalidate>
+        <div *ngIf="updatingBatch">
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'NAME' | translate}}</span>
+                    <input [(ngModel)]="deliverable.title" class="form-control" type="text" name="name" id="name">
+                </div>
+            </div>
+
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
+                    <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" id="notes"> </textarea>
+                </div>
+            </div>
+            <input type="file" name="" id="">
+            <hr>
+            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success">Save</button>
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">Cancel</button>
+        </div>
+    </form>
+
+    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
+
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+    <button type="button" class="btn btn-primary mt-5 " data-toggle="modal" data-target="#exampleModal"><i class="fa fa-users" aria-hidden="true"></i></button>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"LIST_TECKERS"|translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="widget-containe">
+                    <!-- <dx-list [dataSource]="tasks" [height]="400" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all"> -->
+                    <dx-list [items]="listTeckers" [height]="400" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+                        <div *dxTemplate="let item of 'item'">
+                            <div class="product row align-content-center ml-2">
+                                <img src="assets/boy.png" class="image rounded-circle" />
+                                <div>{{item.name}}</div>
+                            </div>
+                        </div>
+                    </dx-list>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="assingDeliverabletoTecker()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

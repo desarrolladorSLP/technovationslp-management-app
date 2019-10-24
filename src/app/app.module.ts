@@ -22,12 +22,15 @@ import { ProgramCardComponent } from './components/program-card/program-card.com
 import { FilterPipe } from './pipes/filter.pipe';
 import { DeliverablesComponent } from './components/deliverables/deliverables.component';
 import { DeliverableCardComponent } from './components/deliverable-card/deliverable-card.component';
-import { BatchesComponent } from './components/batches/batches.component';
-import { BatchesCardComponent } from './components/batches-card/batches-card.component';
 
-import { DxSelectBoxModule, DxListModule } from 'devextreme-angular';
+import { DxListModule } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
+import { SessionsComponent } from './components/sessions/sessions.component';
+import { SessionCardComponent } from './components/session-card/session-card.component';
+import { FilterSessionPipe } from './pipes/filter-session.pipe';
+import {BatchesComponent } from './components/batches/batches.component';
+import {BatchesCardComponent } from './components/batches-card/batches-card.component';
 
 import { NgxTagsInputModule } from 'ngx-tags-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +40,7 @@ import { InactiveComponent } from './components/user/inactive/inactive.component
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'programs', component: ProgramsComponent},
+  {path: 'sessions', component: SessionsComponent},
   {path: 'batches', component: BatchesComponent},
   { path: 'profile', component: UserprofileComponent },
   { path: 'users/active', component: ActiveComponent },
@@ -53,6 +57,9 @@ const ROUTES: Routes = [
     FooterComponent,
     UserprofileComponent,
     FilterPipe,
+    SessionCardComponent,
+    SessionsComponent,
+    FilterSessionPipe,
     ProgramsComponent,
     ProgramCardComponent,
     FilterPipe,
@@ -62,6 +69,7 @@ const ROUTES: Routes = [
     BatchesCardComponent,
     ActiveComponent,
     InactiveComponent,
+    ProgramsComponent
   ],
   imports: [
     BrowserModule,

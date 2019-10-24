@@ -1,0 +1,68 @@
+<div class="card-body">
+
+  <div *ngIf="!updatingSession">
+    <h4 class="card-title">{{session.title}}</h4>
+    <span class="input-group-text">{{'SCHEDULE' | translate}}: {{session.startTime}} - {{session.endTime}}</span> 
+    <span class="input-group-text">{{'DATE' | translate}}: {{session.date}}</span>
+    <p class="card-text"><span class="input-group-text">{{'LOCATION' | translate}}</span> {{session.location}}</p>
+    <p class="card-text"><span class="input-group-text">{{'NOTES' | translate}}</span> {{session.notes}}</p>
+
+    <button type="button" (click)= "updatingSession = ! updatingSession" class="btn btn-light mt-5 mr-2"
+    ><i class="fa fa-edit"></i></button>
+
+    <button type="button" (click)= "showAlertDelete()"
+    class="btn btn-danger  mt-5"><i class="fa fa-trash-o"></i></button>
+  </div>
+
+  <div *ngIf="updatingSession" class="container">
+      
+          <form action="" class="was-validated row" novalidate >
+            
+              <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{{'TITLE' | translate}}</span>
+                    </div>
+                    <input  class="form-control" [(ngModel)]="session.title"  required type="text"name="name" id="name" placeholder="Titulo">
+              </div>
+
+              <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'DATE' | translate}}</span>
+                </div>
+                <input  class="form-control" [(ngModel)]="session.date" required style="width: 160px"  type="date" name="Date" id="startDate"  >
+              </div>
+
+              <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'START_TIME' | translate}}</span>
+                </div>
+                <input  class="form-control" [(ngModel)]="session.startTime"  required style="width: 160px"  type="time" name="startDate" id="startDate"  >
+              </div>
+           
+              <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'END_TIME' | translate}}</span>
+                </div>
+                <input   class="form-control" [(ngModel)]="session.endTime"  required style="width: 160px"   type="time" name="endDate" id="endDate" >
+              </div>
+
+              <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'NOTES' | translate}}</span>
+                    <textarea required class="form-control" [(ngModel)]="session.notes"  type="text" name="notes" id="notes"> </textarea>
+                </div>
+              </div>
+
+              <div class="input-group  mb-2">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">{{'LOCATION' | translate}}</span>
+                  <input required class="form-control" [(ngModel)]="session.location" type="text" name="location" id="location">
+              </div>
+              </div>
+            <div class="col-md-4">
+              <button type="button" (click)="updateSession();" class="btn btn-outline-success">{{'SAVE' | translate}}</button>
+              <button type="button" (click)='updatingSession = false' class="btn btn-outline-danger mr-5">{{'CANCEL' | translate}}</button>
+            </div>
+          </form>
+        </div>
+</div>

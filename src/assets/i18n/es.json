@@ -51,5 +51,12 @@
     "SELECT_FILE": "Seleccionar Archivo...",
     "SEARCH": "Busqueda",
     "DELETED_DELIVERABLE": "¿Está seguro de eliminar este Entregable?",
-    "LIST_TECKERS": "Lista de Teckers"
+    "LIST_TECKERS": "Lista de Teckers",
+    "LOCATION": "Ubicación",
+    "SCHEDULE": "Horario",
+    "DATE": "Fecha",
+    "START_TIME": "Inicia",
+    "END_TIME": "Termina",
+    "DELETE_SESSION": "¿Está seguro de eliminar esta Sesion?",
+    "SELECT_BATCH": "Seleccionar Batch"
 }

@@ -5,6 +5,7 @@ import {Observable, throwError} from 'rxjs';
 import {Batch} from '../../model/batch';
 import { catchError } from 'rxjs/operators';
 import { TeckersError } from 'src/app/model/error';
+import { RegisterTecker } from 'src/app/model/register-tecker';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,9 @@ export class BatchesService {
       console.log(error);
       return throwError(new TeckersError(error.error.error, error.error.message));
     }));
+  }
+
+  registerTeckers(register: RegisterTecker): Observable<RegisterTecker> {
+    return this.httpClient.post<RegisterTecker>(this.urlEndpoint  + '/register', register);
   }
 }

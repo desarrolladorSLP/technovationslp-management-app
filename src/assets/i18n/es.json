@@ -58,5 +58,7 @@
     "START_TIME": "Inicia",
     "END_TIME": "Termina",
     "DELETE_SESSION": "¿Está seguro de eliminar esta Sesion?",
-    "SELECT_BATCH": "Seleccionar Batch"
+    "SELECT_BATCH": "Seleccionar Batch",
+    "REGISTER": "Registrar",
+    "TECKER_RESGISTER": "Teckers Registrados"
 }

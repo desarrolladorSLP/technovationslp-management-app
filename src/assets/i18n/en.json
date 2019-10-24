@@ -57,5 +57,7 @@
     "START_TIME": "Start Time",
     "END_TIME": "Start Time",
     "DELETE_SESSION": "Are you sure to delete this Session?",
-    "SELECT_BATCH": "select a Batch"
+    "SELECT_BATCH": "select a Batch",
+    "REGISTER": "Register",
+    "TECKER_RESGISTER": " Registered Teckers"
 }

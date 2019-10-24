@@ -39,7 +39,8 @@
         "rxjs": "6.5.2",
         "sweetalert2": "^8.16.4",
         "zone.js": "~0.8.26",
-        "jszip": "^3.2.2"
+        "jszip": "^3.2.2",
+        "ng-multiselect-dropdown-angular7": "^0.1.5"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.13.0",

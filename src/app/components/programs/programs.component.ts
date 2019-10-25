@@ -4,8 +4,6 @@ import {Router} from '@angular/router';
 import {Program} from 'src/app/model/program';
 import {UserRoleService} from '../../services/user/user-role.service';
 import {UserRole} from 'src/app/model/user-role';
-import { Validators } from '@angular/forms';
-
 
 @Component({
   selector: 'app-programs',
@@ -34,14 +32,14 @@ export class ProgramsComponent {
       }
     }
     if (name) {
-        const newProgram = new Program();
-        newProgram.name = name;
-        newProgram.description = description;
-        newProgram.responsible = this.responsibles;
-        this.programService.addProgram(newProgram).subscribe(data => {
-          this.addingProgram = false;
-          this.refreshPrograms();
-        });
+      const newProgram = new Program();
+      newProgram.name = name;
+      newProgram.description = description;
+      newProgram.responsible = this.responsibles;
+      this.programService.addProgram(newProgram).subscribe(data => {
+        this.addingProgram = false;
+        this.refreshPrograms();
+      });
     } else {
       alert('Invalid name');
     }
@@ -55,7 +53,7 @@ export class ProgramsComponent {
 
   getUserforRole() {
     this.userRoleService.getUserRole().subscribe(data => {
-        this.listUserRole = data;
+      this.listUserRole = data;
     });
   }
 }

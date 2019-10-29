@@ -33,6 +33,7 @@ export class SessionsComponent {
         this.listBatch = data;
         this.searchSession = true;
         this.session = new Session();
+        this.session.batchId = this.listBatch[0].id;
         this.refreshSessions(this.listBatch[0].id);
       });
   }

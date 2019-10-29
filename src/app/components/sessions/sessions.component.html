@@ -84,9 +84,7 @@
           </div>
 
           <div class="card col-md-3" *ngFor="let session of listSessions | filterSession:filterSession">
-            <app-session-card (sessionDeleted)="refreshSessions();" [session] = "session"> </app-session-card>
+            <app-session-card (sessionDeleted)="refreshSessions(session.batchId);" [session] = "session"> </app-session-card>
           </div>
          
 </div>
-
-

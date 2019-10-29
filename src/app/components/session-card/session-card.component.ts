@@ -47,7 +47,7 @@ export class SessionCardComponent  {
   deleteSession() {
       this.sessionsService.delete(this.session.id).subscribe(data => {
       this.sessionDeleted.emit();
-        this.translate.get('DELETED').subscribe((text => {
+        this.translate.get('DELETED_SESSION').subscribe((text => {
         swal.fire(
           {
             type: 'success',

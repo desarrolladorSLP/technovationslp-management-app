@@ -13,6 +13,7 @@
   "DELETE_BATCH": "Are you sure to delete this batch?",
   "YES": "yes, delete it!",
   "DELETED_BATCH": "The batch has been deleted!",
+  "DELETED_SESSION":"The session has been deleted!",
   "DESCRIPTION": "Description",
   "RESPONSIBLES": "Responsibles",
   "SAVE": "Save",

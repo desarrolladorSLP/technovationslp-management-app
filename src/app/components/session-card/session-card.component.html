@@ -2,7 +2,7 @@
 
   <div *ngIf="!updatingSession">
     <h4 class="card-title">{{session.title}}</h4>
-    <span class="input-group-text">{{'SCHEDULE' | translate}}: {{session.startTime}} - {{session.endTime}}</span> 
+    <span class="input-group-text">{{'SCHEDULE' | translate}}: {{session.startTime}} - {{session.endTime}}</span>
     <span class="input-group-text">{{'DATE' | translate}}: {{session.date}}</span>
     <p class="card-text"><span class="input-group-text">{{'LOCATION' | translate}}</span> {{session.location}}</p>
     <p class="card-text"><span class="input-group-text">{{'NOTES' | translate}}</span> {{session.notes}}</p>
@@ -15,9 +15,8 @@
   </div>
 
   <div *ngIf="updatingSession" class="container">
-      
           <form action="" class="was-validated row" novalidate >
-            
+
               <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text">{{'TITLE' | translate}}</span>
@@ -29,21 +28,21 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'DATE' | translate}}</span>
                 </div>
-                <input  class="form-control" [(ngModel)]="session.date" required style="width: 160px"  type="date" name="Date" id="startDate"  >
+                <input  class="form-control" [(ngModel)]="session.date" required style="width: 160px"  type="date" name="date" id="date"  >
               </div>
 
               <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'START_TIME' | translate}}</span>
                 </div>
-                <input  class="form-control" [(ngModel)]="session.startTime"  required style="width: 160px"  type="time" name="startDate" id="startDate"  >
+                <input  class="form-control" [(ngModel)]="session.startTime"  required style="width: 160px"  type="time" name="startTime" id="startTime"  >
               </div>
-           
+
               <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'END_TIME' | translate}}</span>
                 </div>
-                <input   class="form-control" [(ngModel)]="session.endTime"  required style="width: 160px"   type="time" name="endDate" id="endDate" >
+                <input   class="form-control" [(ngModel)]="session.endTime"  required style="width: 160px"   type="time" name="endTime" id="endTime" >
               </div>
 
               <div class="input-group  mb-2">

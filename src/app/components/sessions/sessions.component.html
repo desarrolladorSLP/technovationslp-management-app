@@ -1,104 +1,92 @@
-<div class="container row">
-  <div  class="form-group col-md-3">
-    <label for="">{{'PROGRAMS' | translate}}</label>
-    <select  [(ngModel)]="programId" class="form-control" (ngModelChange)="onProgramChange($event)" name="" id="">
+<div class="container">
+    <div class="row">
+
+        <h1 class="col-10">{{"SESSIONS"|translate}}</h1>
+        <input type="search" [(ngModel)]="filterSession"   name="filterSession" class="form-control col-2" placeholder="Search..." id="search">
+      </div>
+
+  <div  class="input-group mb-5">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="program">{{"PROGRAMS" | translate}}</label>
+    </div>
+    <select  [(ngModel)]="programId" class="custom-select" (ngModelChange)="onProgramChange($event)" name="program" id="program">
         <option *ngFor="let program of listPrograms"  [value]="program.id" >{{program.name}}</option>
     </select>
   </div>
-  <div  class="form-group col-md-3">
-    <label  for="">Batches</label>
-    <select class="form-control" name="" (ngModelChange)="onBatchChange($event)"  [(ngModel)]="session.batchId">
-        <option selected>{{'SELECT_BATCH'| translate}}</option>
-        <option *ngFor="let batch of listBatch"  [value]="batch.id" >{{batch.name}}</option>
-    </select>
-  </div>
 
-  <div  class="form-group col-md-3">
-      <div>
-          <button *ngIf="addButton" type="button" (click) = "addSession = !addSession" class="btn btn-info"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i></button>
-      </div>
-    </div>
-  <div  class="form-group col-md-3">
-      <div>
-          <input type="search" [(ngModel)]="filterSession"   name="filterSession" class="form-control" placeholder="Search..." id="">
-      </div>
-   </div>
+  <ul class="nav nav-tabs"  id="tabsBatches" role="tablist">
+    <li class="nav-item" *ngFor="let batch of listBatch">
+      <a class="nav-link active" (click)="onBatchChange(batch.id)"  value="batch.id" id="batch" data-toggle="tab" href="#batch" role="tab" aria-controls="batch" >{{batch.name}}</a>
+    </li>
+  </ul>
 </div>
 
-<div *ngIf="addSession" class="container row">
-          <div class="card col-md-10">
+<div *ngIf="searchSession" class="container row">
+          <div class="card col-md-3 ">
             <div class="card-body">
-              <h4 class="card-title">New Session</h4>
-              <form action="" class="was-validated row" novalidate >
-                <div class="col-md-10">
-                  <div class="row">
-                    <div class="col-md-10">
-                        <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                  <span class="input-group-text">{{'TITLE' | translate}}</span>
-                              </div>
-                              <input  class="form-control" [(ngModel)]="session.title"  required type="text"name="name" id="name" placeholder="Titulo">
-                        </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div class="input-group  mb-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">{{'DATE' | translate}}</span>
-                        </div>
-                        <input  class="form-control" [(ngModel)]="session.date" required style="width: 160px"  type="date" name="Date" id="startDate"  >
-                      </div>
-                      <div class="input-group  mb-2">
-                          <div class="input-group-prepend">
-                              <span class="input-group-text">{{'LOCATION' | translate}}</span>
+                <button *ngIf="!addSession" type="button" (click) = "addSession = !addSession" class="btn btn-info"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i></button>
+              <div *ngIf="addSession" >
+                <h4 class="card-title">New Session</h4>
+                <form action="" class="was-validated row" novalidate >
+                  
+                          <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">{{'TITLE' | translate}}</span>
+                                </div>
+                                <input  class="form-control" [(ngModel)]="session.title"  required type="text"name="name" id="name" placeholder="Titulo">
                           </div>
-                          <input required class="form-control" [(ngModel)]="session.location"  type="text" name="location" id="location">
+                     
+                   
+                        <div class="input-group  mb-2">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">{{'DATE' | translate}}</span>
+                          </div>
+                          <input  class="form-control" [(ngModel)]="session.date" required style="width: 160px"  type="date" name="Date" id="date"  >
                         </div>
-                    </div>
-                    <div class="col-md-5">
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">{{'START_TIME' | translate}}</span>
+                                <span class="input-group-text">{{'LOCATION' | translate}}</span>
                             </div>
-                            <input  class="form-control" [(ngModel)]="session.startTime"  required style="width: 160px"  type="time" name="startDate" id="startDate"  >
-                        </div>
-                      <div class="input-group  mb-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">{{'END_TIME' | translate}}</span>
-                        </div>
-                        <input   class="form-control" [(ngModel)]="session.endTime"  required style="width: 160px"   type="time" name="endDate" id="endDate" >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-10">
-                      <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                              <span class="input-group-text">{{'NOTES' | translate}}</span>
+                            <input required class="form-control" [(ngModel)]="session.location"  type="text" name="location" id="location">
                           </div>
-                          <textarea required class="form-control" [(ngModel)]="session.notes"  type="text" name="notes" id="notes"> </textarea>
-                      </div>
+                      
+                     
+                          <div class="input-group  mb-2">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">{{'START_TIME' | translate}}</span>
+                              </div>
+                              <input  class="form-control" [(ngModel)]="session.startTime"  required style="width: 160px"  type="time" name="startTime" id="startTime"  >
+                          </div>
+                        <div class="input-group  mb-2">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">{{'END_TIME' | translate}}</span>
+                          </div>
+                          <input   class="form-control" [(ngModel)]="session.endTime"  required style="width: 160px"   type="time" name="endTime" id="endTime" >
+                        </div>
+                    
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{'NOTES' | translate}}</span>
+                            </div>
+                            <textarea required class="form-control" [(ngModel)]="session.notes"  type="text" name="notes" id="notes"> </textarea>
+                        </div>
+                    <div class= "row">
+                      <button type="button"  data-toggle="tooltip" data-placement="top" title="{{'SAVE' | translate}}" (click)='addingSession();' class="btn btn-outline-success col-md-5 ml-3 mr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i>{{'SAVE' | translate}}
+                      </button>
+                   
+                      <button type="button"  data-toggle="tooltip" data-placement="top" title="{{'CANCEL' | translate}}" (click)='addSession = false' class="btn btn-outline-danger col-md-5 mr-2"><i class="fa fa-ban" aria-hidden="true"></i> {{'CANCEL' | translate}}
+                      </button>
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="row mt-3 mb-2">
-                    <button type="button"  data-toggle="tooltip" data-placement="top" title="{{'SAVE' | translate}}" (click)='addingSession();' class="btn btn-outline-success"><i class="fa fa-floppy-o" aria-hidden="true">  {{'SAVE' | translate}}</i>
-                    </button>
-                  </div>
-                  <div class="row mb-5">
-                    <button type="button"  data-toggle="tooltip" data-placement="top" title="{{'CANCEL' | translate}}" (click)='addSession = false' class="btn btn-outline-danger mr-5"><i class="fa fa-ban" aria-hidden="true"> {{'CANCEL' | translate}}</i>
-                    </button>
-                  </div>
-                </div>
-              </form>
+                    
+                </form>
+             </div>
             </div>
           </div>
+
+          <div class="card col-md-3" *ngFor="let session of listSessions | filterSession:filterSession">
+            <app-session-card (sessionDeleted)="refreshSessions();" [session] = "session"> </app-session-card>
+          </div>
+         
 </div>
 
-<div *ngIf="searchSession" class="container row" > 
-    <div class="card col-md-3" *ngFor="let session of listSessions | filterSession:filterSession">
-      <app-session-card (sessionDeleted)="refreshSessions();" [session] = "session" [batchId]= "session.batchId"> </app-session-card>
-    </div>
-</div>
+

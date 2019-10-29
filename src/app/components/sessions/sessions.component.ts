@@ -17,9 +17,8 @@ export class SessionsComponent {
   protected listBatch: Batch[];
   protected listSessions: Session[];
   public filterSession = '';
-  session: Session = new Session();
+  session: Session;
   programId: string;
-  addButton = false;
   addSession = false;
   searchSession = false;
 
@@ -32,25 +31,27 @@ export class SessionsComponent {
   onProgramChange(programId: string) {
       this.sessionsService.getBatchByPrograms(programId).subscribe(data => {
         this.listBatch = data;
-        this.searchSession = false;
+        this.searchSession = true;
+        this.session = new Session();
+        this.refreshSessions(this.listBatch[0].id);
       });
   }
 
   addingSession() {
     this.sessionsService.addSession(this.session).subscribe( data => {
       this.addSession = false;
-      this.refreshSessions();
+      this.refreshSessions(this.session.batchId);
     });
   }
 
   onBatchChange(batchId: string) {
-    this.addButton = true;
+    this.session = new Session();
     this.session.batchId = batchId;
-    this.refreshSessions();
+    this.refreshSessions(this.session.batchId);
   }
 
-  refreshSessions() {
-    this.sessionsService.getSessionsByBatch(this.session.batchId).subscribe( data => {
+  refreshSessions(batchId: string) {
+    this.sessionsService.getSessionsByBatch(batchId).subscribe( data => {
         this.listSessions = data;
         this.searchSession = true;
     });

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Session } from 'src/app/model/session';
 import swal from 'sweetalert2';
 import {TranslateService} from '@ngx-translate/core';
@@ -13,15 +13,13 @@ export class SessionCardComponent  {
   @Output() public sessionDeleted = new EventEmitter();
   @Input() session: Session;
   messageDelete: string;
-  yesdelete: string;
+  yesDelete: string;
   updatingSession = false;
-  @Input() batchId: string;
 
 
   constructor(private sessionsService: SessionsService, private translate: TranslateService) { }
 
   updateSession() {
-    this.session.batchId = this.batchId;
     this.sessionsService.save(this.session).subscribe(() => {
       this.updatingSession = false;
     });
@@ -29,7 +27,7 @@ export class SessionCardComponent  {
 
   showAlertDelete() {
     this.translate.get('DELETE_SESSION').subscribe((text: string) => { this.messageDelete = text; });
-    this.translate.get('YES').subscribe((text: string) => { this.yesdelete = text; });
+    this.translate.get('YES').subscribe((text: string) => { this.yesDelete = text; });
     swal.fire({
        title: this.messageDelete ,
        text: this.session.title,
@@ -38,7 +36,7 @@ export class SessionCardComponent  {
        confirmButtonColor: '#3085d6',
        cancelButtonColor: '#d33',
        cancelButtonText: 'No',
-       confirmButtonText: this.yesdelete,
+       confirmButtonText: this.yesDelete,
      }).then((result) => {
        if (result.value) {
           this.deleteSession();

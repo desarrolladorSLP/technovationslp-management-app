@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown-angular7';
 
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -67,6 +68,7 @@ const ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     NgxTagsInputModule,
+    NgMultiSelectDropDownModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,

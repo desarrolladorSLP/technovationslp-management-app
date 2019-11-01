@@ -29,6 +29,7 @@
     "font-awesome": "4.7.0",
     "jquery": "3.4.1",
     "jsonwebtoken": "8.5.1",
+    "ng-multiselect-dropdown-angular7": "^0.1.5",
     "ngx-bootstrap": "^5.1.2",
     "ngx-tags-input": "^2.0.1",
     "path": "0.12.7",

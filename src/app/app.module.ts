@@ -22,6 +22,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SessionsComponent } from './components/sessions/sessions.component';
+import { SessionCardComponent } from './components/session-card/session-card.component';
+import { FilterSessionPipe } from './pipes/filter-session.pipe';
 import {BatchesComponent } from './components/batches/batches.component';
 import {BatchesCardComponent } from './components/batches-card/batches-card.component';
 
@@ -33,6 +36,7 @@ import { InactiveComponent } from './components/user/inactive/inactive.component
 const ROUTES: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'programs', component: ProgramsComponent},
+  {path: 'sessions', component: SessionsComponent},
   {path: 'batches', component: BatchesComponent},
   { path: 'profile', component: UserprofileComponent },
   { path: 'users/active', component: ActiveComponent },
@@ -48,12 +52,16 @@ const ROUTES: Routes = [
     FooterComponent,
     UserprofileComponent,
     FilterPipe,
+    SessionCardComponent,
+    SessionsComponent,
+    FilterSessionPipe,
     ProgramsComponent,
     ProgramCardComponent,
     BatchesComponent,
     BatchesCardComponent,
     ActiveComponent,
     InactiveComponent,
+    ProgramsComponent
   ],
   imports: [
     BrowserModule,

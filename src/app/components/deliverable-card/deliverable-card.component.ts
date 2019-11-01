@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Batch } from 'src/app/model/batch';
-import { Program } from 'src/app/model/program';
 import swal from 'sweetalert2';
 import {TranslateService} from '@ngx-translate/core';
 import { Deliverable } from 'src/app/model/deliverables';

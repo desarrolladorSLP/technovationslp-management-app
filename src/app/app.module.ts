@@ -10,20 +10,21 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-
-
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { Page404Component } from './components/page404/page404.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UserprofileComponent } from './components/userprofile/userprofile.component';
-
 import { RouterModule, Routes } from '@angular/router';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import {BatchesComponent } from './components/batches/batches.component';
-import {BatchesCardComponent } from './components/batches-card/batches-card.component';
+import { DeliverablesComponent } from './components/deliverables/deliverables.component';
+import { DeliverableCardComponent } from './components/deliverable-card/deliverable-card.component';
+import { BatchesComponent } from './components/batches/batches.component';
+import { BatchesCardComponent } from './components/batches-card/batches-card.component';
+
+import {  DxListModule } from 'devextreme-angular';
 
 import { NgxTagsInputModule } from 'ngx-tags-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +38,7 @@ const ROUTES: Routes = [
   { path: 'profile', component: UserprofileComponent },
   { path: 'users/active', component: ActiveComponent },
   { path: 'users/inactive', component: InactiveComponent },
+  { path: 'deliverables', component: DeliverablesComponent },
   { path: '**', component: Page404Component }
 ];
 
@@ -50,6 +52,9 @@ const ROUTES: Routes = [
     FilterPipe,
     ProgramsComponent,
     ProgramCardComponent,
+    FilterPipe,
+    DeliverablesComponent,
+    DeliverableCardComponent,
     BatchesComponent,
     BatchesCardComponent,
     ActiveComponent,
@@ -66,6 +71,7 @@ const ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
+    DxListModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader, useFactory: (http: HttpClient) => {

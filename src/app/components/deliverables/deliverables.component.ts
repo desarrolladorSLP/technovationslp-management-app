@@ -23,9 +23,7 @@ export class DeliverablesComponent implements OnInit {
   deliverable = new Deliverable();
   batchId: string;
   currentDate = new Date();
-  isNew = false;
   addingProgram = false;
-  filterPrograms = '';
   listBaches: Batch[];
   messageSucess: string;
 
@@ -43,14 +41,14 @@ export class DeliverablesComponent implements OnInit {
     });
   }
 
-  getBachesbyPrograms() {
+  getBachesByPrograms() {
     this.batchService.getBatchbyProgram(this.selectedProgram).subscribe(data => {
       this.listBaches = data;
     });
     this.isSelectedProgram = false;
   }
 
-  getDeliverablesforBatch(batchId) {
+  getDeliverablesForBatch(batchId) {
     this.deliverableService.getDeliverablesforBatch(batchId).subscribe(data => {
       this.listDeliverables = data;
     });
@@ -87,7 +85,7 @@ export class DeliverablesComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
-        this.getDeliverablesforBatch(this.batchId);
+        this.getDeliverablesForBatch(this.batchId);
         this.addingProgram = false;
       }
     }

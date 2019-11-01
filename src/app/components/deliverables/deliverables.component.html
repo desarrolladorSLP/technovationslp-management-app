@@ -2,7 +2,6 @@
     <div class="row">
 
         <h1 class="text-center col-10">{{"DELIVERABLES"|translate}}</h1>
-        <input type="search" name="filterPrograms" class="form-control col-2" placeholder='{{"SEARCH" | translate}}' [(ngModel)]="filterPrograms">
     </div>
     <div>
 
@@ -10,14 +9,14 @@
             <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">{{"PROGRAMS" | translate}}</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01" (change)="getBachesbyPrograms()" [(ngModel)]="selectedProgram">
+            <select class="custom-select" id="inputGroupSelect01" (change)="getBachesByPrograms()" [(ngModel)]="selectedProgram">
               <option *ngFor="let item of listPrograms" value={{item.id}}>{{item.name}}</option>
             </select>
         </div>
 
 
         <div class="row btn-group">
-            <button type="button" class="btn btn-outline-info" (click)="isSelectedProgram = !isSelectedProgram" style="border-radius: 30px 0px 0px 0px;" *ngFor="let item of listBaches" (click)='getDeliverablesforBatch(item.id)'>{{item.name}}</button>
+            <button type="button" class="btn btn-outline-info" (click)="isSelectedProgram = !isSelectedProgram" style="border-radius: 30px 0px 0px 0px;" *ngFor="let item of listBaches" (click)='getDeliverablesForBatch(item.id)'>{{item.name}}</button>
         </div>
 
         <div class="row border border-info" *ngIf="isSelectedProgram">
@@ -64,7 +63,7 @@
             </div>
             <div class="container was-validated">
                 <div class="row">
-                    <div *ngFor="let item of listDeliverables | filter:filterPrograms" class="card col-md-5  mt-2 mr-3" style="width: 18rem;">
+                    <div *ngFor="let item of listDeliverables" class="card col-md-5  mt-2 mr-3" style="width: 18rem;">
                         <app-deliverable-card [deliverable]=item [listBatch]=listBaches>
                         </app-deliverable-card>
                     </div>

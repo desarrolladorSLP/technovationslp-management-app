@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Deliverable } from '../../model/deliverables';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tecker } from 'src/app/model/tecker';
 
@@ -14,7 +14,7 @@ export class DeliverablesService {
   constructor(private httpClient: HttpClient) { }
 
   public getDeliverablesforBatch(batchId: string): Observable<Deliverable[]> {
-    const urlEndpoint = `${environment.backendUrl}/api/deliverable/batch/` + batchId;
+    const urlEndpoint = `${environment.backendUrl}/api/deliverable/batch/${batchId}`;
     return this.httpClient.get<Deliverable[]>(urlEndpoint);
   }
 
@@ -24,11 +24,11 @@ export class DeliverablesService {
   }
 
   public updateDeliverable(deliverable: Deliverable, deliverableId: string): Observable<Deliverable> {
-    const urlEndpoint = `${environment.backendUrl}/api/deliverable/` + deliverableId;
+    const urlEndpoint = `${environment.backendUrl}/api/deliverable/${deliverableId}`;
     return this.httpClient.put<Deliverable>(urlEndpoint, deliverable);
   }
   public deleteDeliverable(deliverableId: string): Observable<Deliverable> {
-    const urlEndpoint = `${environment.backendUrl}/api/deliverable/` + deliverableId;
+    const urlEndpoint = `${environment.backendUrl}/api/deliverable/${deliverableId}`;
     return this.httpClient.delete<Deliverable>(urlEndpoint);
   }
   public getTeckersforBatch(): Observable<Tecker[]> {

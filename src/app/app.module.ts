@@ -25,9 +25,7 @@ import { DeliverableCardComponent } from './components/deliverable-card/delivera
 import { BatchesComponent } from './components/batches/batches.component';
 import { BatchesCardComponent } from './components/batches-card/batches-card.component';
 
-import { DxSelectBoxModule, DxListModule } from 'devextreme-angular';
-import DataSource from 'devextreme/data/data_source';
-import ArrayStore from 'devextreme/data/array_store';
+import {  DxListModule } from 'devextreme-angular';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },

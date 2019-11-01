@@ -25,7 +25,7 @@ export class BatchesService {
   }
 
   getBatchbyProgram(programId) {
-    const urlEndpoint = `${environment.backendUrl}/api/batch/program/` + programId;
+    const urlEndpoint = `${environment.backendUrl}/api/batch/program/${programId}`;
     return this.httpClient.get<Batch[]>(urlEndpoint);
   }
 

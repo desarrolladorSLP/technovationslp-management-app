@@ -29,15 +29,15 @@
     <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
 
     <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
-    <button type="button" class="btn btn-primary mt-5 " data-toggle="modal" data-target="#exampleModal"><i class="fa fa-users" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-primary mt-5 " data-toggle="modal" data-target="#listModal"><i class="fa fa-users" aria-hidden="true"></i></button>
 </div>
 
 <!-- modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{"LIST_TECKERS"|translate}}</h5>
+                <h5 class="modal-title">{{"LIST_TECKERS"|translate}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

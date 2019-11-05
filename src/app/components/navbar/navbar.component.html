@@ -37,7 +37,7 @@
         </a>
 
                 <div class="dropdown-menu text-center" aria-labelledby="languageDropdown">
-                    <button class=" dropdown-item" (click)="setLanguage('es')"><img class="flag" src="assets/flags/es-flag.png" />
+                    <button class=" dropdown-item selected" (click)="setLanguage('es')"><img class="flag" src="assets/flags/es-flag.png" />
           </button>
                     <button class="dropdown-item" (click)="setLanguage('en')"><img class="flag" src="assets/flags/en-flag.png" />
           </button>
@@ -47,8 +47,8 @@
         <form class="form-inline my-2 my-lg-0">
 
             <a [routerLink]="['profile']" class="name" *ngIf="loggedUser">{{loggedUser.name}}</a>
-            <button *ngIf="!loggedUser" type="button" class="btn btn-warning btn-just-icon text-dark border border-dark" (click)="loginWithGoogle()" title="Iniciar Sesión" data-toggle="tooltip"><i class="fa fa-google"></i></button>
-            <button (click)="onLogout()" *ngIf="loggedUser" class="btn btn-warning btn-just-icon text-dark border border-dark" data-toggle="tooltip" title="Cerrar Sesión" type="button"><i class="fa fa-sign-out"></i></button>
+            <button *ngIf="!loggedUser" type="button" class="btn btn-warning button-loggin btn-just-icon  border border-dark" (click)="loginWithGoogle()" title="Iniciar Sesión" data-toggle="tooltip"><i class="fa fa-google"></i></button>
+            <button (click)="onLogout()" *ngIf="loggedUser" class="btn btn-warning button-loggin btn-just-icon border border-dark" data-toggle="tooltip" title="Cerrar Sesión" type="button"><i class="fa fa-sign-out"></i></button>
         </form>
 
     </div>

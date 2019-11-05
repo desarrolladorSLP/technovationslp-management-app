@@ -8,6 +8,20 @@ input[type="search"] {
     padding: 0;
 }
 
+.plus:hover {
+    color: #5c5ba5;
+}
+
+.alignVertical {
+    display: flex;
+    justify-content: center;
+}
+
+.plus {
+    font-size: 150px;
+    color: rgb(143, 141, 251);
+}
+
 form.formPrograms button {
     padding: 5px;
     width: 100%;

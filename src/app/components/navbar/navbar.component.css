@@ -1,20 +1,21 @@
 .name {
-  margin-right: 1em;
-  color: white;
+    margin-right: 1em;
+    color: white;
 }
 
 .teckers-color {
-  background-color: rgb(94, 93, 156)
+    background-color: rgb(94, 93, 156)
 }
 
 .logo {
-  height: 50px;
+    height: 50px;
 }
 
 .button-loggin {
-  background-color: #8f8dfb;
+    background-color: #8f8dfb;
+    color: white;
 }
 
 .flag {
-  width: 50px;
+    width: 50px;
 }

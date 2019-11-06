@@ -50,5 +50,12 @@
     "SELECT_FILE": "Select File...",
     "SEARCH": "Seach",
     "DELETED_DELIVERABLE": "Are you sure to delete this deliverable?",
-    "LIST_TECKERS": "List of Teckers"
+    "LIST_TECKERS": "List of Teckers",
+    "LOCATION": "Location",
+    "SCHEDULE": "Schedule",
+    "DATE": "Date",
+    "START_TIME": "Start Time",
+    "END_TIME": "Start Time",
+    "DELETE_SESSION": "Are you sure to delete this Session?",
+    "SELECT_BATCH": "select a Batch"
 }

@@ -43,7 +43,6 @@
     "PARENT": "Padres",
     "TITLE_MODAL": "Agregar o remover un rol",
     "CLOSE": "Cerrar",
-
     "DELIVERABLES": "Entregables",
     "TITLE": "Titulo",
     "ERROR_DELIVERABLE_TITLE": "Debes de agregar un titulo a el entregable",
@@ -51,5 +50,13 @@
     "SELECT_FILE": "Seleccionar Archivo...",
     "SEARCH": "Busqueda",
     "DELETED_DELIVERABLE": "¿Está seguro de eliminar este Entregable?",
-    "LIST_TECKERS": "Lista de Teckers"
+    "LIST_TECKERS": "Lista de Teckers",
+    "LOCATION": "Ubicación",
+    "SCHEDULE": "Horario",
+    "DATE": "Fecha",
+    "START_TIME": "Inicia",
+    "END_TIME": "Termina",
+    "DELETE_SESSION": "¿Está seguro de eliminar esta Sesión?",
+    "DELETED_SESSION": "¡La sesión ha sido eliminada!",
+    "SELECT_BATCH": "Seleccionar Batch"
 }

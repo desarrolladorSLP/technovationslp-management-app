@@ -1,4 +1,4 @@
-  <div class="card-body">
+<div class="card-body">
     <div *ngIf="!updatingBatch">
         <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
         <span class="input-group-text">{{'START_DATE' | translate}} :   {{batch.startDate}} </span>
@@ -7,57 +7,56 @@
         <p>{{batch.nameProgram}}</p>
     </div>
 
-    <form  class="was-validated" novalidate > 
-       <div *ngIf="updatingBatch">
-          <div class="input-group  mb-2">
-              <div class="input-group-prepend">
-                  <span class="input-group-text">{{'NAME' | translate}}</span>
-                  <input [(ngModel)] = "batch.name"  class="form-control" type="text" name="name" id="name">
-              </div>
-          </div>
+    <form class="was-validated" novalidate>
+        <div *ngIf="updatingBatch">
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'NAME' | translate}}</span>
+                    <input [(ngModel)]="batch.name" class="form-control" type="text" name="name" id="name">
+                </div>
+            </div>
 
-          <div class="input-group  mb-2">
-              <div class="input-group-prepend">
-                  <span class="input-group-text">{{'START_DATE' | translate}}</span>
-              </div>
-              <input  class="form-control" style="width: 160px" [(ngModel)] = "batch.startDate" type="date" name="startDate" id="startDate"  >
-          </div>
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'START_DATE' | translate}}</span>
+                </div>
+                <input class="form-control" style="width: 160px" [(ngModel)]="batch.startDate" type="date" name="startDate" id="startDate">
+            </div>
 
-          <div class="input-group  mb-2">
-              <div class="input-group-prepend">
-                  <span class="input-group-text">{{'END_DATE' | translate}}</span>
-              </div>
-              <input  class="form-control" style="width: 160px" [(ngModel)] = "batch.endDate" type="date" name="endDate" id="endDate" >
-          </div>
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'END_DATE' | translate}}</span>
+                </div>
+                <input class="form-control" style="width: 160px" [(ngModel)]="batch.endDate" type="date" name="endDate" id="endDate">
+            </div>
 
-          <div class="input-group  mb-2">
-              <div class="input-group-prepend">
-                  <span class="input-group-text">{{'NOTES' | translate}}</span>
-                  <textarea class="form-control" [(ngModel)] = "batch.notes" type="text" name="notes" id="notes"> </textarea>
-              </div>
-          </div>
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'NOTES' | translate}}</span>
+                    <textarea class="form-control" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
+                </div>
+            </div>
 
-          <div class="input-group  mb-2">
-              <div class="input-group-prepend">
-                  <span class="input-group-text">{{'PROGRAMS' | translate}}</span>
-                  <select class="form-control"  [(ngModel)]="batch.programId" name="program">
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'PROGRAMS' | translate}}</span>
+                    <select class="form-control" [(ngModel)]="batch.programId" name="program">
                       <option *ngFor="let program of listPrograms"  [value]="program.id">{{program.name}}</option>
                   </select>
-              </div>
-          </div>
+                </div>
+            </div>
 
-        <button type="button" (click)= "updateBatch();"
-                class="btn btn-outline-success">Save
+            <button type="button" (click)="updateBatch();" class="btn btn-outline-success">Save
         </button>
-        <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">
           Cancel
         </button>
-      </div>
-     </form>
+        </div>
+    </form>
 
-      <button type="button" *ngIf='!updatingBatch' (click) = "updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"
-      ><i class="fa fa-edit"></i></button>
+    <div class="row justify-content-center">
+        <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
 
-        <button type="button" *ngIf='!deletingBatch && !updatingBatch'
-        class="btn btn-danger   mt-5" (click)= "showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+        <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger   mt-5" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
     </div>
+</div>

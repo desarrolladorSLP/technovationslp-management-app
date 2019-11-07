@@ -28,7 +28,11 @@ import { DeliverableCardComponent } from "./components/deliverable-card/delivera
 import { BatchesComponent } from "./components/batches/batches.component";
 import { BatchesCardComponent } from "./components/batches-card/batches-card.component";
 
-import { DxListModule } from "devextreme-angular";
+import {
+  DxListModule,
+  DxTabPanelModule,
+  DxTemplateModule
+} from "devextreme-angular";
 import { SessionsComponent } from "./components/sessions/sessions.component";
 import { SessionCardComponent } from "./components/session-card/session-card.component";
 import { FilterSessionPipe } from "./pipes/filter-session.pipe";
@@ -84,6 +88,8 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
     DxListModule,
+    DxTabPanelModule,
+    DxTemplateModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

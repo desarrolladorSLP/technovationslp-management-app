@@ -29,5 +29,19 @@ form.formPrograms h1 {
     text-align: center;
     padding: 10px;
     margin: 5px 5px 24px;
-    font-family: 'Libre Baskerville', serif;
+    font-family: "Libre Baskerville", serif;
+}
+
+.plus:hover {
+    color: #5c5ba5;
+}
+
+.alignVertical {
+    display: flex;
+    justify-content: center;
+}
+
+.plus {
+    font-size: 150px;
+    color: rgb(143, 141, 251);
 }

@@ -16,7 +16,7 @@
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
-                    <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" id="notes"> </textarea>
+                    <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
                 </div>
             </div>
             <input type="file" name="file" id="files">
@@ -33,7 +33,7 @@
 </div>
 
 <!-- modal -->
-<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

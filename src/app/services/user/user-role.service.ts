@@ -9,11 +9,19 @@ import {UserRole} from '../../model/user-role';
 })
 export class UserRoleService {
 
-  protected urlEndpoint = `${environment.backendUrl}/api/user/role/ROLE_ADMINISTRATOR`;
+  protected urlEndpoint = `${environment.backendUrl}/api/user/role/`;
 
   constructor(private httpClient: HttpClient) { }
 
   getUserRole(): Observable<UserRole[]> {
-    return this.httpClient.get<UserRole[]>(this.urlEndpoint);
+    return this.httpClient.get<UserRole[]>(`${this.urlEndpoint}ROLE_ADMINISTRATOR`);
+  }
+
+  getUsersTecker(): Observable<UserRole[]> {
+    return this.httpClient.get<UserRole[]>(`${this.urlEndpoint}ROLE_TECKER`);
+  }
+
+  getUsersParent(): Observable<UserRole[]> {
+    return this.httpClient.get<UserRole[]>(`${this.urlEndpoint}ROLE_PARENT`);
   }
 }

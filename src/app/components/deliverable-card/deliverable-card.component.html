@@ -29,36 +29,18 @@
     <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
 
     <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
-    <button type="button" class="btn btn-primary mt-5 " data-toggle="modal" data-target="#listModal"><i class="fa fa-users" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-primary mt-5 " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
 </div>
 
-<!-- modal -->
-<div class="modal" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">{{"LIST_TECKERS"|translate}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body">
-                <div class="widget-containe">
-                    <dx-list [items]="listTeckers" [height]="400" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
-                        <div *dxTemplate="let item of 'item'">
-                            <div class="product row align-content-center ml-2">
-                                <img src="assets/boy.png" class="image rounded-circle" />
-                                <div>{{item.name}}</div>
-                            </div>
-                        </div>
-                    </dx-list>
+<dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="Information" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <dx-list [dataSource]="listTeckers" [items]="listTeckers" [height]="400" [searchEnabled]="true" searchExpr="name" searchMode="contains"> [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+            <div *dxTemplate="let item of 'item'">
+                <div class="product row align-content-center ml-2">
+                    <img src="assets/boy.png" class="image rounded-circle" />
+                    <div>{{item.name}}</div>
                 </div>
-
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="assingDeliverabletoTecker()">Save changes</button>
-            </div>
-        </div>
+        </dx-list>
     </div>
-</div>
+</dx-popup>

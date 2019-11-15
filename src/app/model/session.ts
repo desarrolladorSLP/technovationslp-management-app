@@ -7,4 +7,6 @@ export class Session {
     endTime: string;
     title: string;
     notes: string;
+    startDate: Date = new Date();
+    endDate:Date = new Date();
 }

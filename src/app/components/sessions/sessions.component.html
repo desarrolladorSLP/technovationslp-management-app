@@ -18,7 +18,17 @@
         <a class="nav-link active" (click)="onBatchChange(batch.id)" value="batch.id" id="batch" data-toggle="tab" href="#batch" role="tab" aria-controls="batch">{{batch.name}}</a>
     </li>
 </ul>
-
+<div *ngIf="searchSession">
+  <dx-scheduler
+    [dataSource]="listSessions"
+    textExpr="title"
+    [views]='["day", "week", "workWeek", "month"]'
+    startDateExpr="date"
+    [currentDate]="currentDate"
+    (onAppointmentFormOpening)="onAppointmentFormOpening($event)">
+    
+</dx-scheduler>
+</div>
 
 <div *ngIf="searchSession" class="container row">
     <div class="card col-md-4 ">

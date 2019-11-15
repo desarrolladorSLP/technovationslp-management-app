@@ -8,7 +8,7 @@ import { Session } from 'src/app/model/session';
 @Component({
   selector: 'app-sessions',
   templateUrl: './sessions.component.html',
-  styleUrls: ['./sessions.component.css']
+  styleUrls: ['./a  xsessions.component.css']
 })
 
 export class SessionsComponent {
@@ -21,6 +21,9 @@ export class SessionsComponent {
   programId: string;
   addSession = false;
   searchSession = false;
+  currentDate = new Date(2020, 4, 25);
+
+
 
   constructor(private programService: ProgramsService, private sessionsService: SessionsService ) {
     this.programService.getPrograms().subscribe(data => {
@@ -54,7 +57,69 @@ export class SessionsComponent {
   refreshSessions(batchId: string) {
     this.sessionsService.getSessionsByBatch(batchId).subscribe( data => {
         this.listSessions = data;
+
         this.searchSession = true;
     });
   }
+
+  onAppointmentFormOpening(data) {
+    const that = this;
+    const form = data.form;
+    var dateS = data.appointmentData.Date;
+
+    form.option("items", [{
+        label: {
+            text: "Title"
+        },
+        editorType: "dxTextBox",},
+
+        {
+            label: {
+            text: "Notes"
+        },
+        name: "notes",
+        editorType: "dxTextArea",
+        },
+        {
+        label: {
+            text: "startTime"
+        },
+          name: "startTime",
+          editorType: "dxDateBox",
+          editorOptions: {
+              width: "100%",
+              type: "time",
+          }
+       },
+       {
+        label: {
+            text: "endTime"
+        },
+          name: "endTime",
+          editorType: "dxDateBox",
+          editorOptions: {
+              width: "100%",
+              type: "time",
+          }
+       },
+       {
+        label: {
+            text: "Date"
+        },
+          name: "dateS",
+          editorType: "dxDateBox",
+          editorOptions: {
+              width: "100%",
+              type: "date",
+              onValueChanged: function(args) {
+                dateS = args.value;
+            }
+          }
+       },
+        {
+            dataField: "location",
+            editorType: "dxTextBox",
+        },
+    ]);
+}
 }

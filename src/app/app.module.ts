@@ -31,7 +31,8 @@ import { BatchesCardComponent } from "./components/batches-card/batches-card.com
 import {
   DxListModule,
   DxTabPanelModule,
-  DxTemplateModule
+  DxTemplateModule,
+  DxSchedulerModule,
 } from "devextreme-angular";
 import { SessionsComponent } from "./components/sessions/sessions.component";
 import { SessionCardComponent } from "./components/session-card/session-card.component";
@@ -90,6 +91,7 @@ const ROUTES: Routes = [
     DxListModule,
     DxTabPanelModule,
     DxTemplateModule,
+    DxSchedulerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

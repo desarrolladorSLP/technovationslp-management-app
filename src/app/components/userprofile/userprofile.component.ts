@@ -31,6 +31,7 @@ export class UserprofileComponent implements OnInit {
       this.loggedUser = this.authService.getLoggedUser();
       if (!this.isUser) {
         this.refreshInformation();
+        this.pictureUrl = 'assets/default-user.png';
       }
     }
   }
@@ -95,11 +96,11 @@ export class UserprofileComponent implements OnInit {
     });
   }
 
-  public onUpload(e) {
-    const file = e.target.files[0];
-    const filePath = 'upload/image.png';
-    const ref = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+  public onUpload(imageInput) {
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.pictureUrl = event.target.result;
+    }
+    reader.readAsDataURL(imageInput.files[0]);
   }
-
 }

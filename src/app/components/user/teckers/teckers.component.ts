@@ -7,6 +7,8 @@ import ArrayStore from 'devextreme/data/array_store';
 import { DxListComponent } from 'devextreme-angular';
 import { TeckerService } from 'src/app/services/Teckers/tecker.service';
 import { ParentTecker } from 'src/app/model/parent-tecker';
+import swal from 'sweetalert2';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-teckers',
@@ -27,7 +29,7 @@ export class TeckersComponent {
   deleteType: 'toggle';
   tecker: DataSource;
 
-  constructor(private userRoleService: UserRoleService, private teckerService: TeckerService) {
+  constructor(private userRoleService: UserRoleService, private teckerService: TeckerService, private translate: TranslateService) {
     this.getTeckers();
     this.getParents();
    }
@@ -64,7 +66,15 @@ export class TeckersComponent {
     this.list.selectedItems.forEach(tecker => {
       this.selectedTeckers.push(tecker.id);
     });
-    this.teckerService.save(this.parentId, this.selectedTeckers )
+    this.teckerService.save(this.parentId, this.selectedTeckers);
+    this.translate.get('MESSAGE_SUCCESS').subscribe((text => {
+      swal.fire(
+        {
+          type: 'success',
+          text: text,
+        }
+      );
+    }));
     this.list.instance.unselectAll();
     this.list.instance.reload();
   }

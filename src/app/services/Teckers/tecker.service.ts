@@ -14,7 +14,6 @@ export class TeckerService {
   }
 
   save(parentId: string, teckerId: string []) {
-    alert( teckerId);
     return this.httpClient.put< string []>(this.urlEndpoint + parentId, teckerId );
   }
 

@@ -11,8 +11,9 @@ export class FilterPipe implements PipeTransform {
         if (nameSearch.name.toLowerCase().indexOf(name.toLowerCase()) > -1) {
           resultName.push(nameSearch);
         }
-      return resultName;
+        return resultName;
+      }
+      return value;
     }
-    return value;
   }
 }

@@ -8,7 +8,7 @@ import { Session } from 'src/app/model/session';
 @Component({
   selector: 'app-sessions',
   templateUrl: './sessions.component.html',
-  styleUrls: ['./a  xsessions.component.css']
+  styleUrls: ['sessions.component.css']
 })
 
 export class SessionsComponent {

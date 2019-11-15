@@ -26,11 +26,11 @@
     startDateExpr="date"
     [currentDate]="currentDate"
     (onAppointmentFormOpening)="onAppointmentFormOpening($event)">
-    
+
 </dx-scheduler>
 </div>
 
-<div *ngIf="searchSession" class="container row">
+<!-- <div *ngIf="searchSession" class="container row">
     <div class="card col-md-4 ">
         <div class="card-body alignVertical">
             <button *ngIf="!addSession" class="btn" type="button" (click)="addSession = !addSession"><i class="fa fa-plus plus" aria-hidden="true"></i></button>
@@ -93,4 +93,4 @@
     </div>
     <div class="card col-md-4" *ngFor="let session of listSessions | filterSession:filterSession">
         <app-session-card (sessionDeleted)="refreshSessions(session.batchId);" [session]="session"> </app-session-card>
-    </div>
+   </div> -->

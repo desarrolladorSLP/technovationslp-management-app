@@ -27,6 +27,11 @@ import { DeliverablesComponent } from "./components/deliverables/deliverables.co
 import { DeliverableCardComponent } from "./components/deliverable-card/deliverable-card.component";
 import { BatchesComponent } from "./components/batches/batches.component";
 import { BatchesCardComponent } from "./components/batches-card/batches-card.component";
+import { NgxTagsInputModule } from "ngx-tags-input";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ActiveComponent } from "./components/user/active/active.component";
+import { InactiveComponent } from "./components/user/inactive/inactive.component";
+import { MentorTeckerComponent } from "./components/mentor-tecker/mentor-tecker.component";
 
 import {
   DxListModule,
@@ -38,11 +43,6 @@ import { SessionsComponent } from "./components/sessions/sessions.component";
 import { SessionCardComponent } from "./components/session-card/session-card.component";
 import { FilterSessionPipe } from "./pipes/filter-session.pipe";
 
-import { NgxTagsInputModule } from "ngx-tags-input";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ActiveComponent } from "./components/user/active/active.component";
-import { InactiveComponent } from "./components/user/inactive/inactive.component";
-
 const ROUTES: Routes = [
   { path: "", redirectTo: "/", pathMatch: "full" },
   { path: "programs", component: ProgramsComponent },
@@ -52,6 +52,7 @@ const ROUTES: Routes = [
   { path: "users/active", component: ActiveComponent },
   { path: "users/inactive", component: InactiveComponent },
   { path: "deliverables", component: DeliverablesComponent },
+  { path: "users/Mentor", component: MentorTeckerComponent },
   { path: "**", component: Page404Component }
 ];
 
@@ -75,7 +76,8 @@ const ROUTES: Routes = [
     BatchesCardComponent,
     ActiveComponent,
     InactiveComponent,
-    ProgramsComponent
+    ProgramsComponent,
+    MentorTeckerComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,9 @@ const ROUTES: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    DxTabPanelModule,
+    DxPopupModule,
+    DxListModule,
     RouterModule.forRoot(ROUTES),
     DxListModule,
     DxTabPanelModule,

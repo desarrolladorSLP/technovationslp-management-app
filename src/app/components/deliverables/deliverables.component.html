@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div *ngFor="let item of listDeliverables" class="card col-md-3 mr-3 mt-2" style="width: 18rem;">
-                        <app-deliverable-card [deliverable]=item [listBatch]=listBaches>
+                        <app-deliverable-card [deliverable]=item [listBatch]=listBaches (batchDeleted)="getDeliverablesForBatch(item.batchId)">
                         </app-deliverable-card>
                     </div>
                     <div class="container was-validated">

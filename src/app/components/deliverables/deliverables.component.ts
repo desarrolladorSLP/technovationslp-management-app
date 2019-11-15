@@ -49,6 +49,7 @@ export class DeliverablesComponent implements OnInit {
       .getBatchbyProgram(this.selectedProgram)
       .subscribe(data => {
         this.listBaches = data;
+        this.getDeliverablesForBatch(this.listBaches[0].id);
       });
     this.isSelectedProgram = false;
   }

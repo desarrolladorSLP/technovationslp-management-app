@@ -35,7 +35,10 @@
     "popper.js": "1.15.0",
     "rxjs": "6.5.2",
     "sweetalert2": "^8.16.4",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "devextreme": "19.2.3",
+    "devextreme-angular": "19.2.3",
+    "devextreme-schematics": "^1.0.11"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",

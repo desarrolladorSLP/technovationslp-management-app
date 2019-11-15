@@ -1,0 +1,57 @@
+<div class="container">
+    <h1 class="text-center">Parents</h1>
+    <table class="table table-hover text-center table-striped">
+        <thead style="background-color: #B4CCE3">
+            <tr class="align-middle">
+                <th>
+                    <div class="form-group">
+                        <label class="col-12 buttonsearch" (click)="clickName()"> {{'NAME'|translate}} <i class="fa fa-search"
+                aria-hidden="true"></i></label>
+                        <input type="text" name="filterName" id="Sname" class="form-control-sm rounded-pill d-none" [(ngModel)]="filterName" />
+                    </div>
+                </th>
+                <th class="align-top">Teckers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let parent of listParents | filter:filterName">
+                <td>{{parent.name}}</td>
+                <td><button data-toggle="modal" (click)="getSelectedUser(parent.id)" data-target="#modalTecker" class="btn btn-info"><i class="fa fa-male" aria-hidden="true"></i><i class="fa fa-female" aria-hidden="true"></i>
+        </button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="modalTecker" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> Teckers</h5>
+                    <h2></h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div id="list-api-demo">
+                        <div class="widget-container">
+                            <div class="widget-containe">
+                                <dx-list [items]="listTeckers" [dataSource]="listTeckers" [height]="400" [selectedItems]="[]" [searchEnabled]="true" searchExpr="name" searchMode="contains" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+                                    <div *dxTemplate="let tecker of 'item'">
+                                        <div class="product row align-content-center ml-2">
+                                            <div>{{tecker.name}}</div>
+                                        </div>
+                                    </div>
+                                </dx-list>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'CANCEL'|translate}} </button>
+                    <button type="button" (click)="assignedParent();" data-dismiss="modal" class="btn btn-primary">{{'SAVE'|translate}} </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

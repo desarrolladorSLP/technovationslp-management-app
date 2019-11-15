@@ -42,6 +42,7 @@ import {
 import { SessionsComponent } from "./components/sessions/sessions.component";
 import { SessionCardComponent } from "./components/session-card/session-card.component";
 import { FilterSessionPipe } from "./pipes/filter-session.pipe";
+import { TeckersComponent } from "./components/user/teckers/teckers.component";
 
 const ROUTES: Routes = [
   { path: "", redirectTo: "/", pathMatch: "full" },
@@ -53,6 +54,7 @@ const ROUTES: Routes = [
   { path: "users/inactive", component: InactiveComponent },
   { path: "deliverables", component: DeliverablesComponent },
   { path: "users/Mentor", component: MentorTeckerComponent },
+  { path: "users/teckers", component: TeckersComponent },
   { path: "**", component: Page404Component }
 ];
 
@@ -77,7 +79,8 @@ const ROUTES: Routes = [
     ActiveComponent,
     InactiveComponent,
     ProgramsComponent,
-    MentorTeckerComponent
+    MentorTeckerComponent,
+    TeckersComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,8 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     DxTabPanelModule,
     DxPopupModule,
+    DxListModule,
+    ReactiveFormsModule,
     DxListModule,
     RouterModule.forRoot(ROUTES),
     DxListModule,

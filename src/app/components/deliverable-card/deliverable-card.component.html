@@ -25,11 +25,13 @@
             <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">Cancel</button>
         </div>
     </form>
+    <div class="text-center">
+        <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
 
-    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
+        <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+        <button type="button" class="btn btn-primary mt-5 " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
+    </div>
 
-    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
-    <button type="button" class="btn btn-primary mt-5 " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
 </div>
 
 <dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="Information" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">

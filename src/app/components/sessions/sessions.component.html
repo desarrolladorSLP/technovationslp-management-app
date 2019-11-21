@@ -28,15 +28,15 @@
               <div *ngIf="addSession" >
                 <h4 class="card-title">New Session</h4>
                 <form action="" class="was-validated row" novalidate >
-                  
+
                           <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">{{'TITLE' | translate}}</span>
                                 </div>
                                 <input  class="form-control" [(ngModel)]="session.title"  required type="text"name="name" id="name" placeholder="Titulo">
                           </div>
-                     
-                   
+
+
                         <div class="input-group  mb-2">
                           <div class="input-group-prepend">
                               <span class="input-group-text">{{'DATE' | translate}}</span>
@@ -49,8 +49,8 @@
                             </div>
                             <input required class="form-control" [(ngModel)]="session.location"  type="text" name="location" id="location">
                           </div>
-                      
-                     
+
+
                           <div class="input-group  mb-2">
                               <div class="input-group-prepend">
                                   <span class="input-group-text">{{'START_TIME' | translate}}</span>
@@ -63,7 +63,7 @@
                           </div>
                           <input   class="form-control" [(ngModel)]="session.endTime"  required style="width: 160px"   type="time" name="endTime" id="endTime" >
                         </div>
-                    
+
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NOTES' | translate}}</span>
@@ -73,11 +73,11 @@
                     <div class= "row">
                       <button type="button"  data-toggle="tooltip" data-placement="top" title="{{'SAVE' | translate}}" (click)='addingSession();' class="btn btn-outline-success col-md-5 ml-3 mr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i>{{'SAVE' | translate}}
                       </button>
-                   
+
                       <button type="button"  data-toggle="tooltip" data-placement="top" title="{{'CANCEL' | translate}}" (click)='addSession = false' class="btn btn-outline-danger col-md-5 mr-2"><i class="fa fa-ban" aria-hidden="true"></i> {{'CANCEL' | translate}}
                       </button>
                     </div>
-                    
+
                 </form>
              </div>
             </div>
@@ -86,5 +86,5 @@
           <div class="card col-md-3" *ngFor="let session of listSessions | filterSession:filterSession">
             <app-session-card (sessionDeleted)="refreshSessions(session.batchId);" [session] = "session"> </app-session-card>
           </div>
-         
+
 </div>

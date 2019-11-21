@@ -45,4 +45,9 @@ export class BatchesService {
   getTeckersByBatch(batchId: string): Observable <TeckerBatch[]> {
     return this.httpClient.get<TeckerBatch[]>(`${this.urlEndpoint}/${batchId}/teckers`);
   }
+
+  getBatchByPrograms(programId: string): Observable<Batch[]> {
+    return this.httpClient.get<Batch[]>(`${this.urlEndpoint}/program/${programId}` );
+  }
+
 }

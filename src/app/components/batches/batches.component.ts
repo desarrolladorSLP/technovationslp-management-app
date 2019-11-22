@@ -1,28 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import {BatchesService} from '../../services/batches/batches.service';
-import { Batch } from 'src/app/model/batch';
-import {ProgramsService} from '../../services/programs/programs.service';
-import { Program } from 'src/app/model/program';
+import { Component, OnInit } from "@angular/core";
+import { BatchesService } from "../../services/batches/batches.service";
+import { Batch } from "src/app/model/batch";
+import { ProgramsService } from "../../services/programs/programs.service";
+import { Program } from "src/app/model/program";
+import { AuthService } from "src/app/services";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-batches',
-  templateUrl: './batches.component.html',
-  styleUrls: ['./batches.component.css']
+  selector: "app-batches",
+  templateUrl: "./batches.component.html",
+  styleUrls: ["./batches.component.css"]
 })
 export class BatchesComponent {
-
   protected listBatches: Batch[];
   protected listPrograms: Program[];
-  public filterBatch = '';
+  public filterBatch = "";
   addingBatch = false;
   optionProgram: Program;
   startDate: string;
   batch: Batch = new Batch();
 
-  constructor(public batchesService: BatchesService, public programsService: ProgramsService) {
+  constructor(
+    public batchesService: BatchesService,
+    private authService: AuthService,
+    private router: Router,
+    public programsService: ProgramsService
+  ) {
     this.refreshBatches();
   }
 
+  ngOnInit() {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate([""]).then();
+    }
+  }
 
   refreshBatches() {
     this.batchesService.getBatches().subscribe(data => {
@@ -33,10 +44,10 @@ export class BatchesComponent {
 
   addBatch() {
     console.log(this.batch);
-      this.batchesService.addBatch(this.batch).subscribe(data => {
-        this.addingBatch = false;
-        this.refreshBatches();
-      });
+    this.batchesService.addBatch(this.batch).subscribe(data => {
+      this.addingBatch = false;
+      this.refreshBatches();
+    });
   }
 
   getNameProgram() {

@@ -7,6 +7,9 @@ import { BatchesService } from "src/app/services/batches/batches.service";
 import { Batch } from "src/app/model/batch";
 import { ProgramsService } from "src/app/services/programs/programs.service";
 import { Program } from "src/app/model/program";
+import { AuthService } from "src/app/services";
+import { Router } from "@angular/router";
+import { LoggedUser } from "src/app/model/logged-user";
 
 @Component({
   selector: "app-deliverables",
@@ -26,17 +29,25 @@ export class DeliverablesComponent implements OnInit {
   addingProgram = false;
   listBaches: Batch[];
   messageSucess: string;
+  loggedUser: LoggedUser;
+  roles: string[];
 
   constructor(
     private batchService: BatchesService,
     private deliverableService: DeliverablesService,
     private translate: TranslateService,
+    private authService: AuthService,
+    private router: Router,
     private programService: ProgramsService
   ) {
     this.getPrograms();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate([""]).then();
+    }
+  }
 
   getPrograms() {
     this.programService.getPrograms().subscribe(data => {

@@ -29,25 +29,17 @@ export class DeliverablesComponent implements OnInit {
   addingProgram = false;
   listBaches: Batch[];
   messageSucess: string;
-  loggedUser: LoggedUser;
-  roles: string[];
 
   constructor(
     private batchService: BatchesService,
     private deliverableService: DeliverablesService,
     private translate: TranslateService,
-    private authService: AuthService,
-    private router: Router,
     private programService: ProgramsService
   ) {
     this.getPrograms();
   }
 
-  ngOnInit() {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigate([""]).then();
-    }
-  }
+  ngOnInit() {}
 
   getPrograms() {
     this.programService.getPrograms().subscribe(data => {
@@ -56,10 +48,25 @@ export class DeliverablesComponent implements OnInit {
   }
 
   getBachesByPrograms() {
+    this.translate.get("EMPY_PROGRAM").subscribe((text: string) => {
+      this.messageSucess = text;
+    });
     this.batchService
       .getBatchbyProgram(this.selectedProgram)
       .subscribe(data => {
         this.listBaches = data;
+        if(this.listBaches.length > 0)
+        {
+          this.getDeliverablesForBatch(this.listBaches[0].id);
+        }else {
+          Swal.fire({
+            position: "top",
+            type: "info",
+            title: this.messageSucess,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
       });
     this.isSelectedProgram = false;
   }
@@ -104,6 +111,7 @@ export class DeliverablesComponent implements OnInit {
           timer: 1500
         });
         this.getDeliverablesForBatch(this.batchId);
+        this.getBachesByPrograms();
         this.addingProgram = false;
       }
     }

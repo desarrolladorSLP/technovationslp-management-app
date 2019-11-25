@@ -8,29 +8,44 @@ import ArrayStore from 'devextreme/data/array_store';
 import { MentorService } from 'src/app/services/mentor/mentor.service';
 import { DxListComponent } from 'devextreme-angular';
 import { TeckerMentor } from 'src/app/model/tecker-mentor';
+import { Program } from 'src/app/model/program';
+import { ProgramsService } from 'src/app/services/programs/programs.service';
 
 @Component({
   selector: 'app-mentor-tecker',
   templateUrl: './mentor-tecker.component.html',
   styleUrls: ['./mentor-tecker.component.css']
 })
+
 export class MentorTeckerComponent  {
   protected listBatches: Batch[];
   protected listMentors: Mentor[];
   protected listTeckers: TeckerBatch[];
+  protected listPrograms: Program[];
+
   @ViewChild(DxListComponent) list: DxListComponent;
   selectedTeckers: TeckerBatch[] = [];
   assignedTecker: TeckerMentor;
   mentorId = '';
+  programId: string;
   teckers: DataSource;
   popupVisible = false;
 
-  constructor(public batchesService: BatchesService, public mentorServices: MentorService) {
-    this.refreshBatches();
+  constructor(private programService: ProgramsService, public batchesService: BatchesService, public mentorServices: MentorService) {
+    this.refreshPrograms();
   }
-  refreshBatches() {
-    this.batchesService.getBatches().subscribe(data => {
+  refreshPrograms() {
+    this.programService.getPrograms().subscribe(data => {
+      this.listPrograms = data;
+    });
+  }
+  onProgramChange(programId: string) {
+    this.refreshBatches(programId);
+  }
+  refreshBatches(programId: string) {
+    this.batchesService.getBatchByPrograms(programId).subscribe(data => {
       this.listBatches = data;
+      this.listBatches.sort();
       this.refreshMentors(this.listBatches[0].id);
       this.refreshTeckers(this.listBatches[0].id);
     });
@@ -39,6 +54,12 @@ export class MentorTeckerComponent  {
   refreshMentors(batchId: string) {
     this.batchesService.getMentorsByBatch(batchId).subscribe( data => {
       this.listMentors = data;
+      this.listMentors.forEach(mentor => {
+        mentor.listTeckers = [ ];
+        this.mentorServices.getTeckersByMentor(mentor.mentorId).subscribe( teckerList => {
+          mentor.listTeckers = teckerList;
+        });
+      });
     });
   }
 
@@ -88,9 +109,9 @@ export class MentorTeckerComponent  {
       }
     });
 
-    this.mentorServices.updateTeckersToMentor(this.mentorId, this.assignedTecker).subscribe(data =>{
+    this.mentorServices.updateTeckersToMentor(this.mentorId, this.assignedTecker).subscribe(data => {
       console.log(data);
-    }); 
+    });
     this.popupVisible  = false;
     this.list.instance.unselectAll();
     this.list.instance.reload();

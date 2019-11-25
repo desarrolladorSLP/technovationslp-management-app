@@ -1,5 +1,15 @@
 <div class="container">
-  <h1>Mentor</h1>
+  <h1 class="text-center">Mentor</h1>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="program">{{"PROGRAMS" | translate}}</label>
+    </div>
+    <select  [(ngModel)]="programId" class="custom-select" (ngModelChange)="onProgramChange($event)" name="program" id="program">
+        <option *ngFor="let program of listPrograms"  [value]="program.id" >{{program.name}}</option>
+    </select>
+  </div>
+
   <dx-tab-panel
     #tabPanel
     [height]="260"
@@ -20,6 +30,7 @@
                       <th>Image</th>
                       <th>{{'NAME' | translate}}</th>
                       <th>Teckers</th>
+                      <th>#Teckers</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -28,6 +39,7 @@
                       <td>{{mentor.name}}</td>
                       <td><button   (click)="getSelectedMentor(mentor.mentorId)"   class="btn btn-info"><i class="fa fa-male" aria-hidden="true"></i><i class="fa fa-female" aria-hidden="true"></i>
                       </button></td>
+                      <td>{{mentor.listTeckers.length}}</td>
                     </tr>
                   </tbody>
                 </table>

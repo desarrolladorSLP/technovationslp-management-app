@@ -15,13 +15,13 @@
         </div>
 
 
-        <dx-tab-panel #tabPanel [height]=undefined [dataSource]="listBaches" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+        <dx-tab-panel #tabPanel class="text-center" [height]=undefined [dataSource]="listBaches" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
             <div *dxTemplate="let company of 'title'" (click)='getDeliverablesForBatch(company.id)'>
                 <span>{{company.name}}</span>
             </div>
             <div *dxTemplate="let company of 'item'">
                 <div class="tabpanel-item row">
-                    <div class="card col-3 mt-2 mr-3">
+                    <div class="card col-md-4 mt-2 mr-3 ml-3">
                         <div class="card-body alignVertical">
                             <button type="button" *ngIf="!addingProgram" class="btn" (click)='addingProgram = !addingProgram'><i
                   class="fa fa-plus plus"></i></button>
@@ -62,8 +62,8 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngFor="let item of listDeliverables" class="card col-md-3 mr-3 mt-2" style="width: 18rem;">
-                        <app-deliverable-card [deliverable]=item [listBatch]=listBaches>
+                    <div *ngFor="let item of listDeliverables" class="card col-md-4 mr-3 mt-2 ml-3" >
+                        <app-deliverable-card [deliverable]=item [listBatch]=listBaches (batchDeleted)="getDeliverablesForBatch(item.batchId)">
                         </app-deliverable-card>
                     </div>
                     <div class="container was-validated">

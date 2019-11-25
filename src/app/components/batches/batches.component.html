@@ -12,7 +12,7 @@
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NAME' | translate}}</span>
-                                <input [(ngModel)]="batch.name" required class="form-control" type="text" name="name" id="name">
+                                <input [(ngModel)]="batch.name" required class="form-control btn-lg btn-block" type="text" name="name" id="name">
                             </div>
                             <div class="valid-feedback">
                                 Looks good!
@@ -50,7 +50,7 @@
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NOTES' | translate}}</span>
-                                <textarea required class="form-control" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
+                                <textarea required class="form-control btn-lg btn-block" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
                             </div>
                             <div class="valid-feedback">
                             </div>
@@ -62,7 +62,7 @@
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'PROGRAMS' | translate}}</span>
-                                <select required class="form-control" name="program" [(ngModel)]="batch.programId">
+                                <select required class="form-control btn-lg btn-block" name="program" [(ngModel)]="batch.programId">
                           <option *ngFor="let program of listPrograms" [value]="program.id">{{program.name}}</option>
                         </select>
                             </div>
@@ -73,16 +73,16 @@
                             </div>
                         </div>
 
-                        <button type="button" (click)='addBatch();' class="btn btn-outline-success">Save
+                        <button type="button" (click)='addBatch();' class="btn btn-outline-success btn-lg btn-block">Save
             </button>
-                        <button type="button" (click)='addingBatch = false' class="btn btn-outline-danger mr-5">
+                        <button type="button" (click)='addingBatch = false' class="btn btn-outline-danger btn-lg btn-block">
               Cancel
             </button>
                     </div>
                 </form>
             </div>
         </div>
-        <div *ngFor="let batch of listBatches | filter: filterBatch" class="card col-md-5  mt-2 mr-3" style="width: 18rem;">
+        <div *ngFor="let batch of listBatches | filter: filterBatch" class="card col-md-5 mr-3 mt-2">
             <app-batches-card (batchDeleted)="refreshBatches()" [batch]="batch" [listPrograms]="listPrograms"></app-batches-card>
         </div>
 

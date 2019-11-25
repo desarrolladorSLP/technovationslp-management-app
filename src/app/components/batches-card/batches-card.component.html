@@ -1,22 +1,22 @@
 <div class="card-body">
     <div *ngIf="!updatingBatch">
         <h4 class="card-header text-center mb-2">{{batch.name}}</h4>
-        <span class="input-group-text">{{'START_DATE' | translate}} :   {{batch.startDate}} </span>
+        <span class="input-group-text mb-1">{{'START_DATE' | translate}} :   {{batch.startDate}} </span>
         <span class="input-group-text">{{'END_DATE' | translate}} :   {{batch.endDate}} </span>
-        <p>{{batch.notes}}</p>
-        <p>{{batch.nameProgram}}</p>
+        <p><strong>{{'PROGRAM' | translate}}: </strong>{{batch.nameProgram}}</p>
+        <p><strong>{{'NOTE' | translate}}: </strong><small class="text-muted">{{batch.notes}}</small></p>
     </div>
 
     <form class="was-validated" novalidate>
-        <div *ngIf="updatingBatch">
-            <div class="input-group  mb-2">
+        <div *ngIf="updatingBatch" >
+            <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'NAME' | translate}}</span>
                     <input [(ngModel)]="batch.name" class="form-control" type="text" name="name" id="name">
                 </div>
             </div>
 
-            <div class="input-group  mb-2">
+            <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'START_DATE' | translate}}</span>
                 </div>
@@ -33,7 +33,7 @@
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'NOTES' | translate}}</span>
-                    <textarea class="form-control" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
+                    <strong><textarea class="form-control" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea></strong>
                 </div>
             </div>
 
@@ -45,13 +45,11 @@
                   </select>
                 </div>
             </div>
-
-            <button type="button" (click)="updateBatch();" class="btn btn-outline-success">Save
-        </button>
-            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">
-          Cancel
-        </button>
-        </div>
+<div class="text-center">
+    <button type="button" (click)="updateBatch();" class="btn btn-outline-success btn-lg btn-block">Save</button>
+    <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger btn-lg btn-block">Cancel</button>
+</div>
+            </div>
     </form>
 
     <div class="row justify-content-center">

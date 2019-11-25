@@ -19,28 +19,35 @@
                     <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
                 </div>
             </div>
-            <input type="file" name="file" id="files">
+            <div class="file-upload-wrapper">
+                <input type="file" id="input-file-now" class="file-upload" />
+              </div>
             <hr>
-            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success">Save</button>
-            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">Cancel</button>
+            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success btn-lg btn-block">Save</button>
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger btn-lg btn-block">Cancel</button>
         </div>
     </form>
 
-    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
+    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mr-2"><i class="fa fa-edit"></i></button>
 
-    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
-    <button type="button" class="btn btn-primary mt-5 " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-primary " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
 </div>
 
 <dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="Information" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
     <div *dxTemplate="let data of 'content'">
-        <dx-list [dataSource]="listTeckers" [items]="listTeckers" [height]="400" [searchEnabled]="true" searchExpr="name" searchMode="contains"> [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+        <dx-list [dataSource]="listTeckers" [items]="listTeckers" [height]="400" [searchEnabled]="true" [showSelectionControls]="true" [selectedItemKeys]="[]" searchExpr="name" searchMode="contains" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
             <div *dxTemplate="let item of 'item'">
                 <div class="product row align-content-center ml-2">
                     <img src="assets/boy.png" class="image rounded-circle" />
                     <div>{{item.name}}</div>
                 </div>
-            </div>
+            </div>            
         </dx-list>
     </div>
+    <dxi-toolbar-item
+            toolbar="bottom"
+            location="center"
+            html="<button class='btn btn-info btn-lg btn-block'>Asignar</button>">
+        </dxi-toolbar-item>
 </dx-popup>

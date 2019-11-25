@@ -1,10 +1,11 @@
-import { Component, Input, EventEmitter, Output } from "@angular/core";
+import { Component, Input, EventEmitter, Output, ViewChild } from "@angular/core";
 import { Program } from "../../model/program";
 import { ProgramsService } from "../../services/programs/programs.service";
 import swal from "sweetalert2";
 import { TranslateService } from "@ngx-translate/core";
 
 import { UserRole } from "src/app/model/user-role";
+import { DxTagBoxComponent } from "devextreme-angular";
 
 @Component({
   selector: "app-program-card",
@@ -14,6 +15,7 @@ import { UserRole } from "src/app/model/user-role";
 export class ProgramCardComponent {
   public updatingProgram = false;
   public deletingProgram = false;
+  @ViewChild( DxTagBoxComponent) list: DxTagBoxComponent;
   @Output() public programDeleted = new EventEmitter();
   @Input() program: Program;
   @Input() listUserRole: UserRole[];
@@ -28,11 +30,9 @@ export class ProgramCardComponent {
   ) {}
 
   saveProgram() {
-    for (const user of this.listUserRole) {
-      if (user.isChecked) {
-        this.responsibles += user.name + ",";
-      }
-    }
+    this.list.selectedItems.forEach(element => {
+      this.responsibles += element.name +','
+    });
     if (this.program.name) {
       this.program.responsible = this.responsibles;
       this.programService.save(this.program).subscribe(() => {
@@ -49,6 +49,7 @@ export class ProgramCardComponent {
   }
 
   divideResponsibles() {
+    this.currentResponsibles = [];
     for (const user of this.listUserRole) {
       user.isChecked = false;
     }
@@ -57,22 +58,10 @@ export class ProgramCardComponent {
     for (let i = 0; i < arrayUsers.length; i++) {
       this.listUserRole.forEach(element => {
         if (arrayUsers[i] === element.name) {
-          let a = new UserRole();
-          a.id = element.id;
-          a.name = element.name;
-          this.currentResponsibles.push(a);
+          this.currentResponsibles.push(element);
         }
       });
     }
-    // for (const aUser of arrayUsers) {
-    //   for (let user of this.listUserRole) {
-    //     if (aUser === user.name) {
-    //       user.isChecked = true;
-    //       this.currentResponsibles.push(user);
-    //     }
-    //   }
-    // }
-    console.log(this.currentResponsibles);
   }
 
   deleteProgram() {

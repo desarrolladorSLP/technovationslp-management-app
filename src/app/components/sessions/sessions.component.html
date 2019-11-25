@@ -25,6 +25,7 @@
     [views]='["day", "week", "workWeek", "month"]'
     [currentDate]="currentDate"
     [height]="600"
+    (onAppointmentAdded)="addingSession($event)"
     (onAppointmentFormOpening)="onAppointmentFormOpening($event)"
     >
   </dx-scheduler>

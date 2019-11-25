@@ -40,8 +40,17 @@ export class SessionsComponent {
       });
   }
 
-  addingSession() {
-    this.sessionsService.addSession(this.session).subscribe( data => {
+  addingSession(data) {
+    this.session.title = data.appointmentData.title;
+    this.session.date ='2020-02-02';/* data.appointmentData.startDate.getFullYear() + '-' + data.appointmentData.startDate.getMonth() + 1
+    + '-' + data.appointmentData.startDate.getDay(); */
+    this.session.startTime ='12:00';/*  data.appointmentData.startTime.getHours() + ':' + data.appointmentData.startTime.getMinutes()  */;
+    this.session.endTime ='1:00';/* data.appointmentData.endTime.getHours() + ':' + data.appointmentData.endTime.getMinutes() ; */
+    this.session.notes = data.appointmentData.notes;
+    this.session.location = data.appointmentData.location;
+    console.log(this.session);
+
+    this.sessionsService.addSession(this.session).subscribe( session => {
       this.addSession = false;
       this.refreshSessions(this.session.batchId);
     });
@@ -61,13 +70,6 @@ export class SessionsComponent {
           const arrayStartTime = element.startTime.split(':');
           const arrayEndTime = element.endTime.split(':');
 
-          /* console.log(Number(arrayDate[0]));
-          console.log(Number(arrayDate[1]));
-          console.log(Number(arrayDate[2]));
-          console.log(Number(arrayStartTime[0]));
-          console.log(Number(arrayStartTime[1]));
-          console.log(Number(arrayEndTime[0]));
-          console.log(Number(arrayEndTime[1])); */
           const year = Number(arrayDate[0]);
           const month = Number(arrayDate[1]) - 1;
           const day = Number(arrayDate[2]);
@@ -76,10 +78,6 @@ export class SessionsComponent {
           const startMinutes = Number(arrayStartTime[1]);
           const endHour = Number(arrayEndTime[0]);
           const endMinutes = Number(arrayEndTime[1]);
-
-          /* console.log(year + '/' + month + '/' + day);
-          console.log(new Date(year, month, day , startHour, startMinutes));
-          console.log(new Date(year, month, day , endHour, endMinutes)); */
 
           element.startDate = new Date(year, month, day , startHour, startMinutes);
           element.endDate = new Date(year, month, day , endHour, endMinutes);
@@ -96,66 +94,74 @@ export class SessionsComponent {
 
     let startDate = data.appointmentData.startDate;
 
-    form.option('items', [{
+    form.option('items', [
+      {
         label: {
             text: 'Title'
         },
         editorType: 'dxTextBox',
-        dataField: 'title'
+        dataField: 'title',
+        onValueChanged: function(args) {
+          console.log(args.value);
+       }
       },
 
-        {            label: {
-            text: 'Notes'
-        },
-        name: 'notes',
-        editorType: 'dxTextArea',
-        dataField: 'notes'
-        },
-        {
-        lbel: {
+      {
+      label: {
+          text: 'Notes'
+      },
+      name: 'notes',
+      editorType: 'dxTextArea',
+      dataField: 'notes'
+      },
+
+      {
+        label: {
             text: 'startTime'
         },
           name: 'startTime',
-          editorType: 'dxDateBox',
           dataField: 'startTime',
-          editorOptions: {
-              width: '100%',
-              type: 'time',
-              onValueChanged: function(args) {
-                console.log(args.value);
-            }
-          }
-       },
-       {
-        label: {
-            text: 'endTime'
-        },
-          name: 'endTime',
           editorType: 'dxDateBox',
-          dataField: 'endTime',
           editorOptions: {
               width: '100%',
               type: 'time',
           }
-       },
-       {     label: {
-            text: 'Date'
-        },
-          name: 'startDate',
-          dataField: 'startDate',
-          editorType: 'dxDateBox',
-          editorOptions: {
-              width: '100%',
-              type: 'date',
-              onValueChanged: function(args) {
-                startDate = args.value;
-            }
+      },
+
+      {
+      label: {
+          text: 'endTime'
+      },
+        name: 'endTime',
+        editorType: 'dxDateBox',
+        dataField: 'endTime',
+        editorOptions: {
+            width: '100%',
+            type: 'time',
+        }
+      },
+
+      {
+      label: {
+          text: 'Date'
+      },
+        name: 'startDate',
+        dataField: 'startDate',
+        editorType: 'dxDateBox',
+        editorOptions: {
+            width: '100%',
+            type: 'date',
+            onValueChanged: function(args) {
+              startDate = args.value;
           }
-       },
-        {
-            dataField: 'location',
-            editorType: 'dxTextBox',
-        },
+        }
+      },
+
+      {
+          dataField: 'location',
+          editorType: 'dxTextBox',
+      },
     ]);
 }
+
 }

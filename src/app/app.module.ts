@@ -32,7 +32,8 @@ import {
   DxListModule,
   DxTabPanelModule,
   DxTemplateModule,
-  DxPopupModule
+  DxPopupModule,
+  DxTagBoxModule
 } from "devextreme-angular";
 import { SessionsComponent } from "./components/sessions/sessions.component";
 import { SessionCardComponent } from "./components/session-card/session-card.component";
@@ -92,6 +93,7 @@ const ROUTES: Routes = [
     DxTabPanelModule,
     DxTemplateModule,
     DxPopupModule,
+    DxTagBoxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

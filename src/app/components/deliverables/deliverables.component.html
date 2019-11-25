@@ -21,7 +21,7 @@
             </div>
             <div *dxTemplate="let company of 'item'">
                 <div class="tabpanel-item row">
-                    <div class="card col-md-4 mt-2 mr-3 ml-3">
+                    <div class="card col-md-5 mt-2 mr-3 ml-3">
                         <div class="card-body alignVertical">
                             <button type="button" *ngIf="!addingProgram" class="btn" (click)='addingProgram = !addingProgram'><i
                   class="fa fa-plus plus"></i></button>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngFor="let item of listDeliverables" class="card col-md-4 mr-3 mt-2 ml-3" >
+                    <div *ngFor="let item of listDeliverables" class="card col-md-5 mr-3 mt-2 ml-3" >
                         <app-deliverable-card [deliverable]=item [listBatch]=listBaches (batchDeleted)="getDeliverablesForBatch(item.batchId)">
                         </app-deliverable-card>
                     </div>

@@ -12,8 +12,9 @@
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NAME' | translate}}</span>
-                                <input [(ngModel)]="batch.name" required class="form-control btn-lg btn-block" type="text" name="name" id="name">
                             </div>
+                            <input [(ngModel)]="batch.name" required class="form-control btn-lg btn-block" type="text" name="name" id="name">
+                        
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -50,8 +51,8 @@
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NOTES' | translate}}</span>
-                                <textarea required class="form-control btn-lg btn-block" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
                             </div>
+                            <textarea required class="form-control btn-lg btn-block" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
@@ -62,10 +63,10 @@
                         <div class="input-group  mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'PROGRAMS' | translate}}</span>
-                                <select required class="form-control btn-lg btn-block" name="program" [(ngModel)]="batch.programId">
-                          <option *ngFor="let program of listPrograms" [value]="program.id">{{program.name}}</option>
-                        </select>
                             </div>
+                            <select required class="form-control btn-lg btn-block" name="program" [(ngModel)]="batch.programId">
+                                <option *ngFor="let program of listPrograms" [value]="program.id">{{program.name}}</option>
+                              </select>
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">

@@ -43,6 +43,7 @@ import { NgxTagsInputModule } from "ngx-tags-input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ActiveComponent } from "./components/user/active/active.component";
 import { InactiveComponent } from "./components/user/inactive/inactive.component";
+import { MentorTeckerComponent } from "./components/mentor-tecker/mentor-tecker.component";
 
 const ROUTES: Routes = [
   { path: "", redirectTo: "/", pathMatch: "full" },
@@ -53,6 +54,7 @@ const ROUTES: Routes = [
   { path: "users/active", component: ActiveComponent },
   { path: "users/inactive", component: InactiveComponent },
   { path: "deliverables", component: DeliverablesComponent },
+  { path: 'users/Mentor', component: MentorTeckerComponent },
   { path: "**", component: Page404Component }
 ];
 
@@ -76,7 +78,8 @@ const ROUTES: Routes = [
     BatchesCardComponent,
     ActiveComponent,
     InactiveComponent,
-    ProgramsComponent
+    ProgramsComponent,
+    MentorTeckerComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,9 @@ const ROUTES: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    DxTabPanelModule,
+    DxPopupModule,
+    DxListModule,
     RouterModule.forRoot(ROUTES),
     DxListModule,
     DxTabPanelModule,

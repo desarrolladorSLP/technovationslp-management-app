@@ -23,7 +23,7 @@ export class UserprofileComponent implements OnInit {
   name: string;
   preferredEmail: string;
   phoneNumber: string;
-  pictureUrl: string;
+  pictureUrl: string = 'assets/default-user.png';
   messageSuccess: string;
 
   constructor(
@@ -100,10 +100,11 @@ export class UserprofileComponent implements OnInit {
     });
   }
 
-  public onUpload(e) {
-    const file = e.target.files[0];
-    const filePath = "upload/image.png";
-    const ref = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+  public onUpload(imageInput) {
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.pictureUrl = event.target.result;
+    }
+    reader.readAsDataURL(imageInput.files[0]);
   }
 }

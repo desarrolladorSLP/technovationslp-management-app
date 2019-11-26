@@ -31,9 +31,8 @@ export class DeliverablesService {
     const urlEndpoint = `${environment.backendUrl}/api/deliverable/${deliverableId}`;
     return this.httpClient.delete<Deliverable>(urlEndpoint);
   }
-  public getTeckersforBatch(): Observable<Tecker[]> {
-    // const urlEndpoint = `${environment.backendUrl}/api/deliverable/`;
-    const urlEndpoint = 'https://demo1677366.mockable.io/api/batch/teckers';
-    return this.httpClient.get<Tecker[]>(urlEndpoint);
+  public assingTeckersToDeliverable(deliverableID: string, teckersToAssign:{'teckersToAssign':string[]}): Observable<string[]> {
+     const urlEndpoint = `${environment.backendUrl}/api/deliverable/${deliverableID}/teckers`;
+    return this.httpClient.post<string[]>(urlEndpoint, teckersToAssign);
   }
 }

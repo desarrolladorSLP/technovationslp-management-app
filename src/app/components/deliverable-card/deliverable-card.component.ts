@@ -16,6 +16,9 @@ import { Tecker } from "src/app/model/tecker";
 import DataSource from "devextreme/data/data_source";
 import ArrayStore from "devextreme/data/array_store";
 import { DxListComponent } from "devextreme-angular";
+import { BatchesService } from "src/app/services/batches/batches.service";
+import { TeckerBatch } from "src/app/model/tecker-batch";
+import { copyStyles } from "@angular/animations/browser/src/util";
 
 @Component({
   selector: "app-deliverable-card",
@@ -26,31 +29,22 @@ export class DeliverableCardComponent {
   @Input() deliverable: Deliverable;
   @Output() public batchDeleted = new EventEmitter();
   @Input() listBatch: Batch[];
+  @Input() batch: Batch;
   @ViewChild(DxListComponent) list: DxListComponent;
   public updatingBatch = false;
   public deletingBatch = false;
   yesdelete: string;
-  batch: string;
   messageSucess: string;
   messageDeleted: string;
-  listTeckers: Tecker[];
+  listTeckers: TeckerBatch[];
   tasks: DataSource;
   popupVisible = false;
 
   constructor(
     private deliverableService: DeliverablesService,
+    private batchSevice: BatchesService,
     private translate: TranslateService
-  ) {
-    this.deliverableService.getTeckersforBatch().subscribe(data => {
-      this.listTeckers = data;
-      this.tasks = new DataSource({
-        store: new ArrayStore({
-          key: "teckerId",
-          data: this.listTeckers
-        })
-      });
-    });
-  }
+  ) {  }
 
   updateDeliverable() {
     this.translate.get("MESSAGE_SUCCESS").subscribe((text: string) => {
@@ -117,10 +111,28 @@ export class DeliverableCardComponent {
 
   displayListTeckerByBatch() {
     this.popupVisible = true;
+    this.batchSevice.getTeckersByBatch(this.batch.id).subscribe(data => {
+      this.listTeckers = data;
+      this.tasks = new DataSource({
+        store: new ArrayStore({
+          key: "teckerId",
+          data: this.listTeckers
+        })
+      });
+    });
   }
 
   assingDeliverabletoTecker() {
-    console.log(this.list.selectedItems);
+    let listTeckers: string[] = [];
+    
+    this.list.selectedItems.forEach(element => {
+      listTeckers.push(element.teckerId);
+    });
+    let jsonbody = {'teckersToAssign':listTeckers};
+    console.log(jsonbody);
+    this.deliverableService.assingTeckersToDeliverable(this.deliverable.id, jsonbody).subscribe(data => {
+      console.log(data);
+    });
     this.list.instance.unselectAll();
     this.list.instance.reload();
   }

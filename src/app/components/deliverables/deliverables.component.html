@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+
+        <h1 class="text-center col-10">{{"DELIVERABLES"|translate}}</h1>
+    </div>
+    <div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">{{"PROGRAMS" | translate}}</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" (change)="getBachesByPrograms()" [(ngModel)]="selectedProgram">
+              <option *ngFor="let item of listPrograms" value={{item.id}}>{{item.name}}</option>
+            </select>
+        </div>
+
+
+        <dx-tab-panel #tabPanel class="text-center" [height]=undefined [dataSource]="listBaches" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+            <div *dxTemplate="let company of 'title'" (click)='getDeliverablesForBatch(company.id)'>
+                <span>{{company.name}}</span>
+            </div>
+            <div *dxTemplate="let company of 'item'">
+                <div class="tabpanel-item row">
+                    <div class="card col-md-5 mt-2 mr-3 ml-3">
+                        <div class="card-body alignVertical">
+                            <button type="button" *ngIf="!addingProgram" class="btn" (click)='addingProgram = !addingProgram'><i
+                  class="fa fa-plus plus"></i></button>
+
+                            <div *ngIf='addingProgram'>
+                                <form class="formPrograms" action="">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">{{'TITLE' | translate}}</span>
+                                        </div>
+                                        <input class="form-control" required type="text" #name name="name" id="name" placeholder="{{'TITLE' | translate}}">
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
+                                        </div>
+                                        <textarea class="form-control" #description required name="description" id="description" cols="20" rows="8" placeholder="Description"></textarea>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Batch</label>
+                                        </div>
+                                        <select class="custom-select" name="batch" required [(ngModel)]="batchId">
+                      <option value="{{batch.id}}" *ngFor="let batch of listBaches" >{{batch.name}}</option>
+                    </select>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                                        <label class="custom-file-label" for="customFileLang">{{"SELECT_FILE" | translate}}</label>
+                                    </div>
+                                    <button type="button" (click)='addDeliverable(name.value, description.value);' class="btn btn-outline-success btn-lg">{{'SAVE' | translate}}
+                  </button>
+                                    <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5 btn-lg">
+                    {{'CANCEL' | translate}}
+                  </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let item of listDeliverables" class="card col-md-5 mr-3 mt-2 ml-3" >
+                        <app-deliverable-card [deliverable]=item [listBatch]=listBaches [batch]=item (batchDeleted)="getDeliverablesForBatch(item.batchId)">
+                        </app-deliverable-card>
+                    </div>
+                    <div class="container was-validated">
+
+                    </div>
+                </div>
+            </div>
+        </dx-tab-panel>
+    </div>
+</div>

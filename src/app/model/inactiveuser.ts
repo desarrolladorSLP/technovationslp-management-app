@@ -1,6 +1,6 @@
 export class Inactiveuser {
   id: string;
   enable: boolean;
-  validated: Boolean;
+  validated: Boolean = true;
   roles: string[];
 }

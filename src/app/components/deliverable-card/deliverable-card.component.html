@@ -1,0 +1,57 @@
+<div class="card-body">
+    <div *ngIf="!updatingBatch">
+        <h4 class="card-header text-center mb-2">{{deliverable.title}}</h4>
+        <p>{{deliverable.description}}</p>
+    </div>
+
+    <form class="was-validated" novalidate>
+        <div *ngIf="updatingBatch">
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'NAME' | translate}}</span>
+                    <input [(ngModel)]="deliverable.title" required class="form-control" type="text" name="name" id="name">
+                </div>
+            </div>
+
+            <div class="input-group  mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
+                    <textarea class="form-control" required [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
+                </div>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                <label class="custom-file-label" for="customFileLang">{{"SELECT_FILE" | translate}}</label>
+            </div>
+            <hr>
+            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success btn-lg btn-block">{{'SAVE' | translate}}</button>
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger btn-lg btn-block">{{'CANCEL'| translate}}</button>
+        </div>
+    </form>
+
+    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mr-2"><i class="fa fa-edit"></i></button>
+
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-primary " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
+</div>
+
+<dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="{{'LIST' | translate}}" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <dx-list [dataSource]="listTeckers" [items]="listTeckers" [height]="200" [searchEnabled]="true" [showSelectionControls]="true" [selectedItemKeys]="[]" searchExpr="name" searchMode="contains" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+            <div *dxTemplate="let item of 'item'">
+                <div class="product row align-content-center ml-2">
+                    <img src="assets/boy.png" class="image rounded-circle" />
+                    <div>{{item.name}}</div>
+                </div>
+            </div>            
+        </dx-list>
+        <div class="text-center mt-3">
+            <button type="button" (click)= "assingDeliverabletoTecker()"
+          class="btn btn-outline-success btn-lg btn-block mr-5">{{'SAVE' | translate}}
+          </button>
+          <button type="button" (click)='popupVisible  = false' class="btn btn-lg btn-block btn-outline-danger">
+              {{'CANCEL' | translate}}
+          </button>
+          </div>
+    </div>
+</dx-popup>

@@ -64,5 +64,6 @@
     "LIST": "Lista de teckers",
     "ROLES_EXAMPLE":"Los valores aceptados son: Administrator, Mentor, Tecker, Staff, Parent",
     "ERROR_PAGE": "A bug has occurred, make sure you're trying to get into the right place and have the necessary permissions to be here.",
-    "SORRY":"Sorry for the inconvenience"
+    "SORRY":"Sorry for the inconvenience",
+    "PROGRAM": "Programa"
 }

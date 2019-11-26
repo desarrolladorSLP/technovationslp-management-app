@@ -1,6 +1,5 @@
 {
     "PROGRAMS": "Programs",
-    "BATCHES": "Batches",
     "SESSIONS": "Sessions",
     "USERS": "Users",
     "LANGUAGES": "Languages",
@@ -57,5 +56,11 @@
     "START_TIME": "Start Time",
     "END_TIME": "Start Time",
     "DELETE_SESSION": "Are you sure to delete this Session?",
-    "SELECT_BATCH": "select a Batch"
+    "SELECT_BATCH": "select a Batch",
+    "EMPY_PROGRAM": "The Program is empty, not contain baches ",
+    "NAVEGATE": "Browser",
+    "LIST": "List of teckers",
+    "ROLES_EXAMPLE":"Accepted values are: Administrator, Mentor, Tecker, Staff, Parent",
+    "ERROR_PAGE": "A ocurrido un error, asegurate de que estes tratando de ingresar al sitio correcto y que cuentes con los permisos necesarios para estar aqui",
+    "SORRY":"Perdon por las molestias"
 }

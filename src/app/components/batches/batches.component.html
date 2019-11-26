@@ -1,4 +1,4 @@
-<input type="search" name="filterBatch" class="form-control" placeholder="Search..." [(ngModel)]="filterBatch">
+<input type="search" name="filterBatch" class="form-control" placeholder="{{'SEARCH' | translate}}" [(ngModel)]="filterBatch">
 
 <h1 class="text-center">Batches</h1>
 <div class="container">
@@ -16,10 +16,10 @@
                             <input [(ngModel)]="batch.name" required class="form-control btn-lg btn-block" type="text" name="name" id="name">
                         
                             <div class="valid-feedback">
-                                Looks good!
+                                {{'MESSAGE_VALID' | translate}}
                             </div>
                             <div class="invalid-feedback">
-                                Please fill the Field
+                                {{'FIELD_EMPTY' | translate}}
                             </div>
                         </div>
 
@@ -29,9 +29,10 @@
                             </div>
                             <input class="form-control" required style="width: 160px" [(ngModel)]="batch.startDate" type="date" name="startDate" id="startDate">
                             <div class="valid-feedback">
+                                {{'MESSAGE_VALID' | translate}}
                             </div>
                             <div class="invalid-feedback">
-                                {{'FIELDEMPTY' | translate}}
+                                {{'FIELD_EMPTY' | translate}}
                             </div>
                         </div>
 
@@ -41,10 +42,10 @@
                             </div>
                             <input class="form-control" required style="width: 160px" [(ngModel)]="batch.endDate" type="date" name="endDate" id="endDate">
                             <div class="valid-feedback">
-                                Looks good!
+                                {{'MESSAGE_VALID' | translate}}
                             </div>
                             <div class="invalid-feedback">
-                                {{'FIELDEMPTY' | translate}}
+                                {{'FIELD_EMPTY' | translate}}
                             </div>
                         </div>
 
@@ -52,11 +53,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NOTES' | translate}}</span>
                             </div>
-                            <textarea required class="form-control btn-lg btn-block" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
+                            <textarea class="form-control btn-lg btn-block" [(ngModel)]="batch.notes" type="text" name="notes" id="notes"> </textarea>
                             <div class="valid-feedback">
+                                {{'MESSAGE_VALID' | translate}}
                             </div>
                             <div class="invalid-feedback">
-                                {{'FIELDEMPTY' | translate}}
+                                {{'FIELD_EMPTY' | translate}}
                             </div>
                         </div>
 
@@ -67,17 +69,18 @@
                             <select required class="form-control btn-lg btn-block" name="program" [(ngModel)]="batch.programId">
                                 <option *ngFor="let program of listPrograms" [value]="program.id">{{program.name}}</option>
                               </select>
-                            <div class="valid-feedback">
+                              <div class="valid-feedback">
+                                {{'MESSAGE_VALID' | translate}}
                             </div>
                             <div class="invalid-feedback">
-                                {{'FIELDEMPTY' | translate}}
+                                {{'FIELD_EMPTY' | translate}}
                             </div>
                         </div>
 
-                        <button type="button" (click)='addBatch();' class="btn btn-outline-success btn-lg btn-block">Save
+                        <button type="button" (click)='addBatch();' class="btn btn-outline-success btn-lg btn-block">{{'SAVE' | translate}}
             </button>
                         <button type="button" (click)='addingBatch = false' class="btn btn-outline-danger btn-lg btn-block">
-              Cancel
+              {{'CANCEL' | translate}}
             </button>
                     </div>
                 </form>

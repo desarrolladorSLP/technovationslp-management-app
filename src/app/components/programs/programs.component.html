@@ -1,4 +1,4 @@
-<input type="search" name="filterPrograms" class="form-control" placeholder="Search..." [(ngModel)]="filterPrograms" id="">
+<input type="search" name="filterPrograms" class="form-control" placeholder="{{'SEARCH' | translate}}" [(ngModel)]="filterPrograms" id="">
 <h1 class="text-center">{{'PROGRAMS' | translate}}</h1>
 
 <div class="container">
@@ -15,14 +15,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NAME' | translate}}</span>
                             </div>
-                            <input class="form-control" required type="text" #name name="name" id="name" placeholder="Name">
+                            <input class="form-control" required type="text" #name name="name" id="name" placeholder="{{'NAME' | translate}}">
                         </div>
 
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
                             </div>
-                            <textarea class="form-control" #description name="description" id="description" cols="20" rows="5" placeholder="Description"></textarea>
+                            <textarea class="form-control" #description name="description" id="description" cols="20" rows="5" placeholder="{{'DESCRIPTION' | translate}}"></textarea>
                         </div>
 
                         <div class="input-group  mb-2">

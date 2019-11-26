@@ -15,7 +15,7 @@ import { Router } from "@angular/router";
 export class InactiveComponent implements OnInit {
   listInactiveUser: any;
   inactiveUser: Inactiveuser;
-  isEnable = false;
+  isEnable: boolean;
   filterName = "";
   filterEmail = "";
   searchName = false;
@@ -113,6 +113,7 @@ export class InactiveComponent implements OnInit {
           });
           this.refreshList();
         });
+      console.log(this.inactiveUser);
     }
   }
 

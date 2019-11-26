@@ -1,6 +1,5 @@
 {
     "PROGRAMS": "Programas",
-    "BATCHES": "Periodos",
     "SESSIONS": "Sesiones",
     "USERS": "Usuarios",
     "LANGUAGES": "Idiomas",
@@ -22,9 +21,10 @@
     "DELETED": "!El programa ha sido eliminado!",
     "USER_PROFILE": "Perfil de Usuario",
     "CHANGE_IMAGE": "Cambiar Imagen",
+    "MESSAGE_VALID": "Gran elección",
     "MESSAGE_INVALID": "Vuelve a intentar",
     "EMAIL": "Email",
-    "PHONE_NUMBER": "Numero de telefono",
+    "PHONE_NUMBER": "Telefono",
     "NOTE": "Nota",
     "NOTE_MESSAGE": "Recuerda que el numero de telefono requiere 10 numeros",
     "MESSAGE_NAME": "Ingresa tu nombre",
@@ -58,5 +58,11 @@
     "END_TIME": "Termina",
     "DELETE_SESSION": "¿Está seguro de eliminar esta Sesión?",
     "DELETED_SESSION": "¡La sesión ha sido eliminada!",
-    "SELECT_BATCH": "Seleccionar Batch"
+    "SELECT_BATCH": "Seleccionar Batch",
+    "EMPY_PROGRAM": "El Programa esta vacio, no contiene baches",
+    "NAVEGATE": "Inspeccionar",
+    "LIST": "Lista de teckers",
+    "ROLES_EXAMPLE":"Los valores aceptados son: Administrator, Mentor, Tecker, Staff, Parent",
+    "ERROR_PAGE": "A bug has occurred, make sure you're trying to get into the right place and have the necessary permissions to be here.",
+    "SORRY":"Sorry for the inconvenience"
 }

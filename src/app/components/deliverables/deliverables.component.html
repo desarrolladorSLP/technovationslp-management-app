@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Baches</label>
+                                            <label class="input-group-text" for="inputGroupSelect01">Batch</label>
                                         </div>
                                         <select class="custom-select" name="batch" required [(ngModel)]="batchId">
                       <option value="{{batch.id}}" *ngFor="let batch of listBaches" >{{batch.name}}</option>
@@ -53,9 +53,9 @@
                                         <input type="file" class="custom-file-input" id="customFileLang" lang="es">
                                         <label class="custom-file-label" for="customFileLang">{{"SELECT_FILE" | translate}}</label>
                                     </div>
-                                    <button type="button" (click)='addDeliverable(name.value, description.value);' class="btn btn-outline-success">{{'SAVE' | translate}}
+                                    <button type="button" (click)='addDeliverable(name.value, description.value);' class="btn btn-outline-success btn-lg">{{'SAVE' | translate}}
                   </button>
-                                    <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5">
+                                    <button type="button" (click)='addingProgram = false' class="btn btn-outline-danger mr-5 btn-lg">
                     {{'CANCEL' | translate}}
                   </button>
                                 </form>

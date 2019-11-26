@@ -9,22 +9,23 @@
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'NAME' | translate}}</span>
-                    <input [(ngModel)]="deliverable.title" class="form-control" type="text" name="name" id="name">
+                    <input [(ngModel)]="deliverable.title" required class="form-control" type="text" name="name" id="name">
                 </div>
             </div>
 
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
-                    <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
+                    <textarea class="form-control" required [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
                 </div>
             </div>
-            <div class="file-upload-wrapper">
-                <input type="file" id="input-file-now" class="file-upload" />
-              </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                <label class="custom-file-label" for="customFileLang">{{"SELECT_FILE" | translate}}</label>
+            </div>
             <hr>
-            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success btn-lg btn-block">Save</button>
-            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger btn-lg btn-block">Cancel</button>
+            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success btn-lg btn-block">{{'SAVE' | translate}}</button>
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger btn-lg btn-block">{{'CANCEL'| translate}}</button>
         </div>
     </form>
 
@@ -34,7 +35,7 @@
     <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-primary " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
 </div>
 
-<dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="Information" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+<dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="{{'LIST' | translate}}" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
     <div *dxTemplate="let data of 'content'">
         <dx-list [dataSource]="listTeckers" [items]="listTeckers" [height]="200" [searchEnabled]="true" [showSelectionControls]="true" [selectedItemKeys]="[]" searchExpr="name" searchMode="contains" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
             <div *dxTemplate="let item of 'item'">

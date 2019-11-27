@@ -41,15 +41,7 @@ export class SessionsComponent {
   }
 
   addingSession(data) {
-    this.session.title = data.appointmentData.title;
-    this.session.date ='2020-02-02';/* data.appointmentData.startDate.getFullYear() + '-' + data.appointmentData.startDate.getMonth() + 1
-    + '-' + data.appointmentData.startDate.getDay(); */
-    this.session.startTime ='12:00';/*  data.appointmentData.startTime.getHours() + ':' + data.appointmentData.startTime.getMinutes()  */;
-    this.session.endTime ='1:00';/* data.appointmentData.endTime.getHours() + ':' + data.appointmentData.endTime.getMinutes() ; */
-    this.session.notes = data.appointmentData.notes;
-    this.session.location = data.appointmentData.location;
-    console.log(this.session);
-
+    console.log(data.appointmentData.startTime.getTime());
     this.sessionsService.addSession(this.session).subscribe( session => {
       this.addSession = false;
       this.refreshSessions(this.session.batchId);
@@ -82,14 +74,13 @@ export class SessionsComponent {
           element.startDate = new Date(year, month, day , startHour, startMinutes);
           element.endDate = new Date(year, month, day , endHour, endMinutes);
           });
-          console.log(this.listSessions);
+      console.log(this.listSessions);
         this.searchSession = true;
     });
   }
 
   onAppointmentFormOpening(data) {
     const that = this;
-    console.log(data);
     const form = data.form;
 
     let startDate = data.appointmentData.startDate;

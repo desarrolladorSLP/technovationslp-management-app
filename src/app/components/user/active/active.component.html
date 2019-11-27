@@ -85,8 +85,9 @@
                     <div class="col-6">
                         <div class="row mt-3 justify-content-center">
                             <h5>{{'TITLE_MODAL'|translate}}</h5>
-                            <ngx-tags-input class="form-control" [(ngModel)]="currentRoles" [options]="optionsRoles" [minLengthBeforeOptions]="3" [maxTags]="5" placeholder="will only match when 3 characters are typed" style="height:100px;">
+                            <ngx-tags-input class="form-control" [(ngModel)]="currentRoles" [options]="optionsRoles" [minLengthBeforeOptions]="2" [maxTags]="5" placeholder="will only match when 3 characters are typed" style="height:100px;">
                             </ngx-tags-input>
+                            <small class="text-muted">{{'ROLES_EXAMPLE' | translate}}</small>
                         </div>
                         <div class="custom-control custom-switch" *ngIf="!isEnable; else elseBlock">
                             <input type="checkbox" class="custom-control-input" id="customSwitches" [(ngModel)]="isEnable">

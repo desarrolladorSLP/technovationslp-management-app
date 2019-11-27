@@ -1,11 +1,11 @@
-<input type="search" name="filterPrograms" class="form-control" placeholder="Search..." [(ngModel)]="filterPrograms" id="">
+<input type="search" name="filterPrograms" class="form-control" placeholder="{{'SEARCH' | translate}}" [(ngModel)]="filterPrograms" id="">
 <h1 class="text-center">{{'PROGRAMS' | translate}}</h1>
 
 <div class="container">
     <div class="row">
 
 
-        <div class="card col-md-3 mr-3 mt-2 ">
+        <div class="card col-md-5 mr-3 mt-2 ">
             <div class="card-body text-center alignVertical">
                 <button type="button" class="btn" *ngIf="!addingProgram" (click)='addingProgram = !addingProgram'><i class="fa fa-plus plus" aria-hidden="true"></i></button>
 
@@ -15,24 +15,29 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'NAME' | translate}}</span>
                             </div>
-                            <input class="form-control" required type="text" #name name="name" id="name" placeholder="Name">
+                            <input class="form-control" required type="text" #name name="name" id="name" placeholder="{{'NAME' | translate}}">
                         </div>
 
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
                             </div>
-                            <textarea class="form-control" #description name="description" id="description" cols="20" rows="5" placeholder="Description"></textarea>
+                            <textarea class="form-control" #description name="description" id="description" cols="20" rows="5" placeholder="{{'DESCRIPTION' | translate}}"></textarea>
                         </div>
 
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">{{'RESPONSIBLES' | translate}}</span>
-                            </div>
+                        <div class="input-group  mb-2">
 
-                            <div *ngFor="let user of listUserRole">
-                                <input type="checkbox" [value]="user.isChecked" [checked]="user.isChecked" (change)="$event.target.checked ? user.isChecked = true : user.isChecked = false"> {{user.name}}
+                            <div class="dx-field">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">{{'RESPONSIBLES' | translate}}</span>
+                                    <div class="dx-field-value">
+                                        <dx-tag-box [items]="listUserRole" [value]="currentResponsibles" [hideSelectedItems]="true" displayExpr="name" width="300px" [selectedItems]="[]">
+                                        </dx-tag-box>
+                                    </div>
+                                </div>
+            
                             </div>
+            
                         </div>
 
                         <button type="button" (click)='addProgram(name.value, description.value);' class="btn btn-outline-success">{{'SAVE' | translate}}
@@ -44,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div *ngFor="let item of listPrograms | filter:filterPrograms" class="card col-md-3  mt-2 mr-3" style="width: 18rem;">
+        <div *ngFor="let item of listPrograms | filter:filterPrograms" class="card col-md-5  mt-2 mr-3" style="width: 18rem;">
             <app-program-card (programDeleted)="refreshPrograms()" [listUserRole]="listUserRole" [program]="item"></app-program-card>
         </div>
     </div>

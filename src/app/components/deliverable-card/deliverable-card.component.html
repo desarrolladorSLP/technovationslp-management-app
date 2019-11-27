@@ -9,56 +9,49 @@
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'NAME' | translate}}</span>
-                    <input [(ngModel)]="deliverable.title" class="form-control" type="text" name="name" id="name">
+                    <input [(ngModel)]="deliverable.title" required class="form-control" type="text" name="name" id="name">
                 </div>
             </div>
 
             <div class="input-group  mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">{{'DESCRIPTION' | translate}}</span>
-                    <textarea class="form-control" [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
+                    <textarea class="form-control" required [(ngModel)]="deliverable.description" type="text" name="notes" cols="20" rows="8" id="notes"> </textarea>
                 </div>
             </div>
-            <input type="file" name="file" id="files">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                <label class="custom-file-label" for="customFileLang">{{"SELECT_FILE" | translate}}</label>
+            </div>
             <hr>
-            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success">Save</button>
-            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger mr-5">Cancel</button>
+            <button type="button" (click)="updateDeliverable()" class="btn btn-outline-success btn-lg btn-block">{{'SAVE' | translate}}</button>
+            <button type="button" (click)='updatingBatch = false' class="btn btn-outline-danger btn-lg btn-block">{{'CANCEL'| translate}}</button>
         </div>
     </form>
 
-    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mt-5 mr-2"><i class="fa fa-edit"></i></button>
+    <button type="button" *ngIf='!updatingBatch' (click)="updatingBatch = !updatingBatch" class="btn btn-light mr-2"><i class="fa fa-edit"></i></button>
 
-    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mt-5 mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
-    <button type="button" class="btn btn-primary mt-5 " data-toggle="modal" data-target="#listModal"><i class="fa fa-users" aria-hidden="true"></i></button>
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-danger mr-2" (click)="showAlertDelete()"><i class="fa fa-trash-o"></i></button>
+    <button type="button" *ngIf='!deletingBatch && !updatingBatch' class="btn btn-primary " (click)="displayListTeckerByBatch()"><i class="fa fa-users" aria-hidden="true"></i></button>
 </div>
 
-<!-- modal -->
-<div class="modal" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">{{"LIST_TECKERS"|translate}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body">
-                <div class="widget-containe">
-                    <dx-list [items]="listTeckers" [height]="400" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
-                        <div *dxTemplate="let item of 'item'">
-                            <div class="product row align-content-center ml-2">
-                                <img src="assets/boy.png" class="image rounded-circle" />
-                                <div>{{item.name}}</div>
-                            </div>
-                        </div>
-                    </dx-list>
+<dx-popup class="popup" [width]="500" [height]="400" [showTitle]="true" title="{{'LIST' | translate}}" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <dx-list [dataSource]="listTeckers" [items]="listTeckers" [height]="200" [searchEnabled]="true" [showSelectionControls]="true" [selectedItemKeys]="[]" searchExpr="name" searchMode="contains" [selectedItems]="[]" [selectedItemKeys]="[]" [showSelectionControls]="true" selectAllMode="allPages" selectionMode="all">
+            <div *dxTemplate="let item of 'item'">
+                <div class="product row align-content-center ml-2">
+                    <img src="assets/boy.png" class="image rounded-circle" />
+                    <div>{{item.name}}</div>
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="assingDeliverabletoTecker()">Save changes</button>
-            </div>
-        </div>
+            </div>            
+        </dx-list>
+        <div class="text-center mt-3">
+            <button type="button" (click)= "assingDeliverabletoTecker()"
+          class="btn btn-outline-success btn-lg btn-block mr-5">{{'SAVE' | translate}}
+          </button>
+          <button type="button" (click)='popupVisible  = false' class="btn btn-lg btn-block btn-outline-danger">
+              {{'CANCEL' | translate}}
+          </button>
+          </div>
     </div>
-</div>
+</dx-popup>

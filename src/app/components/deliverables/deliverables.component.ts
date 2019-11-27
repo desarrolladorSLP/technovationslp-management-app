@@ -7,6 +7,9 @@ import { BatchesService } from "src/app/services/batches/batches.service";
 import { Batch } from "src/app/model/batch";
 import { ProgramsService } from "src/app/services/programs/programs.service";
 import { Program } from "src/app/model/program";
+import { AuthService } from "src/app/services";
+import { Router } from "@angular/router";
+import { LoggedUser } from "src/app/model/logged-user";
 
 @Component({
   selector: "app-deliverables",
@@ -45,10 +48,25 @@ export class DeliverablesComponent implements OnInit {
   }
 
   getBachesByPrograms() {
+    this.translate.get("EMPY_PROGRAM").subscribe((text: string) => {
+      this.messageSucess = text;
+    });
     this.batchService
       .getBatchbyProgram(this.selectedProgram)
       .subscribe(data => {
         this.listBaches = data;
+        if(this.listBaches.length > 0)
+        {
+          this.getDeliverablesForBatch(this.listBaches[0].id);
+        }else {
+          Swal.fire({
+            position: "top",
+            type: "info",
+            title: this.messageSucess,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
       });
     this.isSelectedProgram = false;
   }
@@ -93,6 +111,7 @@ export class DeliverablesComponent implements OnInit {
           timer: 1500
         });
         this.getDeliverablesForBatch(this.batchId);
+        this.getBachesByPrograms();
         this.addingProgram = false;
       }
     }

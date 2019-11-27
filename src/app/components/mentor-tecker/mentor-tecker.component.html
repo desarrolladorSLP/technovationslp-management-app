@@ -1,0 +1,85 @@
+<div class="container">
+  <h1 class="text-center">Mentor</h1>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="program">{{"PROGRAMS" | translate}}</label>
+    </div>
+    <select  [(ngModel)]="programId" class="custom-select" (ngModelChange)="onProgramChange($event)" name="program" id="program">
+        <option *ngFor="let program of listPrograms"  [value]="program.id" >{{program.name}}</option>
+    </select>
+  </div>
+
+  <dx-tab-panel
+    #tabPanel
+    [height]="260"
+    [dataSource]="listBatches"
+    [selectedIndex]="0"
+    [loop]="false"
+    [animationEnabled]="true"
+    [swipeEnabled]="true"
+>
+    <div *dxTemplate="let batch of 'title'" (click)='getInformationByBatch(batch.id)'>
+        <span>{{batch.name}}</span>
+    </div>
+    <div *dxTemplate="let batch of 'item'">
+        <div class="tabpanel-item">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>{{'NAME' | translate}}</th>
+                      <th>Teckers</th>
+                      <th>#Teckers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  *ngFor="let mentor of listMentors">
+                      <td><img src="{{mentor.pictureUrl}}" alt="mentorUrl"></td>
+                      <td>{{mentor.name}}</td>
+                      <td><button   (click)="getSelectedMentor(mentor.mentorId)"   class="btn btn-info"><i class="fa fa-male" aria-hidden="true"></i><i class="fa fa-female" aria-hidden="true"></i>
+                      </button></td>
+                      <td>{{mentor.listTeckers.length}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+    </div>
+</dx-tab-panel>
+
+<dx-popup class="popup" [width]="500" [height]="450" [showTitle]="true" title="Information" [dragEnabled]="false" [closeOnOutsideClick]="true" contentTemplate="popupContent" [(visible)]="popupVisible">
+
+    <div *dxTemplate="let data of 'popupContent'">
+
+                <dx-list
+                [items]="listTeckers"
+                [dataSource]="listTeckers"
+                [height]="250"
+                [selectedItems]="selectedTeckers"
+                [searchEnabled]="true"
+                searchExpr="name"
+                searchMode="contains"
+                [selectedItemKeys]="[]"
+                [showSelectionControls]="true"
+                selectAllMode="allPages"
+                selectionMode="all">
+                    <div *dxTemplate="let tecker of 'item'">
+                        <div class="product row align-content-center ml-2">
+                            <div>{{tecker.name}}</div>
+                        </div>
+                    </div>
+                </dx-list>
+
+            <div class="text-center">
+              <button type="button" (click)= "assignedTeckersToMentor()"
+            class="btn btn-outline-success btn-lg btn-block mr-5">{{'SAVE' | translate}}
+            </button>
+            <button type="button" (click)='popupVisible  = false' class="btn btn-lg btn-block btn-outline-danger">
+                {{'CANCEL' | translate}}
+            </button>
+            </div>
+
+    </div>
+
+</dx-popup>
+</div>

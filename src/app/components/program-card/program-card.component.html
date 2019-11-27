@@ -2,8 +2,8 @@
     <!--Show the list of Programs-->
     <div *ngIf='!updatingProgram'>
         <h5 class="card-header text-center mb-2"> {{program.name}}</h5>
-        <p class="card-text">{{program.description}}</p>
-        <h6 class="card-subtitle text-muted">{{program.responsible}}</h6>
+        <p class="card-text"><strong>Descripcion del programa: </strong>{{program.description}}</p>
+        <h6 class="card-subtitle text-muted"><strong>Responsables: </strong>{{program.responsible}}</h6>
     </div>
 
     <!--Form to edit the information-->
@@ -23,19 +23,22 @@
             </div>
 
             <div class="input-group  mb-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">{{'RESPONSIBLES' | translate}}</span>
-                </div>
-                <div>
-                    <div *ngFor="let user of listUserRole">
-                        <input type="checkbox" [value]="user.isChecked" [checked]="user.isChecked" (change)="$event.target.checked ? user.isChecked = true : user.isChecked = false"> {{user.name}}
+
+                <div class="dx-field">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{{'RESPONSIBLES' | translate}}</span>
+                        <div class="dx-field-value">
+                            <dx-tag-box [items]="listUserRole" [value]="currentResponsibles" [hideSelectedItems]="true" displayExpr="name" width="300px" [selectedItems]="[]">
+                            </dx-tag-box>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
-            <button type="button" (click)='saveProgram()' class="btn btn-outline-success">{{'SAVE' | translate}}
+            <button type="button" (click)='saveProgram()' class="btn btn-outline-success btn-lg btn-block">{{'SAVE' | translate}}
       </button>
-            <button type="button" (click)='updatingProgram = false' class="btn btn-outline-danger">
+            <button type="button" (click)='updatingProgram = false' class="btn btn-outline-danger btn-lg btn-block">
           {{'CANCEL' | translate}}
       </button>
         </form>

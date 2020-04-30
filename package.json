@@ -27,7 +27,7 @@
     "core-js": "2.6.9",
     "firebase": "6.4.2",
     "font-awesome": "4.7.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jsonwebtoken": "8.5.1",
     "ngx-bootstrap": "^5.1.2",
     "ngx-tags-input": "^2.0.1",
